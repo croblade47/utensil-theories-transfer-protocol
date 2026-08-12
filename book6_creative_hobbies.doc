@@ -1,0 +1,45 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+  <meta charset="utf-8">
+  <title>Utensil Theories - Book 6: Creative Hobbies (Printable MS Word Document)</title>
+  <style>
+    @page Section1 { size: 11.0in 8.5in; mso-page-orientation: landscape; margin: 0.5in; }
+    div.Section1 { page: Section1; }
+    body { font-family: 'Calibri', 'Arial', sans-serif; font-size: 11pt; color: #111827; }
+    h1 { font-family: 'Georgia', serif; font-style: italic; font-size: 26pt; color: #240046; margin-bottom: 4pt; }
+    .category-banner { background-color: #240046; color: #FFFFFF; font-weight: bold; font-size: 11pt; padding: 6pt 12pt; text-transform: uppercase; letter-spacing: 2pt; display: inline-block; }
+    .prompt-box { background-color: #FAF5FF; border: 1.5pt solid #E9D5FF; padding: 8pt 12pt; font-family: 'Consolas', monospace; font-size: 9.5pt; color: #0F172A; }
+    .zine-grid { width: 100%; border-collapse: collapse; margin-top: 12pt; }
+    .zine-grid td { width: 25%; height: 2.8in; border: 1pt dashed #94A3B8; padding: 8pt; vertical-align: top; background-color: #FFFFFF; }
+    .cover-cell { background-color: #240046; color: #FFFFFF; }
+    .page-tag { font-family: 'Consolas', monospace; font-size: 8pt; font-weight: bold; color: #64748B; border-bottom: 1pt solid #E2E8F0; padding-bottom: 2pt; margin-bottom: 4pt; }
+    .cut-line { text-align: center; color: #DC2626; font-weight: bold; font-family: 'Consolas', monospace; font-size: 9pt; padding: 4pt 0; border-top: 2pt dashed #DC2626; margin: 8pt 0; }
+  </style>
+</head>
+<body>
+<div class="Section1">
+  <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 14pt;">
+    <tr>
+      <td><h1>Utensil Theories</h1><div class="category-banner">BOOK 6: CREATIVE HOBBIES • C6 • $2</div></td>
+      <td align="right" valign="bottom"><span style="font-family: 'Consolas', monospace; font-size: 9pt; color: #64748B;">UTTP-BK6-2026 • PRINT READY</span></td>
+    </tr>
+  </table>
+  <p><strong>Description:</strong> Book 6 of Utensil Theories. Voice-assisted gardening, beginner knitting & crochet, woodworking cut lists, and color palette generators.</p>
+  <div class="cut-line">✂️ CUT CENTRAL SLIT LINE ALONG DOTTED LINE FOR 1-SHEET ZINE ASSEMBLY ✂️</div>
+  <table class="zine-grid">
+    <tr>
+      <td><div class="page-tag">PAGE 8 • BACK COVER</div><h3>Utensil Hobbies Back</h3><p>Utensil Theories Protocol #UTTP-BK6-2026.</p><div class="prompt-box">Voice Craft Helper: Scan QR</div></td>
+      <td class="cover-cell"><div style="font-family: 'Consolas', monospace; font-size: 8pt; color: #E9D5FF;">NO. 6 OF 8 • $2</div><div style="text-align: center; margin-top: 14pt; margin-bottom: 14pt;"><div style="font-family: 'Georgia', serif; font-style: italic; font-size: 18pt; color: #FFFFFF;">Utensil Theories</div><div style="font-size: 8pt; letter-spacing: 2pt; color: #F3E8FF;">CREATIVE HOBBIES</div></div><div style="font-size: 8pt; color: #E9D5FF; text-align: center;">AI MADE EASY.</div></td>
+      <td><div class="page-tag">PAGE 4 • COLOR PALETTES</div><h3>Color Palette Generator</h3><p>Harmonious color schemes for decor.</p><div class="prompt-box">PROMPT: 4 complementary colors.</div></td>
+      <td><div class="page-tag">PAGE 5 • WOODWORKING</div><h3>Woodworking Cut List</h3><p>Planter box cut dimensions.</p><div class="prompt-box">PROMPT: Cut list for 2x4 planter box.</div></td>
+    </tr>
+    <tr>
+      <td><div class="page-tag">PAGE 7 • CRAFT PLANNER</div><h3>Craft Project Planner</h3><p>Estimate materials & budget for DIY.</p><div class="prompt-box">PROMPT: Birdhouse materials.</div></td>
+      <td><div class="page-tag">PAGE 2 • LAUNCH PAGE</div><h3>Universal AI Launch Page</h3><p>Point camera here to launch craft companion.</p><div class="prompt-box">CODE: C6 • utensil.ai/start?book=C6</div></td>
+      <td><div class="page-tag">PAGE 3 • KNITTING</div><h3>Beginner Knitting & Crochet</h3><p>Step-by-step stitch guide.</p><div class="prompt-box">PROMPT: Single crochet stitch in 3 steps.</div></td>
+      <td><div class="page-tag">PAGE 6 • FOLDING GUIDE</div><h3>Visual Folding Guide</h3><p>Fold in half twice. Cut central slit line.</p><div class="prompt-box">Diagram: Zine Assembly</div></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

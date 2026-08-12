@@ -1,0 +1,45 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+  <meta charset="utf-8">
+  <title>Utensil Theories - Book 4: Small Business (Printable MS Word Document)</title>
+  <style>
+    @page Section1 { size: 11.0in 8.5in; mso-page-orientation: landscape; margin: 0.5in; }
+    div.Section1 { page: Section1; }
+    body { font-family: 'Calibri', 'Arial', sans-serif; font-size: 11pt; color: #111827; }
+    h1 { font-family: 'Georgia', serif; font-style: italic; font-size: 26pt; color: #1C1C1C; margin-bottom: 4pt; }
+    .category-banner { background-color: #1C1C1C; color: #FFFFFF; font-weight: bold; font-size: 11pt; padding: 6pt 12pt; text-transform: uppercase; letter-spacing: 2pt; display: inline-block; }
+    .prompt-box { background-color: #F1F5F9; border: 1.5pt solid #CBD5E1; padding: 8pt 12pt; font-family: 'Consolas', monospace; font-size: 9.5pt; color: #0F172A; }
+    .zine-grid { width: 100%; border-collapse: collapse; margin-top: 12pt; }
+    .zine-grid td { width: 25%; height: 2.8in; border: 1pt dashed #94A3B8; padding: 8pt; vertical-align: top; background-color: #FFFFFF; }
+    .cover-cell { background-color: #1C1C1C; color: #FFFFFF; }
+    .page-tag { font-family: 'Consolas', monospace; font-size: 8pt; font-weight: bold; color: #64748B; border-bottom: 1pt solid #E2E8F0; padding-bottom: 2pt; margin-bottom: 4pt; }
+    .cut-line { text-align: center; color: #DC2626; font-weight: bold; font-family: 'Consolas', monospace; font-size: 9pt; padding: 4pt 0; border-top: 2pt dashed #DC2626; margin: 8pt 0; }
+  </style>
+</head>
+<body>
+<div class="Section1">
+  <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 14pt;">
+    <tr>
+      <td><h1>Utensil Theories</h1><div class="category-banner">BOOK 4: SMALL BUSINESS • B4 • $2</div></td>
+      <td align="right" valign="bottom"><span style="font-family: 'Consolas', monospace; font-size: 9pt; color: #64748B;">UTTP-BK4-2026 • PRINT READY</span></td>
+    </tr>
+  </table>
+  <p><strong>Description:</strong> Book 4 of Utensil Theories. Small business survival tools, $50 promos, physical paper flyer engine, vendor scripts, and review responders.</p>
+  <div class="cut-line">✂️ CUT CENTRAL SLIT LINE ALONG DOTTED LINE FOR 1-SHEET ZINE ASSEMBLY ✂️</div>
+  <table class="zine-grid">
+    <tr>
+      <td><div class="page-tag">PAGE 8 • BACK COVER</div><h3>Business Toolkit Back</h3><p>Utensil Theories Protocol #UTTP-BK4-2026.</p><div class="prompt-box">Merchant Association License</div></td>
+      <td class="cover-cell"><div style="font-family: 'Consolas', monospace; font-size: 8pt; color: #94A3B8;">NO. 4 OF 8 • $2</div><div style="text-align: center; margin-top: 14pt; margin-bottom: 14pt;"><div style="font-family: 'Georgia', serif; font-style: italic; font-size: 18pt; color: #FFFFFF;">Utensil Theories</div><div style="font-size: 8pt; letter-spacing: 2pt; color: #CBD5E1;">SMALL BUSINESS</div></div><div style="font-size: 8pt; color: #94A3B8; text-align: center;">AI MADE EASY.</div></td>
+      <td><div class="page-tag">PAGE 4 • REVIEWS</div><h3>Customer Review Responder</h3><p>Reply to Google reviews gracefully.</p><div class="prompt-box">PROMPT: Response to 3-star review.</div></td>
+      <td><div class="page-tag">PAGE 5 • VENDORS</div><h3>Supplier Pricing Negotiator</h3><p>Email asking vendors for bulk discounts.</p><div class="prompt-box">PROMPT: 10% volume discount request.</div></td>
+    </tr>
+    <tr>
+      <td><div class="page-tag">PAGE 7 • METRICS</div><h3>Market Metrics Tracker</h3><p>Track foot traffic gained.</p><div class="prompt-box">Sales & Margin Analytics</div></td>
+      <td><div class="page-tag">PAGE 2 • LAUNCH PAGE</div><h3>Universal AI Launch Page</h3><p>Point camera here to launch business manager.</p><div class="prompt-box">CODE: B4 • utensil.ai/start?book=B4</div></td>
+      <td><div class="page-tag">PAGE 3 • FLYERS</div><h3>Paper Flyer Engine</h3><p>Physical flyer copy for bulletin boards.</p><div class="prompt-box">PROMPT: 1-page flyer headline.</div></td>
+      <td><div class="page-tag">PAGE 6 • SALES PLAN</div><h3>Weekly Sales Plan</h3><p>Turn slow Tuesdays into promotion days.</p><div class="prompt-box">PROMPT: Tuesday bundle offers.</div></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

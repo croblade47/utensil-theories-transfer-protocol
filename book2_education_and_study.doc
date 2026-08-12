@@ -1,0 +1,197 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+  <meta charset="utf-8">
+  <title>Utensil Theories - Book 2: Education & Study (Printable MS Word Document)</title>
+  <!--[if gte mso 9]>
+  <xml>
+    <w:WordDocument>
+      <w:View>Print</w:View>
+      <w:Zoom>100</w:Zoom>
+      <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+  </xml>
+  <![endif]-->
+  <style>
+    @page Section1 {
+      size: 11.0in 8.5in;
+      mso-page-orientation: landscape;
+      margin: 0.5in 0.5in 0.5in 0.5in;
+      mso-header-margin: 0.5in;
+      mso-footer-margin: 0.5in;
+      mso-paper-source: 0;
+    }
+    div.Section1 { page: Section1; }
+    
+    body {
+      font-family: 'Calibri', 'Arial', sans-serif;
+      font-size: 11pt;
+      color: #111827;
+      line-height: 1.4;
+    }
+
+    h1 { font-family: 'Georgia', serif; font-style: italic; font-size: 26pt; color: #7B3F00; margin-bottom: 4pt; }
+    h2 { font-family: 'Calibri', sans-serif; font-size: 14pt; color: #D47A00; margin-top: 14pt; margin-bottom: 6pt; text-transform: uppercase; letter-spacing: 1pt; }
+    h3 { font-size: 12pt; color: #111827; font-weight: bold; margin-bottom: 4pt; }
+
+    .category-banner {
+      background-color: #7B3F00;
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 11pt;
+      padding: 6pt 12pt;
+      text-transform: uppercase;
+      letter-spacing: 2pt;
+      display: inline-block;
+    }
+
+    .prompt-box {
+      background-color: #FFFBE6;
+      border: 1.5pt solid #FDE68A;
+      padding: 8pt 12pt;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 9.5pt;
+      color: #0F172A;
+      margin-top: 6pt;
+      margin-bottom: 12pt;
+    }
+
+    .zine-grid {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12pt;
+    }
+
+    .zine-grid td {
+      width: 25%;
+      height: 2.8in;
+      border: 1pt dashed #94A3B8;
+      padding: 8pt;
+      vertical-align: top;
+      background-color: #FFFFFF;
+    }
+
+    .cover-cell {
+      background-color: #7B3F00;
+      color: #FFFFFF;
+    }
+
+    .page-tag {
+      font-family: 'Consolas', monospace;
+      font-size: 8pt;
+      font-weight: bold;
+      color: #64748B;
+      border-bottom: 1pt solid #E2E8F0;
+      padding-bottom: 2pt;
+      margin-bottom: 4pt;
+    }
+
+    .cut-line {
+      text-align: center;
+      color: #DC2626;
+      font-weight: bold;
+      font-family: 'Consolas', monospace;
+      font-size: 9pt;
+      padding: 4pt 0;
+      border-top: 2pt dashed #DC2626;
+      margin: 8pt 0;
+    }
+  </style>
+</head>
+<body>
+<div class="Section1">
+
+  <!-- Document Header -->
+  <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 14pt;">
+    <tr>
+      <td>
+        <h1>Utensil Theories</h1>
+        <div class="category-banner">BOOK 2: EDUCATION & STUDY • NO. 2 OF 8 • $2</div>
+      </td>
+      <td align="right" valign="bottom">
+        <span style="font-family: 'Consolas', monospace; font-size: 9pt; color: #64748B;">UTTP-BK2-2026 • PRINT READY</span>
+      </td>
+    </tr>
+  </table>
+
+  <p><strong>Description:</strong> Book 2 of the Utensil Theories Transfer Protocol. Feynman micro-study guides, math simplifiers, flashcard generators, and theoretical physics explainers.</p>
+
+  <div class="cut-line">✂️ CUT CENTRAL SLIT LINE ALONG DOTTED LINE FOR 1-SHEET ZINE ASSEMBLY ✂️</div>
+
+  <!-- 8-Page Imposition Table Grid (4 Cols x 2 Rows) -->
+  <table class="zine-grid">
+    <!-- ROW 1: Pages 8, 1, 4, 5 -->
+    <tr>
+      <!-- Page 8: Back Cover -->
+      <td>
+        <div class="page-tag">PAGE 8 • BACK COVER</div>
+        <h3>Utensil Edu Back Cover</h3>
+        <p>Utensil Theories Protocol #UTTP-BK2-2026. Education Edition.</p>
+        <div class="prompt-box">Digital Flashcards: Scan QR</div>
+      </td>
+
+      <!-- Page 1: Front Cover -->
+      <td class="cover-cell">
+        <div style="font-family: 'Consolas', monospace; font-size: 8pt; color: #FDE68A;">NO. 2 OF 8 • $2</div>
+        <div style="text-align: center; margin-top: 14pt; margin-bottom: 14pt;">
+          <div style="font-family: 'Georgia', serif; font-style: italic; font-size: 18pt; color: #FFFFFF;">Utensil Theories</div>
+          <div style="font-size: 8pt; letter-spacing: 2pt; color: #FEF3C7;">EDUCATION & STUDY</div>
+        </div>
+        <div style="font-size: 8pt; color: #FDE68A; text-align: center;">AI MADE EASY.</div>
+      </td>
+
+      <!-- Page 4: Math Simplifier -->
+      <td>
+        <div class="page-tag">PAGE 4 • MATH SIMPLIFIER</div>
+        <h3>Math & Formula Simplifier</h3>
+        <p>Turn confusing word problems into step-by-step algebra actions.</p>
+        <div class="prompt-box">PROMPT: Solve math problem photo -> 3 plain language steps.</div>
+      </td>
+
+      <!-- Page 5: Flashcard Generator -->
+      <td>
+        <div class="page-tag">PAGE 5 • FLASHCARDS</div>
+        <h3>Flashcard Generator</h3>
+        <p>Create 5 study flashcards for any topic.</p>
+        <div class="prompt-box">PROMPT: Generate 5 question & answer flashcards for [TOPIC].</div>
+      </td>
+    </tr>
+
+    <!-- ROW 2: Pages 7, 2, 3, 6 -->
+    <tr>
+      <!-- Page 7: Exam Anxiety Relief -->
+      <td>
+        <div class="page-tag">PAGE 7 • EXAM RELIEF</div>
+        <h3>Exam Anxiety Relief</h3>
+        <p>Quick 2-minute focus breathing technique.</p>
+        <div class="prompt-box">PROMPT: Give 3 calming steps before taking an exam.</div>
+      </td>
+
+      <!-- Page 2: Antigravity Physics -->
+      <td>
+        <div class="page-tag">PAGE 2 • ANTIGRAVITY PHYSICS</div>
+        <h3>Theoretical Physics & Antigravity</h3>
+        <p>Understand levitation and physics using magnet analogies.</p>
+        <div class="prompt-box">PROMPT: Explain levitation to 81yo using magnet analogies.</div>
+      </td>
+
+      <!-- Page 3: Feynman Micro-Study -->
+      <td>
+        <div class="page-tag">PAGE 3 • FEYNMAN METHOD</div>
+        <h3>Feynman Micro-Study Sheet</h3>
+        <p>Deconstruct any textbook chapter in 3 steps.</p>
+        <div class="prompt-box">PROMPT: Teach [SUBJECT] using core idea + analogy.</div>
+      </td>
+
+      <!-- Page 6: Folding Guide -->
+      <td>
+        <div class="page-tag">PAGE 6 • FOLDING GUIDE</div>
+        <h3>Visual Folding Guide</h3>
+        <p>Fold paper in half twice. Cut central slit line. Pop open into booklet!</p>
+        <div class="prompt-box">Diagram: 1-Sheet Zine Assembly</div>
+      </td>
+    </tr>
+  </table>
+
+</div>
+</body>
+</html>

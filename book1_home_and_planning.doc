@@ -1,0 +1,197 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+  <meta charset="utf-8">
+  <title>Utensil Theories - Book 1: Home & Planning (Printable MS Word Document)</title>
+  <!--[if gte mso 9]>
+  <xml>
+    <w:WordDocument>
+      <w:View>Print</w:View>
+      <w:Zoom>100</w:Zoom>
+      <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+  </xml>
+  <![endif]-->
+  <style>
+    @page Section1 {
+      size: 11.0in 8.5in;
+      mso-page-orientation: landscape;
+      margin: 0.5in 0.5in 0.5in 0.5in;
+      mso-header-margin: 0.5in;
+      mso-footer-margin: 0.5in;
+      mso-paper-source: 0;
+    }
+    div.Section1 { page: Section1; }
+    
+    body {
+      font-family: 'Calibri', 'Arial', sans-serif;
+      font-size: 11pt;
+      color: #111827;
+      line-height: 1.4;
+    }
+
+    h1 { font-family: 'Georgia', serif; font-style: italic; font-size: 26pt; color: #0A1F5C; margin-bottom: 4pt; }
+    h2 { font-family: 'Calibri', sans-serif; font-size: 14pt; color: #0044BB; margin-top: 14pt; margin-bottom: 6pt; text-transform: uppercase; letter-spacing: 1pt; }
+    h3 { font-size: 12pt; color: #111827; font-weight: bold; margin-bottom: 4pt; }
+
+    .category-banner {
+      background-color: #0A1F5C;
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 11pt;
+      padding: 6pt 12pt;
+      text-transform: uppercase;
+      letter-spacing: 2pt;
+      display: inline-block;
+    }
+
+    .prompt-box {
+      background-color: #F8FAFC;
+      border: 1.5pt solid #CBD5E1;
+      padding: 8pt 12pt;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 9.5pt;
+      color: #0F172A;
+      margin-top: 6pt;
+      margin-bottom: 12pt;
+    }
+
+    .zine-grid {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12pt;
+    }
+
+    .zine-grid td {
+      width: 25%;
+      height: 2.8in;
+      border: 1pt dashed #94A3B8;
+      padding: 8pt;
+      vertical-align: top;
+      background-color: #FFFFFF;
+    }
+
+    .cover-cell {
+      background-color: #0A1F5C;
+      color: #FFFFFF;
+    }
+
+    .page-tag {
+      font-family: 'Consolas', monospace;
+      font-size: 8pt;
+      font-weight: bold;
+      color: #64748B;
+      border-bottom: 1pt solid #E2E8F0;
+      padding-bottom: 2pt;
+      margin-bottom: 4pt;
+    }
+
+    .cut-line {
+      text-align: center;
+      color: #DC2626;
+      font-weight: bold;
+      font-family: 'Consolas', monospace;
+      font-size: 9pt;
+      padding: 4pt 0;
+      border-top: 2pt dashed #DC2626;
+      margin: 8pt 0;
+    }
+  </style>
+</head>
+<body>
+<div class="Section1">
+
+  <!-- Document Header -->
+  <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 14pt;">
+    <tr>
+      <td>
+        <h1>Utensil Theories</h1>
+        <div class="category-banner">BOOK 1: HOME & PLANNING • NO. 1 OF 8 • $2</div>
+      </td>
+      <td align="right" valign="bottom">
+        <span style="font-family: 'Consolas', monospace; font-size: 9pt; color: #64748B;">UTTP-BK1-2026 • PRINT READY</span>
+      </td>
+    </tr>
+  </table>
+
+  <p><strong>Description:</strong> Book 1 of the Utensil Theories Transfer Protocol. Designed for senior independence, medication reading, utility bill deciphering, Wi-Fi router fixes, and anti-scam protection.</p>
+
+  <div class="cut-line">✂️ CUT CENTRAL SLIT LINE ALONG DOTTED LINE FOR 1-SHEET ZINE ASSEMBLY ✂️</div>
+
+  <!-- 8-Page Imposition Table Grid (4 Cols x 2 Rows) -->
+  <table class="zine-grid">
+    <!-- ROW 1: Pages 8, 1, 4, 5 -->
+    <tr>
+      <!-- Page 8: Back Cover -->
+      <td>
+        <div class="page-tag">PAGE 8 • BACK COVER</div>
+        <h3>Official Senior ID Card</h3>
+        <p>Utensil Theories Transfer Protocol #UTTP-BK1-2026. Licensed for community center distribution.</p>
+        <div class="prompt-box">Emergency Hotline: 1-800-UTENSIL</div>
+      </td>
+
+      <!-- Page 1: Front Cover -->
+      <td class="cover-cell">
+        <div style="font-family: 'Consolas', monospace; font-size: 8pt; color: #93C5FD;">NO. 1 OF 8 • $2</div>
+        <div style="text-align: center; margin-top: 14pt; margin-bottom: 14pt;">
+          <div style="font-family: 'Georgia', serif; font-style: italic; font-size: 18pt; color: #FFFFFF;">Utensil Theories</div>
+          <div style="font-size: 8pt; letter-spacing: 2pt; color: #E0F2FE;">HOME & PLANNING</div>
+        </div>
+        <div style="font-size: 8pt; color: #93C5FD; text-align: center;">AI MADE EASY.</div>
+      </td>
+
+      <!-- Page 4: Tech & Wi-Fi Helper -->
+      <td>
+        <div class="page-tag">PAGE 4 • TECH SUPPORT</div>
+        <h3>Senior Tech & Wi-Fi Helper</h3>
+        <p>Fix TV and router issues using physical buttons without opening complex menus.</p>
+        <div class="prompt-box">PROMPT: Look at router photo. Which button do I hold for 10s to reset?</div>
+      </td>
+
+      <!-- Page 5: Anti-Scam Checker -->
+      <td>
+        <div class="page-tag">PAGE 5 • SECURITY</div>
+        <h3>Anti-Scam Letter Checker</h3>
+        <p>Verify suspicious mail or bill demands before paying.</p>
+        <div class="prompt-box">PROMPT: Read letter photo. Is this an official bill or scam?</div>
+      </td>
+    </tr>
+
+    <!-- ROW 2: Pages 7, 2, 3, 6 -->
+    <tr>
+      <!-- Page 7: Voice Hotline -->
+      <td>
+        <div class="page-tag">PAGE 7 • VOICE HOTLINE</div>
+        <h3>Voice Hotline Quick Guide</h3>
+        <p>Call 1-800-UTENSIL anytime for voice-assisted help.</p>
+        <div class="prompt-box">Passphrase: "SUNSHINE"</div>
+      </td>
+
+      <!-- Page 2: Doctor Notes -->
+      <td>
+        <div class="page-tag">PAGE 2 • HEALTH READER</div>
+        <h3>Doctor Notes & Pill Reader</h3>
+        <p>Never struggle with tiny prescription labels or medical jargon again.</p>
+        <div class="prompt-box">PROMPT: Photo of pill bottle -> List medicine name & times with food.</div>
+      </td>
+
+      <!-- Page 3: Utility Bills -->
+      <td>
+        <div class="page-tag">PAGE 3 • BILL EXPLAINER</div>
+        <h3>Utility Bill Explainer</h3>
+        <p>Confusing water, electric, or Medicare letters made simple.</p>
+        <div class="prompt-box">PROMPT: Read letter. Explain what I owe & due date in 2 bullets.</div>
+      </td>
+
+      <!-- Page 6: Folding Guide -->
+      <td>
+        <div class="page-tag">PAGE 6 • FOLDING GUIDE</div>
+        <h3>Visual Folding Guide</h3>
+        <p>Fold paper in half twice. Cut central slit line. Pop open into 8-page booklet!</p>
+        <div class="prompt-box">Diagram: 1-Sheet Zine Assembly</div>
+      </td>
+    </tr>
+  </table>
+
+</div>
+</body>
+</html>
