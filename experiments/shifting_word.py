@@ -37,7 +37,7 @@ The experiment
 Checks: (a) scrambled spellings = same extra word, no meaning;
         (b) oracle = we hand it the correct spelling.
 
-Run:  python experiments/shifting_word.py [--steps 1500]
+Run:  python experiments/shifting_word.py [--steps 1500] [--seed 0]
 """
 
 from __future__ import annotations
@@ -203,6 +203,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--steps", type=int, default=1500)
     ap.add_argument("--only", nargs="+", default=None)
+    ap.add_argument("--seed", type=int, default=0)
     args = ap.parse_args()
 
     verses = load_verses()
@@ -211,24 +212,24 @@ def main():
     pool = [i for i in range(len(texts)) if i % 50]        # same split as tiny_transformer.py
     results = json.loads(OUT.read_text()) if OUT.exists() else {}
 
-    for name, scramble in (("shifting_word", None), ("scrambled_control", 0)):
+    for name, scramble in (("shifting_word", None), ("scrambled_control", args.seed)):
         if args.only and name not in args.only:
             continue
         marked, n_clear = mark_up(verses, values, scramble)
-        if scramble is None:
+        if scramble is None and args.seed == 0:
             print(f"Clear right/wrong resets: {n_clear:,} of {len(verses):,} verses")
             from collections import Counter
             dist = Counter(m.split(" ", 1)[0] for m in marked)
             print("  Spelling counts:", ", ".join(f"{f} {dist[f]:,}" for f in FORMS))
             demo(marked, verses)
-        key = f"{name}/seed0/steps{args.steps}"
+        key = f"{name}/seed{args.seed}/steps{args.steps}"
         if key in results:
             print(f"{key}: cached")
             continue
         train_texts = [marked[i] for i in pool]
         vocab = tt.Vocab(train_texts)
         print(f"\n== {key}: training on {len(train_texts):,} marked-up verses", flush=True)
-        model = tt.train(vocab, train_texts, args.steps, seed=0)
+        model = tt.train(vocab, train_texts, args.steps, seed=args.seed)
         r = evaluate(model, vocab)
         results[key] = r
         OUT.write_text(json.dumps(results, indent=2))
