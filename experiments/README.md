@@ -82,3 +82,34 @@ The Bible text does tie right/wrong to fortune/ruin: the two directions line up 
 - **Rules didn't help because the model couldn't apply them.** A rule like "thou shalt not steal" is only useful if the reader can recognize a new situation as stealing. That recognition is what's missing. It matches the child-and-rote-memory point: knowing the rule's words isn't the same as seeing where the rule applies.
 
 **Next test.** Train a small model that reads word order (a tiny transformer) on the Bible alone, then run these same 40 stories. If it passes where this one failed, that isolates *composition* as the missing ingredient. Then repeat with and without the rules.
+
+---
+
+## Experiment 6: A tiny transformer (a model that reads word order)
+
+**Why.** The word-averaging model failed because it can't combine words. A transformer reads word order and can, in principle, work out that "took his neighbour's ox by night and sold it" is stealing.
+
+**Setup.** A small GPT-style model (3.4 million parameters, 4 layers) trained from scratch on the King James Bible only: no other text, no pre-training. Training ran 1,500 steps (about six passes over the text, 12 minutes on 4 CPU cores). Every 50th verse was held out to check that it learned the language. Scoring was fixed before training. Run `python experiments/tiny_transformer.py`; results are in [`results_transformer.json`](results_transformer.json).
+
+Five test words never appear in the KJV ("broke", "buyers", "its", "sickened", "welcomed"), so the model sees them as unknown. The stories were kept unchanged so results stay comparable with experiment 5.
+
+### Result: it learned the language, not the consequences
+
+| Test (50% = guessing) | Score | p |
+|---|---|---|
+| Shifts toward the right ending depending on the act (20 pairs) | 9/20 = 45% | 0.75 |
+| Picks the right ending (40 stories) | 22/40 = 55% | 0.32 |
+| Judges the act "evil / right in the sight of the lord" correctly (20 pairs) | 9/20 = 45% | 0.75 |
+
+Its error on held-out verses was 3.46. Roughly, it narrows each next word to about 1 in 32 out of 8,658, so it clearly learned the Bible's style. It did no better than chance at linking acts to consequences or judging acts.
+
+**The rules comparison was not run.** With the full-Bible model at chance, removing the rules could only be compared against noise.
+
+### What this means
+- **Reading word order was not enough at this size.** About 800,000 words of one book teaches a tiny model how the Bible *sounds*, not what its situations *mean*. Grammar comes first; meaning needs far more data or a far larger model.
+- **For scale:** a child hears tens of millions of words in their first years, *and* sees, touches and suffers consequences alongside them. Large modern AI models read trillions of words. This model had one book.
+- **The question is still open, not answered no.** These tests show where understanding does *not* appear (word association; tiny models on one book). They can't yet show whether the Bible's rules help once a model is big enough to understand situations.
+
+**Possible next steps**
+1. **Use an existing large model as the reader** and test the same 40 stories with and without the Bible's rules given to it as instructions. This tests the rules idea directly, on a model that can already understand sentences.
+2. **Bigger training on more text** (Bible plus other plain-English stories). This needs a GPU, not this sandbox.
