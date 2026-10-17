@@ -6,5 +6,13 @@
     "oracle_pick": 21,
     "judge": 14,
     "n_pairs": 20
+  },
+  "scrambled_control/seed0/steps1500": {
+    "self_shift": 10,
+    "self_pick": 19,
+    "oracle_shift": 10,
+    "oracle_pick": 19,
+    "judge": 12,
+    "n_pairs": 20
   }
 }
