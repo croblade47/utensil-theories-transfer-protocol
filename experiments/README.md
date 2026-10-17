@@ -113,3 +113,45 @@ Its error on held-out verses was 3.46. Roughly, it narrows each next word to abo
 **Possible next steps**
 1. **Use an existing large model as the reader** and test the same 40 stories with and without the Bible's rules given to it as instructions. This tests the rules idea directly, on a model that can already understand sentences.
 2. **Bigger training on more text** (Bible plus other plain-English stories). This needs a GPU, not this sandbox.
+
+---
+
+## Experiment 7: The shifting word ("velanok"): the first result above chance
+
+**The idea (from the project owner).** A made-up word carries a running balance from one use to the next, and its *spelling* changes with that balance, the way to / too / two / 2 sound alike but are written differently. A clear wrong resets the balance to −17, a clear right to +17. Words in between add or spend it, and whatever remains carries forward. A model reading the text then sees the state inside the text itself.
+
+**How it was built** ([`shifting_word.py`](shifting_word.py))
+- **Five spellings,** rotations of the syllables *sha-ru-vel-an-ok*: `anoksha` (heavy wrong), `oksharu`, `velanok` (unresolved), `sharuvel`, `ruvelan` (heavy right).
+- **Word values** come from the Bible-trained word model's good/evil direction. For example, steal −5, adultery −10, mercy +5, love +6. Common words like "the" are worth 0.
+- **Each word also spends 0.5** of the balance, so it fades back toward "unresolved" unless something reinforces it. This follows the owner's example: "the next words use up the remainder → 0."
+- **Clear choices** are the Bible's own judgment formulas ("did evil in the sight of the Lord", "did that which was right…") plus the 3% most strongly worded verses at each end. 2,029 verses reset the balance.
+- **Not used:** re-adding 17 at every appearance (it's an option, `RECHARGE`), because the balance then grows without limit.
+
+Example, 2 Kings 17: "And he did that which was evil in the sight of the Lord" flips the word to `anoksha`. It stays there through the siege of Samaria and the captivity that follow, so the act carries forward into its consequences.
+
+**Test.** The word was placed at the start of every Bible verse, and the tiny transformer from experiment 6 was trained on that text. On the same 40 new stories, the model writes the word *itself* after each story, then the endings are scored. **Control:** identical training, but with the spelling chosen at random, so it is the same extra word with no meaning. Each version was trained twice with different random starts.
+
+### Results (50% = guessing)
+
+| Model | Shift toward the right ending (main test) | Judges the act right vs. wrong |
+|---|---|---|
+| No shifting word (experiment 6) | 9/20 = 45% | 9/20 = 45% |
+| Scrambled word, run 1 | 10/20 = 50% | 12/20 = 60% |
+| Scrambled word, run 2 | 11/20 = 55% | 12/20 = 60% |
+| **Shifting word, run 1** | **14/20 = 70%** | **14/20 = 70%** |
+| **Shifting word, run 2** | **13/20 = 65%** | **14/20 = 70%** |
+| Shifting word, both runs together | **27/40 = 68% (p = 0.02)** | **28/40 = 70% (p = 0.008)** |
+| Scrambled, both runs together | 21/40 = 52% (p = 0.44) | 24/40 = 60% (p = 0.13) |
+
+### What this shows
+- **It moved off chance, twice, and the scrambled version didn't.** The gain comes from what the word *means*, not from adding an extra word.
+- **It helped during training, not at answer time.** Handing the model the *correct* spelling gave exactly the same scores as letting it choose its own. So the word worked as a teacher: training on text where right and wrong are *marked* made the model better at recognizing them in new stories. This fits the thesis that what we do wrong naturally has to be *told*.
+- **The plain "pick an ending" score stayed near 50%.** The model leans the right way after each act, but not far enough to overcome its built-in preference for certain endings.
+
+### Caveats
+- Both runs were tested on the **same 20 story pairs**, so the combined p-values overstate certainty. The consistency shows this is not luck in *training*, but 20 pairs is still a small test. **More test stories are the most important next step.**
+- The word's values come from a good/evil direction built from four seed words each, so this is a form of supervision. No test story or ending influenced it; banned label words never appear in the tests.
+- Small model, one book, about 12 minutes of training per run.
+
+### About the numbers 17, 32, 16, 34, 47
+Only 17 is used, as the reset size. In this design what matters is the *ratio* between the reset, the word values and the spending rate. Scaling everything by any number gives the same behaviour, so the specific value doesn't carry meaning by itself. The others could be tried as reset sizes or thresholds, but there's no reason yet to expect them to behave differently.
