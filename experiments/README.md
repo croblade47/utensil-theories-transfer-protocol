@@ -44,3 +44,41 @@ The law **sharpens** the sense of wrong, most for the acts that mostly appear in
 - **Understanding without sensing is real, but different.** A pure reader rebuilt a surprising amount of color, morality and meaning from relationships between words alone. That matches research on people born blind, who know color mostly through associations.
 - **Rules alone aren't the secret.** Rules plus the stories of breaking them were needed. In these tests, the narrative of human error taught as much as the commandments did.
 - **Limits:** this is a small, decades-old style of model, and the test lists are small. A stronger next test would ask whether rules help a model *predict consequences* in new stories, not just place words near each other.
+
+---
+
+## Experiment 5: Predicting consequences in new stories
+
+**Question.** Can the model predict what *follows* an act in a story it has never seen? And do the rules, which are often written as act → consequence, teach that better than stories do?
+
+**Design (fixed before running).** I wrote 20 new story pairs. Each pair is one situation with a right act or a wrong act ("found his neighbour's ox astray and brought it again" vs. "took his neighbour's ox by night and sold it"). Both stories share two endings, one fortunate and one ruinous. Always picking the same ending scores exactly 50%. Moral label words (good, evil, sin, blessed…) are banned, and no ending reuses words from its stories; the script checks both. Run `python experiments/consequences_test.py`; full output is in [`results_consequences.txt`](results_consequences.txt).
+
+### Result: chance level everywhere
+
+| Method | Score (50% = guessing) |
+|---|---|
+| Association (which ending sounds like the story) | 45% |
+| Consequence map learned from the Bible's "this, then that" sequences | 48% |
+| Map learned from rule verses only | 52% |
+| Map learned from the same amount of non-rule verses (3 draws) | 45–52% |
+| Rules removed from everything | 50% |
+| Same amount of random verses removed (3 draws) | 45–57% |
+
+None of these differ from coin-flipping. The model can't predict consequences, and the rules made no difference.
+
+### Diagnostic (added after seeing the result above): where does it break?
+
+| Piece | Score |
+|---|---|
+| Tells the right-act story from the wrong-act story | 60% (p = 0.25, not reliable) |
+| Tells the fortunate ending from the ruinous one | 70% (p = 0.06, borderline) |
+| Adding one rule, "as you sow, so you reap" (Galatians 6:7) | 60% (p = 0.13) |
+
+The Bible text does tie right/wrong to fortune/ruin: the two directions line up at +0.22 (0 would mean unrelated). Removing the rule verses gives +0.18, which is inside the range from removing random verses (+0.16 to +0.25). So the stories carry that link as much as the rules do.
+
+### What this means
+- **The weak point is not the rule; it's understanding the act.** In experiment 3 this model knew *words* like steal, murder and covet were wrong (scores near 0.96). But it can't tell that *"took his neighbour's ox by night and sold it"* is stealing, because none of those words is wrong on its own. The wrongness comes from how the words combine.
+- **That is the line between association and comprehension.** This model averages words, so it can't combine them. Understanding a situation, rather than a vocabulary, needs a model that reads word order and structure.
+- **Rules didn't help because the model couldn't apply them.** A rule like "thou shalt not steal" is only useful if the reader can recognize a new situation as stealing. That recognition is what's missing. It matches the child-and-rote-memory point: knowing the rule's words isn't the same as seeing where the rule applies.
+
+**Next test.** Train a small model that reads word order (a tiny transformer) on the Bible alone, then run these same 40 stories. If it passes where this one failed, that isolates *composition* as the missing ingredient. Then repeat with and without the rules.
