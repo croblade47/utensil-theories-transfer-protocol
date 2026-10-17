@@ -210,7 +210,7 @@ def main():
     verses = load_verses()
     texts = [t for _, t in verses]
     vocab = Vocab(texts)
-    story_words = [t for it in ITEMS for s in it for t in tok(s)] + tok(JUDGE_EVIL + JUDGE_RIGHT)
+    story_words = [t for it in ITEMS for s in it for t in tok(s)] + tok(JUDGE_EVIL + " " + JUDGE_RIGHT)
     oov = sorted({w for w in story_words if w not in vocab.stoi})
     print(f"Vocabulary {len(vocab):,} words. Test words unknown to the model: {oov or 'none'}")
 
