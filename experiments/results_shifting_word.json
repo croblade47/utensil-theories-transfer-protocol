@@ -1,0 +1,10 @@
+{
+  "shifting_word/seed0/steps1500": {
+    "self_shift": 14,
+    "self_pick": 20,
+    "oracle_shift": 14,
+    "oracle_pick": 21,
+    "judge": 14,
+    "n_pairs": 20
+  }
+}
