@@ -14,5 +14,13 @@
     "oracle_pick": 19,
     "judge": 12,
     "n_pairs": 20
+  },
+  "shifting_word/seed1/steps1500": {
+    "self_shift": 13,
+    "self_pick": 21,
+    "oracle_shift": 13,
+    "oracle_pick": 21,
+    "judge": 14,
+    "n_pairs": 20
   }
 }
