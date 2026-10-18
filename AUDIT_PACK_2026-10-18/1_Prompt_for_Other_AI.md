@@ -2,7 +2,7 @@
 
 **Who this is for:** the session titled "Human error encoding system", which is running the Aesop test (experiment 9) on branch `ccr-1be0d913-1tlzao`.
 
-**Status:** DRAFT. The owner reviews and edits this before it is sent. Nothing has been sent.
+**Status:** Approved by the owner and sent to the session running the tests on 18 Oct 2026.
 
 ---
 
@@ -58,7 +58,13 @@ Make these after the Aesop results are in. Commit them as one step called "Accur
 3. Say in one line what the result does or does not mean for communication.
 4. Apply the corrections in section 3.
 5. Deliver the result write-up as a file, using the rule in section 5.
-6. Stop. Do not start a new experiment. The next step is a conversation test (does carried state help a model stay true to what a person said early in a long conversation?). I will approve its pass/fail rules first.
+6. Bring my standing rules onto the research branch: `git checkout origin/ccr-1be0d913-audit-pack -- CLAUDE.md`, then commit and push.
+7. Stop. Do not start a new experiment. The next step is a conversation test (does carried state help a model stay true to what a person said early in a long conversation?). I will approve its pass/fail rules first.
+
+### 7. Where the audit is, and one correction
+- **Audit folder:** branch `ccr-1be0d913-audit-pack`, folder `AUDIT_PACK_2026-10-18/`. Start with `00_START_HERE_Master_Audit.docx`. It has the timeline, every problem with its commit code, and a script (`6_Number_Check/check_numbers.py`) that recomputes the headline numbers from the raw files.
+- **My standing rules:** `CLAUDE.md` at the top of that branch. Follow them from now on.
+- **The repository is PUBLIC (MIT license).** Anyone can read everything pushed. Don't describe it as private, and don't push anything personal beyond what I ask for.
 
 ---
 
