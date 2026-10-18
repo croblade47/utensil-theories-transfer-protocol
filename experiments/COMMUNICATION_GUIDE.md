@@ -53,6 +53,10 @@ This guide carries what earlier sessions learned about the project owner's langu
 9. **Keep files saved and pushed** after every step, so nothing is lost if a session ends.
 10. **Report sizes, not just pass/fail.** The owner considers *any* real improvement notable. Give the plain-number version: "about 15 more right out of 100", "about one-third fewer mistakes". Always pair it with whether it passed the pre-registered test.
 11. **Compare methods at the same scale.** When the owner asks "how does this compare," they mean method against method under identical conditions, not against giant AIs. Run the established method as a competitor.
+13. **Pass/fail rules are frozen once saved.** If a flaw turns up after any result is seen, keep the original result, save the fix as a new version, and label the new result "re-run after a fix". Never call it "confirmed".
+14. **Keep every result,** including flawed runs. Nothing is "set aside and lost".
+15. **Use the tools properly:** check that a file exists before saying it does; report failures and skipped steps; if a tool or key is missing, say what it blocks.
+16. **Follow `CLAUDE.md`** (top of the repo) for delivering files to the owner.
 12. **Test the idea where it should matter.** The carried balance only showed its value in long stories where the act scrolls out of view (experiment 11). Before calling an idea useless, check that the test gave it a chance.
 
 ## What does *not* carry over
