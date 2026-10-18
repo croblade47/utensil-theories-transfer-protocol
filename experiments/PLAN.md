@@ -6,7 +6,7 @@ Work top to bottom. Record each result in `HANDOFF.md` and `README.md`. Pre-regi
 - [x] **Experiment 9, the Aesop transfer test:** DONE, not confirmed (see README experiment 9).
 - [x] **Exploratory start-marker run:** done (stopped early). It made things worse: the shifting word copied "unresolved" down the whole story. It **carries perfectly but updates poorly**.
 
-## 1. Confirm the owner's carry idea properly (experiment 11 found L2)
+## 1. Confirm the owner's carry idea properly (experiment 11 supported it once, in a re-run after fixes)
 - [ ] **A fresh long-story set, pre-registered**, with the shifting word vs the plain label as the main test.
   - New everyday acts, so not the stories_v2 acts.
   - 3–5 seeds.

@@ -191,7 +191,7 @@ Pair by pair, the shifting word judged better than scrambled on 57 pairs and wor
 
 **Question.** The shifting word improved *judging* right vs. wrong (experiment 8). Does that come from the owner's specific idea, the **carried balance**, or from **marking the text with moral labels at all**? The established version of the latter is "conditional training" (Korbak et al., ICML 2023, see [`PRIOR_WORK.md`](PRIOR_WORK.md)).
 
-**Design (pre-registered in [`method_comparison.py`](method_comparison.py), committed before training; one later scoring fix, commit ca1f8c9, lets carry3 be scored over its 3 spellings, and gives identical results for the 5-spelling methods).** Same tiny model, same Bible, same 1,500 steps, same 100 new story pairs, and 3 seeds per method. The main measure was judging.
+**Design (pre-registered in [`method_comparison.py`](method_comparison.py), committed before training; one later scoring fix, commit ca1f8c9, lets carry3 be scored over its 3 spellings, and gives identical results for the 5-spelling methods).** Same tiny model, same Bible, same 1,500 steps, same 100 new story pairs, and 3 seeds per method. The main measure was judging. **Disclosure:** this was pre-registered at 02:17 UTC, after 7 of the 9 experiment-8 models had already shown judging was strong. Choosing judging as the main measure came after that peek.
 - **label:** the established method. Same five spellings and same position, but each one judges *only the verse before it*: no carry, no reset, no fading. It uses the same verdict phrases and word values as the shifting word, and the same share of each spelling.
 - **carry3:** the owner's carried balance, but with only 3 spellings (wrong / unresolved / right).
 
@@ -215,13 +215,13 @@ Predicting consequences stayed near chance for every marked method (48–56%).
 Descriptive: the shifting word beats no marker (54 better, 26 worse, p = 0.001) and scrambled (57–25, p = 0.0003). The plain label also beats no marker (50–22, p = 0.0006).
 
 ### What this means
-- **Marking the training text with moral labels clearly improves judging,** by about 18–21 points (average per run) over plain text, in every moral-label version tested. Scrambled markers did not help (52.7%). That part is real and repeatable.
+- **Marking the training text with moral labels clearly improves judging,** by about 18–21 points (average per run) over plain text, in every moral-label version tested. Scrambled markers did not help (52.7%). That part is strong and repeated, but it has **not yet been pre-registered as the main measure**: against no marker it was descriptive here.
 - **The carried balance and the graded spellings didn't add anything measurable** at this scale. The plain per-verse label, the established method, did just as well.
 - **Why the carry might not show up here:** the test stories are one sentence each, so there's no long story for a balance to carry across. A test with multi-sentence stories, where the decisive act comes early and the judgment is asked much later, would give the carry a chance to matter. That is the most direct next test of the owner's specific idea.
 
 ---
 
-## Experiment 11: Long-story test: the carried balance works when an everyday act must be remembered
+## Experiment 11: Long-story test: the carried balance did better once, when an everyday act had to be remembered
 
 **Question.** The owner's idea is about carrying weight *forward* ("+4 remaining" into the next use). Experiment 10 used one-sentence stories, which never need that. Here the act comes first, then neutral sentences follow until **both the act and the first marker written after it** have scrolled out of the model's 64-token window. The model can only remember the act through markers it writes itself, passing them forward one sentence at a time. Script: [`long_story_test.py`](long_story_test.py). It reuses the 15 trained models, so no new training was needed.
 
@@ -233,7 +233,11 @@ Descriptive: the shifting word beats no marker (54 better, 26 worse, p = 0.001) 
 1. **Ties count as 0.5.** A model that can't tell the two stories apart produces exact ties, and they had been counted as wrong.
 2. **The first marker must also be out of view.** Otherwise the plain label could simply look back at it.
 
-The flawed first-run results were set aside, not used. They were not committed and are lost with the session. The marker diagnostics quoted below (which markers the model wrote) were one-off checks, also not saved. To reproduce them, log the greedy markers in `judge_marked()`.
+The flawed first-run results were set aside from the verdict and are kept in `results_long_story_v1_flawed_run1.json` and `results_long_story_v1_flawed_run2.json`.
+
+**Why "supported once", not "confirmed":** the pass/fail rules were saved at 03:44 UTC. The test was then changed twice after the first models were scored: 03:45 (ties counted as 0.5) and 03:51 (first marker pushed out of view). So the result is a **re-run after a fix**. The test also reused the same 100 story acts as experiments 8 and 10. The two flawed first-run results are kept in `results_long_story_v1_flawed_run1.json` and `results_long_story_v1_flawed_run2.json`.
+
+**Shape of the carry result (version B, 3 runs):** the shifting word gave no answer (an exact tie) on about 65 of 100 pairs. When it did answer, it was right 81 times and wrong 25. The marker diagnostics quoted below (which markers the model wrote) were one-off checks, also not saved. To reproduce them, log the greedy markers in `judge_marked()`.
 
 ### Results (judging right vs. wrong, 100 pairs, 50% = guessing, 3 runs each)
 
@@ -248,7 +252,7 @@ The flawed first-run results were set aside, not used. They were not committed a
 | Pre-registered test | Pair by pair | Verdict |
 |---|---|---|
 | L1, version A: shifting beats label | 11 better, 74 worse | NOT CONFIRMED (the label won) |
-| **L2, version B: shifting beats label** | **43 better, 21 worse (p = 0.004)** | **CONFIRMED** |
+| **L2, version B: shifting beats label** | **43 better, 21 worse (p = 0.004)** | **Supported once** (a re-run after a fix; see below) |
 | L3, version A: 3-spelling carry beats label | 18 better, 50 worse | NOT CONFIRMED |
 
 In version B the shifting word beat the plain label in **every one of the 3 training runs**: 59 vs 54.5, 56 vs 51, and 63 vs 54.
@@ -256,7 +260,7 @@ In version B the shifting word beat the plain label in **every one of the 3 trai
 **Ties matter here.** Most long-story pairs are exact ties, scored 0.5. In version B the plain label tied on 91, 96 and 82 of 100 pairs: once the act is out of view it can't tell the stories apart, so it sits near 50% by design. The shifting word tied on 70, 70 and 54, and of the pairs it did decide, it got 24–6, 21–9 and 36–10 right. No marker ties on every pair in A and B. Descriptive, not pre-registered: in version B the 3-spelling carry also beat the plain label (45 better, 19 worse, p = 0.0008).
 
 ### What this means
-- **The owner's carried balance does something a plain label doesn't.** When an everyday act has to be remembered after it has scrolled out of view, models trained with the carry keep their judgment of it alive: about 59–61%, against about 53% for the plain label. That is the first pre-registered support for the part of the idea that is the owner's own.
+- **The owner's carried balance does something a plain label doesn't.** When an everyday act has to be remembered after it has scrolled out of view, models trained with the carry keep their judgment of it alive: about 59–61%, against about 53% for the plain label. That is the first support for the part of the idea that is the owner's own. It counts as **supported once**, not confirmed (see below).
 - **It's modest:** about +6 points over the plain label and about +10 over chance. All on a tiny model.
 - **Version A went the other way, and a diagnostic shows why.** In a one-off diagnostic (run 1, 200 stories, not saved), the shifting word's first and last markers came out exactly the same: the same count for every combination, across all 200 stories. But it often *misjudged the verdict sentence itself*, writing "unresolved" or even "right" after "did evil". The first guess was that the test stories start without a marker, unlike training. The exploratory start-marker run below did not support that: with a start marker, the shifting word never changed its marker at all. The better explanation is that it **updates its marker too little** on new sentences.
 - **Run-to-run swings are large** (the plain label scored 51 to 97 on version A), so several seeds are essential.
