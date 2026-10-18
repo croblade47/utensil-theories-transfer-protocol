@@ -268,3 +268,46 @@ Run: `python experiments/long_story_test.py --start-marker`. It was stopped earl
 - **Plain label:** about the same as before (version A 71.5, version B 51.5).
 
 **Lesson:** at this scale the shifting-word model leans so heavily on *carrying* its previous marker that it barely *updates* on new sentences. It carries perfectly but updates poorly. A better design should balance the two: for example, stronger resets, a faster spend rate, or training text where markers change more often. The owner's numbers (32, 16, 34, 47) could be tried here as reset or spend settings.
+
+---
+
+## Experiment 9: Aesop moral transfer: not confirmed
+
+**Question (the owner's theory).** Do lessons taught through *stories* transfer to a culture never seen better than other text does? Test material: Aesop's own fables (Jacobs, 1894), never in training. For each pair of fables, the model must prefer the true fable→moral matching over the swapped one. Guessing scores 50%. Script: [`aesop_test.py`](aesop_test.py), version 3, revised twice after flaw checks and before any training. Full printout: [`results_aesop.txt`](results_aesop.txt); raw data: [`results_aesop.json`](results_aesop.json).
+
+**Setup.** 67 fables; 1,131 same-format pairs; 284 pairs where shared words give no clue. Training sets of about 700k tokens each, with 4 training runs each for stories, novels and shuffled stories, 2 for the Bible, and 1 each for rules and narrative. Context window of 128 tokens, 1,500 steps.
+
+### Results (percent of pairs matched correctly; 50% = guessing)
+
+| Training set | Same-format pairs (4 runs) | Average | No-word-clue pairs | Unknown test words |
+|---|---|---|---|---|
+| **Folk tales** (9 collections, 8 cultures) | 54.9, 54.4, 50.9, 50.0 | **52.3** | **60.2** | 1.9% |
+| Novels (control) | 52.3, 53.1, 54.3, 51.2 | 54.1 | 53.9 | 3.3% |
+| Folk tales, sentences shuffled (control) | 47.4, 56.0, 53.7, 49.7 | 53.1 | 59.2 | 1.9% |
+| Bible (2 runs) | 44.2, 45.1 | 43.6 | 39.4 | 9.3% |
+| Rules (small, 1 run) | 50.0 | 50.0 | 54.4 | 14.2% |
+| Bible narrative (small, 1 run) | 56.5 | 56.5 | 54.6 | 16.2% |
+
+References with no model: word-family overlap 76.1% (same-format), 50.0% (no-clue). Punctuation shortcut 50.0%.
+
+### Pre-registered verdict
+
+| Test | Result |
+|---|---|
+| P1: each set beats 50% (sanity) | **NOT CONFIRMED for any set** (folk tales p = 0.33) |
+| P2: folk tales beat novels | **NOT CONFIRMED:** folk tales were 1.8 points *lower* (fable-level p = 0.61, model-level p = 0.56) |
+| P2b: folk tales beat shuffled folk tales | **NOT CONFIRMED:** 0.7 points lower (p = 0.59 / 0.36) |
+| P3: folk tales beat 50% on no-clue pairs | **NOT CONFIRMED** (60.2%, p = 0.065; pre-declared as "inconclusive, low power" if null) |
+
+Descriptive, not pre-registered:
+- On no-clue pairs, folk tales were 6.3 points above novels (model-level p = 0.029, fable-level p = 0.22) and 1.1 above shuffled.
+- Folk tales were 8.8 points above the Bible.
+- Bible narrative was 6.5 points above rules (1 run).
+
+None of these is a confirmation.
+
+### What this means
+- **The theory was not supported at this scale.** Tiny models trained on about 700k words didn't link Aesop fables to their morals better than chance, from any training set. They didn't even use the word-overlap clue that a simple word count exploits (76%). The test asked for more than these models can do.
+- **The one hint** is that every story-based model scored around 59–60% on the no-clue pairs, against about 54% for novels. That hint is the same for real and shuffled stories, so it points to *story vocabulary and setting* (animals, folk situations), not story *structure*.
+- **The Bible model fell below chance**, likely because Aesop's 1890s English is far from King James English (9.3% unknown words).
+- **For communication:** this result says nothing yet about better communication. It shows that tiny models can't yet *apply a lesson from one culture's stories to another's*, and that bigger models or more text would be needed to test the theory fairly.

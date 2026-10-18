@@ -23,12 +23,12 @@ Everything here serves that one goal. Check every step against it:
 - **Works:** marking right and wrong in the training text makes a tiny model judge new stories better: about **69% vs about 50%** for no marking (experiments 8 and 10).
 - **The owner's own idea, the *carried* balance:** it beat a plain good/bad label **only in long stories**, where the act has to be remembered after it has gone out of view. That's about **6 more right per 100**. Confirmed once (experiment 11); still small.
 - **Didn't work:** predicting *consequences*. Chance every time (experiments 5, 6, 8).
-- **Running at handoff:** the Aesop test (do stories teach lessons that transfer to a culture never seen?). Status is below.
+- **Aesop test (stories vs rules, transfer to a new culture):** not confirmed. No training set beat chance.
 
 ## The project in one paragraph
 The project owner's theory: an AI gains real *comprehension*, the ability to apply meaning to new situations rather than rote, from **rules plus the human errors that break them**. They also hold that **lessons taught as stories transfer further than lessons taught as rules**. We test this with tiny language models trained from scratch on chosen texts, scored on stories they have never seen. Every test beats a coin toss or it doesn't, has a control, and has pass/fail rules saved to git before any result is seen.
 
-## What has been found (experiments 1–11; 9 still running; details in README.md)
+## What has been found (experiments 1–11; details in README.md)
 
 | # | Test | Result |
 |---|---|---|
@@ -40,25 +40,17 @@ The project owner's theory: an AI gains real *comprehension*, the ability to app
 | 6 | The same, with a tiny transformer trained on the Bible | **Chance.** It learned the language, not the consequences |
 | 7 | The owner's **shifting word** (*velanok*): a running moral balance, reset to ±17, whose spelling changes with it | **68% vs 52% scrambled** on 20 stories; judging 70%. The consequence part **was not confirmed** (see 8) |
 | 8 | Confirmation on 100 new story pairs | **Consequences: not confirmed** (the 20-story result was luck). **Judging: 69% vs about 50–53%** for no marker and scrambled, all 3 runs |
-| 9 | Aesop transfer: folk tales vs novels vs shuffled tales vs Bible | **Running** |
+| 9 | Aesop transfer: folk tales vs novels vs shuffled tales vs Bible | **Not confirmed.** No set beat chance (folk tales 52.3%, novels 54.1%, shuffled 53.1%). Hint only: story-based models about 60% on no-word-clue pairs vs 54% for novels, the same for shuffled stories |
 | 10 | Shifting word vs the established method (a plain per-verse good/bad label, as in Korbak et al. 2023) | **A tie on one-sentence stories** (about 68–71% each). Labeling helps judging; carrying the balance forward adds nothing in stories this short |
 | 11 | **Long stories:** the act falls outside what the model can see (its last 64 tokens), so only carried markers can remember it | **CONFIRMED for everyday acts:** the shifting word beat the plain label in all 3 runs, about 59% vs 53% (p = 0.004). When the story states the verdict outright, the label won |
 
 ## Running, and latest results
-- **Experiment 9, the Aesop transfer test** (`aesop_test.py`, version 3, after two checks for flaws before running). **RUNNING** since 03:40 UTC on 18 Oct.
-  - **What it tests:** Aesop is never in training. The model must match each fable to its true moral over a swapped one.
-  - **Size:** 67 fables (82 parsed; 8 excluded because versions appear in training; the rest lack a short final moral), giving 1,131 same-format pairs and 284 no-word-clue pairs.
-  - **Training sets** (about 700k tokens each):
-    - folk tales: 9 collections from 8 cultures, no Aesop;
-    - the same tales with sentences shuffled inside each block of 10 paragraphs (control);
-    - novels by Austen, Chesterton and Melville (control);
-    - the Bible;
-    - plus rules vs Bible narrative at small size.
-  - **Runs:** 4 training runs each for stories, novels and the shuffled control; 16 models in all.
-  - **Time:** about 20–30 minutes per model, roughly 6–8 hours in total.
-  - **Pass/fail rules** P1, P2, P2b and P3 are in the script's docstring.
-  - **Progress is saved:** each finished model's scores go into `results_aesop.json` (committed). If that file is missing, no model had finished at handoff.
-  - **Before restarting**, check that it isn't already running: `pgrep -af aesop_test.py`. Two copies would both write the same file.
+- **Experiment 9, the Aesop transfer test: DONE, not confirmed** (`aesop_test.py` v3; results in `results_aesop.json` and `results_aesop.txt`).
+  - **Setup:** 67 fables never seen in training; 1,131 same-format pairs; 284 no-word-clue pairs. Training sets of about 700k tokens; 4 runs each for stories, novels and shuffled stories.
+  - **P1 (each set beats chance):** NOT CONFIRMED for any set. Folk tales 52.3%, novels 54.1%, shuffled 53.1%, Bible 43.6%.
+  - **P2 (stories beat novels):** NOT CONFIRMED (1.8 points lower). **P2b (stories beat shuffled):** NOT CONFIRMED (0.7 lower).
+  - **P3 (stories beat chance on no-clue pairs):** NOT CONFIRMED (60.2%, p = 0.065).
+  - **Hint only:** on no-clue pairs, story-based models scored about 59–60% vs 54% for novels. That points to story vocabulary and setting, not structure, because the shuffled stories matched it.
 - **Experiment 11, long-story carry test: DONE.**
   - **L2 CONFIRMED:** everyday act, shifting word 59, 56, 63 vs plain label 54.5, 51, 54 (43 pairs better, 21 worse, p = 0.004).
   - **L1 not confirmed:** with an explicit verdict phrase, the label won (73, 51, 97). The shifting word often misjudges the verdict sentence itself.
