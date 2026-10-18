@@ -4,7 +4,7 @@ Work top to bottom. Record each result in `HANDOFF.md` and `README.md`. Pre-regi
 
 ## 0. Finish what's running
 - [ ] **Experiment 9, the Aesop transfer test.** Run `python experiments/aesop_test.py`. It resumes: finished runs are read from `results_aesop.json`, and saved models from `experiments/models/` (if the machine still has them). About 15–25 minutes per model on 4 CPU cores, 16 models. Report P1, P2, P2b and P3 first.
-- [ ] **Exploratory start-marker run** (`results_long_story_startmarker.json`). Does starting each story with the neutral marker fix the shifting word's first judgment? Exploratory only, never part of a verdict.
+- [x] **Exploratory start-marker run:** done (stopped early). It made things worse: the shifting word copied "unresolved" down the whole story. It **carries perfectly but updates poorly**.
 
 ## 1. Confirm the owner's carry idea properly (experiment 11 found L2)
 - [ ] **A fresh long-story set, pre-registered**, with the shifting word vs the plain label as the main test.
@@ -12,7 +12,7 @@ Work top to bottom. Record each result in `HANDOFF.md` and `README.md`. Pre-regi
   - 3–5 seeds.
   - Distances of 1, 3, 5 and 8 neutral sentences.
   - Expected if the idea holds: the gap grows with distance.
-- [ ] **Fix the first-judgment weakness:** start every story with the neutral marker, as in training. If the exploratory run supports it, pre-register it.
+- [ ] **Balance carry vs update:** retrain the shifting word so markers respond more to new sentences (stronger reset, faster `SPEND`, or the owner's numbers as settings). Then rerun the long-story test.
 - [ ] **Try the owner's original rule** (`RECHARGE = True`, "W1 = 17 + 4"). The long-story test is where re-adding 17 could matter, so retrain the shifting word with it and compare.
 - [ ] **Try the owner's numbers** (32, 16, 34, 47) as reset sizes or `SPEND` rates in the long-story setting. Report effect sizes even if small: the owner considers any improvement notable.
 
