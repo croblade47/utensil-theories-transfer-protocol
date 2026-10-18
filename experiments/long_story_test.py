@@ -24,8 +24,11 @@ Two versions:
      evil in the sight of the lord" / "and he did that which was right in the
      sight of the lord"). This triggers the owner's +/-17 reset.
   B  act carried: the act alone, which the owner's rule treats as not clear.
-Filler is added until the act sentence lies entirely outside the final window
-(checked for every story). A "short" version (no filler) is also scored as a
+Filler is added until the act sentence AND the first marker written after it lie
+entirely outside the final window (checked for every story). (Correction made
+during the first run: v1 only pushed the act out of view, so the first marker,
+which directly judges the act, was still visible and nothing had to be carried.
+v1 results are kept aside, not used.) A "short" version (no filler) is also scored as a
 sanity reference.
 
 PRE-REGISTERED (committed before scoring)
@@ -69,7 +72,7 @@ SEEDS = [0, 1, 2]
 METHODS = ["baseline", "scrambled", "shifting", "label", "carry3"]
 VERDICT_WRONG = "and he did evil in the sight of the lord"
 VERDICT_RIGHT = "and he did that which was right in the sight of the lord"
-MAX_FILLERS = 8
+MAX_FILLERS = 10
 
 FILLER_POOL = [
     "and it came to pass on the morrow, that they went forth into the field",
@@ -152,10 +155,13 @@ def build_stories(version, fillers, vocab, k_pair):
     pad = []
     while True:
         pad.append(rng.choice(fillers))
-        after = sum(len(tt.tok(f)) + 2 for f in pad) + 1        # each filler: boundary + marker + words; final boundary
-        if after >= tt.CTX or len(pad) >= MAX_FILLERS:
+        # tokens after the FIRST marker (which directly judges the act): every filler's words,
+        # the later boundaries and markers, and the final boundary. These must fill the whole
+        # window, so neither the act nor that first marker is visible at the final judgment.
+        after_first_marker = sum(len(tt.tok(f)) for f in pad) + 2 * (len(pad) - 1) + 1
+        if after_first_marker >= tt.CTX or len(pad) >= MAX_FILLERS:
             break
-    assert after >= tt.CTX, "act still visible"
+    assert after_first_marker >= tt.CTX, "act or first marker still visible"
     return [right] + pad, [wrong] + pad, len(pad)
 
 
