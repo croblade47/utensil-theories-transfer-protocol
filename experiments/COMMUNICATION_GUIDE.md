@@ -39,7 +39,7 @@ This guide carries what earlier sessions learned about the project owner's langu
 
 ## Working rules that have served the owner well
 
-1. **Restate before building.** Turn the owner's description into numbered rules in plain words. Mark every guess. If you change something, keep the change minimal and say why. Example: re-adding 17 at every appearance was left as a switch, because otherwise the balance grows forever.
+1. **Restate before building.** Turn the owner's description into numbered rules in plain words. Mark every guess. If you change something, keep the change minimal and say why. Example: re-adding 17 at every appearance was left as a switch (`RECHARGE`), because with it on the balance pins at its ±51 cap.
 2. **Every claim becomes a test** with:
    - a chance level;
    - a control that keeps everything except the idea, such as the scrambled shifting word;

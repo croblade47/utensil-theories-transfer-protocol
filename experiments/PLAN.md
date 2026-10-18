@@ -3,7 +3,7 @@
 Work top to bottom. Record each result in `HANDOFF.md` and `README.md`. Pre-register pass/fail rules (commit them) before any run.
 
 ## 0. Finish what's running
-- [ ] **Experiment 9, the Aesop transfer test.** Run `python experiments/aesop_test.py`. It resumes: finished runs are read from `results_aesop.json`, and saved models from `experiments/models/` (if the machine still has them). About 15–25 minutes per model on 4 CPU cores, 16 models. Report P1, P2, P2b and P3 first.
+- [ ] **Experiment 9, the Aesop transfer test.** First check whether it's still running (`pgrep -af aesop_test.py`). If it is, wait: don't start a second copy, because both would write `results_aesop.json`. If not, run `cd experiments && python aesop_test.py > aesop.log 2>&1`. It resumes from `results_aesop.json`, plus any saved models still in `experiments/models/`. About 20–30 minutes per model on 4 CPU cores (window of 128 tokens), 16 models, so roughly 6–8 hours. Tell the owner the time first. Report P1, P2, P2b and P3 first.
 - [x] **Exploratory start-marker run:** done (stopped early). It made things worse: the shifting word copied "unresolved" down the whole story. It **carries perfectly but updates poorly**.
 
 ## 1. Confirm the owner's carry idea properly (experiment 11 found L2)
@@ -12,11 +12,14 @@ Work top to bottom. Record each result in `HANDOFF.md` and `README.md`. Pre-regi
   - 3–5 seeds.
   - Distances of 1, 3, 5 and 8 neutral sentences.
   - Expected if the idea holds: the gap grows with distance.
-- [ ] **Balance carry vs update:** retrain the shifting word so markers respond more to new sentences (stronger reset, faster `SPEND`, or the owner's numbers as settings). Then rerun the long-story test.
-- [ ] **Try the owner's original rule** (`RECHARGE = True`, "W1 = 17 + 4"). The long-story test is where re-adding 17 could matter, so retrain the shifting word with it and compare.
-- [ ] **Try the owner's numbers** (32, 16, 34, 47) as reset sizes or `SPEND` rates in the long-story setting. Report effect sizes even if small: the owner considers any improvement notable.
+- [ ] **Balance carry vs update.**
+  - First check whether greedy marker choice (argmax in `long_story_test.judge_marked`) is hiding updates. Re-score the existing models with the full spelling distribution carried forward, or with sampled markers. That's exploratory and needs no training.
+  - Then retrain the shifting word so markers respond more to new sentences (stronger reset or faster `SPEND`), **under new model file names**, and rerun the long-story test.
+- [ ] **Try the owner's original rule** ("W1 = 17 + 4"). Needs new code: train a separate model with RECHARGE on, under its own file name, without editing the shared settings in `shifting_word.py`. Cached keys and model names don't record it, so flipping the setting would silently reuse or overwrite old models. With it on, the balance pins at ±51, so also try a smaller cap.
+- [ ] **Try the owner's numbers** (32, 16, 34, 47) as RESET sizes with SPEND and word values fixed, or as ratios (e.g. SPEND = 17/34 or 16/32 per word). A raw SPEND of 16–47 per word would erase the balance immediately. Use new model names, in the long-story setting. Report effect sizes even if small: the owner considers any improvement notable.
 
 ## 2. Confirm the judging gain with its own pre-registration
+- [ ] **Also queued:** a consequences test with the ending format matched across marked and plain models; and a "rules with reasons attached" training set as a control in the stories-vs-rules comparison (see `PRIOR_WORK.md`).
 - [ ] **New short story set, with judging as the primary measure:** marked methods (shifting, label) vs no marker vs scrambled. Experiment 8 showed it only as a side measure.
 
 ## 3. The "spelling" part of the idea

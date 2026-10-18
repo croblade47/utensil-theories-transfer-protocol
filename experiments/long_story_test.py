@@ -212,6 +212,8 @@ def main():
     res = json.loads(OUT.read_text()) if OUT.exists() else {}
     for seed in SEEDS:
         for method in METHODS:
+            if all(f"{method}/seed{seed}/{v}" in res for v in ("short", "A", "B")):
+                continue                     # already scored: no need to load the model
             corpus = marked_corpus(method, verses, values, seed)
             model, vocab = load_model(method, seed, [corpus[i] for i in pool])
             fillers = neutral_fillers(values, vocab)
