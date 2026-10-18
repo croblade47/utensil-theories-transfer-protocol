@@ -42,12 +42,15 @@ Make these after the Aesop results are in. Commit them as one step called "Accur
    - Report test failures and skipped steps.
    - If a tool or key is missing, say what is missing and what it blocks. Don't work around it silently.
 
-### 5. File delivery rule (strict)
-Every file you make must reach me as an actual file, not a link and not just a path.
-- Send each finished file with the file-sending tool, so it shows up on my screen in the app.
-- If there is more than one file, put them all in one folder. Include a master doc called `00_START_HERE` that lists every file in plain English with its path. Zip the folder and send the zip.
-- Use real Word files (.docx). Do not use a web page renamed to .doc.
-- Also commit the folder to the repo.
+### 5. File delivery rule (strict). Full text is in `CLAUDE.md` at the top of the repo
+- **Save as you go:** every file you generate goes into a dated folder the moment it is made, not at the end.
+- **Actual files, never links:** copy the real file in. No links, shortcuts or bare paths.
+- **Send each finished file** with the file-sending tool, so it shows up on my screen in the app. Re-send the folder zip when it changes.
+- **A master doc** called `00_START_HERE` lists every file in plain English with its path. Update it as files are added.
+- **Real Word files** (.docx). Never a web page renamed to .doc.
+- **Commit and push the folder** after each step.
+- **Nothing locked or permission-blocked:** no passwords, encrypted zips, read-only flags, "do not share" labels or expiring links. I decide what to review and who to share it with.
+- **Say plainly** when something is outside your control. Never claim a file is somewhere it isn't.
 
 ### 6. When the Aesop test finishes
 1. Push the results to `ccr-1be0d913-1tlzao`.
