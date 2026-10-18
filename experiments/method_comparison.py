@@ -65,6 +65,31 @@ def p_at_least(k, n):
     return sum(comb(n, i) for i in range(k, n + 1)) / 2 ** n if n else 1.0
 
 
+POSITION = {f: k - 2 for k, f in enumerate(sw.FORMS)}       # anoksha -2 ... ruvelan +2
+
+
+def score(model, vocab, items):
+    """Same scoring as confirm.score_word_model, but only over the spellings this method uses
+    (carry3 has 3). Model writes its own word after the story, then endings are compared."""
+    forms = [f for f in sw.FORMS if f in vocab.stoi]
+    ids, pos = [vocab.stoi[f] for f in forms], np.array([POSITION[f] for f in forms])
+    shift, judge = [], []
+    for right, wrong, fortunate, ruinous in items:
+        ef, er = vocab.encode(fortunate), vocab.encode(ruinous)
+        d, lean = {}, {}
+        for name, story in (("right", right), ("wrong", wrong)):
+            ctx = [1] + vocab.encode(story) + [1]
+            scores = [sw.lp_ids(model, ctx, [f]) for f in ids]
+            probs = np.exp(np.array(scores) - max(scores))
+            probs /= probs.sum()
+            lean[name] = float(probs @ pos)
+            own = ids[int(np.argmax(scores))]
+            d[name] = sw.lp_ids(model, ctx + [own], ef) - sw.lp_ids(model, ctx + [own], er)
+        shift.append(bool(d["right"] > d["wrong"]))
+        judge.append(bool(lean["right"] > lean["wrong"]))
+    return shift, judge
+
+
 def mark_label(verses, values):
     """Each verse is preceded by a spelling that judges ONLY the verse before it."""
     shifting, _ = sw.mark_up(verses, values)
@@ -134,8 +159,8 @@ def main():
                 model = tt.train(vocab, train_texts, STEPS, s)
                 confirm.MODELS.mkdir(exist_ok=True)
                 torch.save(model.state_dict(), path)
-            v1s, v1j = confirm.score_word_model(model, vocab, ITEMS_V1)
-            v2s, v2j = confirm.score_word_model(model, vocab, ITEMS_V2)
+            v1s, v1j = score(model, vocab, ITEMS_V1)
+            v2s, v2j = score(model, vocab, ITEMS_V2)
             res[key] = {"v1_shift": v1s, "v1_judge": v1j, "v2_shift": v2s, "v2_judge": v2j}
             OUT.write_text(json.dumps(res))
             print(f"  {key}: judge {sum(v2j)}/100, consequence {sum(v2s)}/100", flush=True)
