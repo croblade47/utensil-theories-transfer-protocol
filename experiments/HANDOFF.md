@@ -23,7 +23,10 @@ The project owner's theory: an AI gains real *comprehension*, the ability to app
   - **Consequences:** NOT CONFIRMED (shifting 51/100, p = 0.46). The plain model did slightly better (61/100).
   - **Judging right vs wrong** (side measure): shifting **67, 72, 67**, vs scrambled 56, 42, 60 and no word 49, 60, 40. Pair by pair, shifting beat scrambled 57–25 (p = 0.0003).
   - Needs its own pre-registered confirmation with judging as the main measure.
-- **Experiment 10, method comparison** (`method_comparison.py`): shifting word vs the plain good/bad label (the established conditional-training method) vs carried balance with 3 spellings. Judging is the main measure. Status: **RUNNING**
+- **Experiment 10, method comparison: DONE.** Judging averages: shifting word 68.7%, plain good/bad label 67.7%, 3-spelling carry 70.7%; no marker 49.7%; scrambled 52.7%.
+  - **Q1** (shifting beats plain label): NOT CONFIRMED, a tie (20–18).
+  - **Q2** (5 spellings beat 3): NOT CONFIRMED, a tie.
+  - **Conclusion:** labeling the text helps judging (+15–20 points); the carry and graded spellings add nothing measurable on one-sentence stories.
 - **Experiment 9, the Aesop moral transfer test** (`aesop_test.py`, version 3 after two adversarial pre-run reviews). Aesop is never in training; the model must match each fable to its true moral over a swapped one.
   - Training sets: world folk tales (9 cultures); the same tales with sentences shuffled within each story (control); novels (control); the Bible. Plus rules vs Bible narrative at small size.
   - 4 seeds each for stories, novels and the shuffled control.
@@ -62,7 +65,7 @@ In the spirit of the owner's "remaining" value, these are unresolved questions c
 | Thread | Lean so far | What would settle it |
 |---|---|---|
 | Does the shifting word teach *judging* right vs wrong? | **Strongly for** (69% vs ~50%, 3 runs, 100 new pairs), but a side measure | Pre-registered judging test on fresh stories |
-| Is that from the *carry* (the owner's idea) or labeling in general? | Unknown | Experiment 10 (shifting vs plain label) |
+| Is that from the *carry* (the owner's idea) or labeling in general? | **Labeling in general:** the plain label tied the shifting word (experiment 10) | A **long-story test**, where the act comes early and judgment is asked much later, so carrying matters |
 | Does it teach *predicting consequences*? | **Against** (not confirmed, 51/100); the plain model did better | A bigger model, or matching the ending format |
 | Do stories transfer lessons better than rules? | Unclear: rules alone didn't win in experiment 3 | Aesop test (experiment 9) |
 | Re-adding 17 at every appearance ("W1 = 17 + 4") | Untested | Switch `RECHARGE = True` in `shifting_word.py` and rerun |

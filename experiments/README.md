@@ -184,3 +184,37 @@ Pair by pair, the shifting word judged better than scrambled on 57 pairs and wor
 - **The shifting word reliably improves *judging* right vs. wrong:** about 69% vs. about 50–55%, across all 3 training runs, on stories it never saw. Judging was a side measure here, so it still needs its own pre-registered confirmation.
 - **It does not improve *predicting consequences*.** The plain model did slightly better there (61% majority). One possible reason: marked models read endings after the marker word, while the plain model reads them after a comma, so the formats differ. That is untested.
 - **Next:** compare against the established method (a plain good/bad label per verse) to see whether the *carried* balance adds anything beyond labeling (`method_comparison.py`, experiment 10).
+
+---
+
+## Experiment 10: Method comparison: the shifting word vs the established method
+
+**Question.** The shifting word improved *judging* right vs. wrong (experiment 8). Does that come from the owner's specific idea, the **carried balance**, or from **marking the text with moral labels at all**? The established version of the latter is "conditional training" (Korbak et al., ICML 2023, see [`PRIOR_WORK.md`](PRIOR_WORK.md)).
+
+**Design (pre-registered in [`method_comparison.py`](method_comparison.py), committed before training).** Same tiny model, same Bible, same 1,500 steps, same 100 new story pairs, and 3 seeds per method. The main measure was judging.
+- **label:** the established method. Same five spellings and same position, but each one judges *only the verse before it*: no carry, no reset, no fading. It uses the same verdict phrases and word values as the shifting word, and the same share of each spelling.
+- **carry3:** the owner's carried balance, but with only 3 spellings (wrong / unresolved / right).
+
+### Results (judging right vs. wrong, 100 new pairs, 50% = guessing)
+
+| Method | Per run | Average | Majority vote |
+|---|---|---|---|
+| No marker | 49, 60, 40 | 49.7% | 51/100 |
+| Scrambled marker | 56, 42, 60 | 52.7% | 53/100 |
+| **Shifting word** (carry, 5 spellings) | 67, 72, 67 | **68.7%** | 69/100 |
+| **Plain good/bad label** (no carry) | 71, 69, 63 | **67.7%** | 73/100 |
+| **Carry, 3 spellings** | 66, 72, 74 | **70.7%** | 75/100 |
+
+Predicting consequences stayed near chance for every marked method (48–56%).
+
+| Pre-registered test | Pair by pair | Verdict |
+|---|---|---|
+| Q1: shifting word beats the plain label | 20 better, 18 worse (p = 0.44) | **NOT CONFIRMED: a tie** |
+| Q2: 5 graded spellings beat 3 | 23 better, 26 worse (p = 0.72) | **NOT CONFIRMED: a tie** |
+
+Descriptive: the shifting word beats no marker (54 better, 26 worse, p = 0.001) and scrambled (57–25, p = 0.0003). The plain label also beats no marker (50–22, p = 0.0006).
+
+### What this means
+- **Marking the training text with moral labels clearly improves judging,** by about 15–20 points over plain text, in every version tested. That part is real and repeatable.
+- **The carried balance and the graded spellings didn't add anything measurable** at this scale. The plain per-verse label, the established method, did just as well.
+- **Why the carry might not show up here:** the test stories are one sentence each, so there's no long story for a balance to carry across. A test with multi-sentence stories, where the decisive act comes early and the judgment is asked much later, would give the carry a chance to matter. That is the most direct next test of the owner's specific idea.
