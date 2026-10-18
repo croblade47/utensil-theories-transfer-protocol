@@ -24,7 +24,11 @@ The project owner's theory: an AI gains real *comprehension*, the ability to app
   - **Judging right vs wrong** (side measure): shifting **67, 72, 67**, vs scrambled 56, 42, 60 and no word 49, 60, 40. Pair by pair, shifting beat scrambled 57–25 (p = 0.0003).
   - Needs its own pre-registered confirmation with judging as the main measure.
 - **Experiment 10, method comparison** (`method_comparison.py`): shifting word vs the plain good/bad label (the established conditional-training method) vs carried balance with 3 spellings. Judging is the main measure. Status: **RUNNING**
-- **Experiment 9 — Aesop moral transfer test** (`aesop_test.py`). Aesop is never in training; the model must match each fable to its true moral over a swapped one. Training sets of equal size: world folk tales (9 cultures), Bible, and novels as a control; plus rules vs stories at small size. Pass/fail rules P1, P2, S1–S3 are in the file's docstring. Status: **PENDING**, waiting for the CPU and a pre-run review.
+- **Experiment 9, the Aesop moral transfer test** (`aesop_test.py`, version 3 after two adversarial pre-run reviews). Aesop is never in training; the model must match each fable to its true moral over a swapped one.
+  - Training sets: world folk tales (9 cultures); the same tales with sentences shuffled within each story (control); novels (control); the Bible. Plus rules vs Bible narrative at small size.
+  - 4 seeds each for stories, novels and the shuffled control.
+  - Pass/fail rules P1, P2, P2b and P3 are in the docstring. Status: **QUEUED** behind the method comparison (about 3 hours).
+- **Prior work:** see `PRIOR_WORK.md`. 25 verified citations, and what looks new.
 
 ## Files
 
@@ -40,6 +44,8 @@ The project owner's theory: an AI gains real *comprehension*, the ability to app
 | `experiments/aesop_test.py` | Experiment 9 |
 | `experiments/results_*.json/txt` | Raw results |
 | `experiments/COMMUNICATION_GUIDE.md` | The owner's words and methods, translated |
+| `experiments/PRIOR_WORK.md` | What already exists in research, and what looks new |
+| `experiments/method_comparison.py` | Experiment 10: shifting word vs plain good/bad label vs 3-spelling carry |
 
 ## How to run anything
 ```bash
