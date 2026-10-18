@@ -35,7 +35,7 @@ SOURCES = {
 }
 
 _START = re.compile(r"\*\*\*\s*START OF (THE|THIS) PROJECT GUTENBERG.*?\*\*\*", re.I)
-_END = re.compile(r"\*\*\*\s*END OF (THE|THIS) PROJECT GUTENBERG", re.I)
+_END = re.compile(r"\*\*\*\s*END OF (THE|THIS) PROJECT GUTENBERG|^\s*End of (the )?Project Gutenberg", re.I | re.M)
 
 
 def clean(raw: str) -> str:
