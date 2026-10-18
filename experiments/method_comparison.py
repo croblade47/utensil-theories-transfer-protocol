@@ -186,21 +186,21 @@ def report(res):
         print(f"  {m:10s} {', '.join(str(int(x)) for x in J.sum(1)):20s} {J.mean() * 100:5.1f} "
               f"{maj:>6d}/{n} {p_at_least(maj, n):8.4f}   {', '.join(str(int(x)) for x in S.sum(1))}")
 
-    def vs(a, b, label):
+    def vs(a, b, label, verdict=True):
         if a not in counts or b not in counts:
             return
         w, l = int((counts[a] > counts[b]).sum()), int((counts[a] < counts[b]).sum())
         p = p_at_least(w, w + l)
-        print(f"  {label}: {a} better on {w} pairs, worse on {l}  (p = {p:.4f})  "
-              f"-> {'CONFIRMED' if p < 0.05 else 'NOT CONFIRMED'}")
+        tail = f"-> {'CONFIRMED' if p < 0.05 else 'NOT CONFIRMED'}" if verdict else "(descriptive)"
+        print(f"  {label}: {a} better on {w} pairs, worse on {l}  (p = {p:.4f})  {tail}")
 
     print("\n  PRE-REGISTERED")
     vs("shifting", "label", "Q1 shifting beats plain good/bad label")
     vs("shifting", "carry3", "Q2 graded spelling beats 3 spellings ")
     print("\n  Descriptive")
-    vs("shifting", "baseline", "   shifting vs no marker            ")
-    vs("shifting", "scrambled", "   shifting vs scrambled            ")
-    vs("label", "baseline", "   plain label vs no marker         ")
+    vs("shifting", "baseline", "   shifting vs no marker            ", verdict=False)
+    vs("shifting", "scrambled", "   shifting vs scrambled            ", verdict=False)
+    vs("label", "baseline", "   plain label vs no marker         ", verdict=False)
 
 
 if __name__ == "__main__":
