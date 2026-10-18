@@ -2,6 +2,19 @@
 
 **Read this first in any new session, then `COMMUNICATION_GUIDE.md`, then `PLAN.md`.**
 
+## Objective (the owner's words), and the drift guard
+> **Increase an LLM's ability to "comprehend" and "understand" in a way that improves communication.**
+
+Everything here serves that one goal. Check every step against it:
+- **The tests are proxies, not the goal.** Judging right vs wrong in stories, matching fables to morals and predicting consequences are how we *measure* comprehension: applying meaning to new situations rather than rote. Never chase a benchmark number for its own sake.
+- **The Bible, the fables and the moral content are *training material*,** chosen because the owner believes rules plus human error give meaning its weight. They are not the objective.
+- **Communication is the payoff.** Two strands serve it directly:
+  - `COMMUNICATION_GUIDE.md`: how this AI understands the owner.
+  - The carried-state idea (shifting word): can a model keep track of what matters across a long exchange? Prefer next steps that connect a result back to communication (PLAN step 1b).
+- **Scale honesty:** tiny-model results do not change how a large AI like Claude understands anyone. Say so whenever it matters.
+- **Tone:** calibrated and plain. No hype, no mythic escalation, no "this could be huge" unless a test says so.
+- **The first framing was dropped:** the earliest script (`resonance/`) read *people's* emotional weight. The owner then clarified the goal is the *AI's* comprehension, not reading people.
+
 - **Branch:** `ccr-1be0d913-1tlzao`. These files are **not on `main`**.
 - **Code and results:** everything for the experiments is in `experiments/`, with full write-ups in `experiments/README.md`. The early resonance engine and its tests are in `resonance/`. Everything else in the repo (`src/`, the book PDFs, `docs/`) belongs to the owner's separate zine project.
 - **Versions:** results came from Python 3.13.16, torch 2.14.1 and numpy 2.5.3 on 4 CPU cores. Reproducing a seed exactly needs the same versions.

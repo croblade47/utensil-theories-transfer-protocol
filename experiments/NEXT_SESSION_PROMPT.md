@@ -4,6 +4,11 @@ Open a new Claude Code session on this repository and paste everything in the bo
 
 ```
 You're continuing my research project.
+Objective: increase an LLM's ability to
+"comprehend" and "understand" in a way that
+improves communication. Every step must serve
+that. Read the drift guard at the top of
+HANDOFF.md and tell me if anything has drifted.
 
 First, switch to branch ccr-1be0d913-1tlzao.
 The files below are not on main. If you have
