@@ -19,10 +19,11 @@ The project owner's theory: an AI gains real *comprehension*, the ability to app
 | 7 | The owner's **shifting word** (*velanok*): a running moral balance, reset to ±17, spelling changes with it | **68% vs 52% scrambled** on the 20 stories. Judging right/wrong 70%. First result above chance |
 
 ## In progress / pending (update when done)
-- **Experiment 8 — confirmation on 100 new story pairs** (`confirm.py`, `stories_v2.py`, `results_confirm.json`). 9 models: shifting word / scrambled / no word × 3 seeds. Partial results:
-  - **Predicting consequences:** near chance for every version.
-  - **Judging right vs wrong:** shifting word 67 and 72/100, vs scrambled 56 and 42, and no word 49 and 60.
-  - Verdict: **PENDING**
+- **Experiment 8, the confirmation on 100 new story pairs: DONE.**
+  - **Consequences:** NOT CONFIRMED (shifting 51/100, p = 0.46). The plain model did slightly better (61/100).
+  - **Judging right vs wrong** (side measure): shifting **67, 72, 67**, vs scrambled 56, 42, 60 and no word 49, 60, 40. Pair by pair, shifting beat scrambled 57–25 (p = 0.0003).
+  - Needs its own pre-registered confirmation with judging as the main measure.
+- **Experiment 10, method comparison** (`method_comparison.py`): shifting word vs the plain good/bad label (the established conditional-training method) vs carried balance with 3 spellings. Judging is the main measure. Status: **RUNNING**
 - **Experiment 9 — Aesop moral transfer test** (`aesop_test.py`). Aesop is never in training; the model must match each fable to its true moral over a swapped one. Training sets of equal size: world folk tales (9 cultures), Bible, and novels as a control; plus rules vs stories at small size. Pass/fail rules P1, P2, S1–S3 are in the file's docstring. Status: **PENDING**, waiting for the CPU and a pre-run review.
 
 ## Files
@@ -54,8 +55,9 @@ In the spirit of the owner's "remaining" value, these are unresolved questions c
 
 | Thread | Lean so far | What would settle it |
 |---|---|---|
-| Does the shifting word teach *judging* right vs wrong? | **For** (67–72% vs ~50% scrambled, two runs) | Confirmation verdict, plus a larger model |
-| Does it teach *predicting consequences*? | **Against** on 100 new stories (near 50%) | A bigger model or more data |
+| Does the shifting word teach *judging* right vs wrong? | **Strongly for** (69% vs ~50%, 3 runs, 100 new pairs), but a side measure | Pre-registered judging test on fresh stories |
+| Is that from the *carry* (the owner's idea) or labeling in general? | Unknown | Experiment 10 (shifting vs plain label) |
+| Does it teach *predicting consequences*? | **Against** (not confirmed, 51/100); the plain model did better | A bigger model, or matching the ending format |
 | Do stories transfer lessons better than rules? | Unclear: rules alone didn't win in experiment 3 | Aesop test (experiment 9) |
 | Re-adding 17 at every appearance ("W1 = 17 + 4") | Untested | Switch `RECHARGE = True` in `shifting_word.py` and rerun |
 | Do the numbers 32, 16, 34, 47 matter? | No reason yet, since only ratios matter | Try as reset sizes or thresholds |

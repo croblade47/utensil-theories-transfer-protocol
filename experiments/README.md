@@ -155,3 +155,32 @@ Example, 2 Kings 17: "And he did that which was evil in the sight of the Lord" f
 
 ### About the numbers 17, 32, 16, 34, 47
 Only 17 is used, as the reset size. In this design what matters is the *ratio* between the reset, the word values and the spending rate. Scaling everything by any number gives the same behaviour, so the specific value doesn't carry meaning by itself. The others could be tried as reset sizes or thresholds, but there's no reason yet to expect them to behave differently.
+
+---
+
+## Experiment 8: Confirmation on 100 new story pairs: not confirmed for consequences; strong signal for judging
+
+**Design (pre-registered in `confirm.py`, committed before scoring).** I wrote 100 new story pairs ([`stories_v2.py`](stories_v2.py)) using KJV vocabulary, banned moral labels, and endings that never reuse story words. Three versions were trained with 3 seeds each: shifting word, scrambled control, and no word. The pre-registered measure was **predicting consequences** (the shift test). Judging right vs. wrong was a side measure. The old 20 pairs reproduced exactly for seeds 0 and 1 (14/20 and 13/20 for shifting; 10/20 and 11/20 for scrambled), so the code was unchanged. Raw results: [`results_confirm.json`](results_confirm.json).
+
+### Pre-registered verdict
+| Test | Result |
+|---|---|
+| Shifting word predicts consequences better than chance (majority of 3 runs) | **51/100, p = 0.46: NOT CONFIRMED** |
+| Shifting word beats scrambled on consequences | 27 better, 27 worse: **NOT CONFIRMED** |
+
+The 68% from experiment 7 did not hold on new stories. It was luck in the 20 original pairs.
+
+### Everything else (descriptive, not pre-registered)
+
+| 100 new pairs | Consequences per run | Judging per run |
+|---|---|---|
+| Shifting word | 50, 55, 55 (majority 51, p = 0.46) | **67, 72, 67 (majority 69, p = 0.0001)** |
+| Scrambled | 49, 55, 50 (majority 50) | 56, 42, 60 (majority 53, p = 0.31) |
+| No word | **62, 55, 61 (majority 61, p = 0.02)** | 49, 60, 40 (majority 51, p = 0.46) |
+
+Pair by pair, the shifting word judged better than scrambled on 57 pairs and worse on 25 (p = 0.0003). Against no word it was 54 better and 26 worse (p = 0.001).
+
+### What this means
+- **The shifting word reliably improves *judging* right vs. wrong:** about 69% vs. about 50–55%, across all 3 training runs, on stories it never saw. Judging was a side measure here, so it still needs its own pre-registered confirmation.
+- **It does not improve *predicting consequences*.** The plain model did slightly better there (61% majority). One possible reason: marked models read endings after the marker word, while the plain model reads them after a comma, so the formats differ. That is untested.
+- **Next:** compare against the established method (a plain good/bad label per verse) to see whether the *carried* balance adds anything beyond labeling (`method_comparison.py`, experiment 10).
