@@ -1,0 +1,84 @@
+Aesop fables in test: 67 (excluded 8 for leakage); same-format pairs 1,131; no-clue pairs 284
+  corpus stories           train   699,379 tokens  held-out  14,812  [c24f4631]
+  corpus novels            train   699,603 tokens  held-out  14,667  [0f982018]
+  corpus bible             train   700,293 tokens  held-out  14,619  [2e983ecb]
+  corpus rules             train   128,098 tokens  held-out   2,515  [9b7fb83b]
+  corpus narrative         train   127,933 tokens  held-out   2,720  [3e76ba43]
+  corpus stories_shuffled  train   699,379 tokens  held-out  14,812  [50dd015e]
+
+== training stories seed 0: 699,379 tokens, 1500 steps
+  stories/seed0: same-format match 0.549  no-clue 0.634  unknown 1.9%  held-out loss 4.435  fable loss 4.541
+
+== training novels seed 0: 699,603 tokens, 1500 steps
+  novels/seed0: same-format match 0.523  no-clue 0.542  unknown 3.3%  held-out loss 4.709  fable loss 5.079
+
+== training stories_shuffled seed 0: 699,379 tokens, 1500 steps
+  stories_shuffled/seed0: same-format match 0.474  no-clue 0.528  unknown 1.9%  held-out loss 4.492  fable loss 4.586
+
+== training bible seed 0: 700,293 tokens, 1500 steps
+  bible/seed0: same-format match 0.442  no-clue 0.384  unknown 9.3%  held-out loss 3.618  fable loss 5.529
+
+== training stories seed 1: 699,379 tokens, 1500 steps
+  stories/seed1: same-format match 0.544  no-clue 0.595  unknown 1.9%  held-out loss 4.477  fable loss 4.579
+
+== training novels seed 1: 699,603 tokens, 1500 steps
+  novels/seed1: same-format match 0.531  no-clue 0.535  unknown 3.3%  held-out loss 4.699  fable loss 5.057
+
+== training stories_shuffled seed 1: 699,379 tokens, 1500 steps
+  stories_shuffled/seed1: same-format match 0.560  no-clue 0.595  unknown 1.9%  held-out loss 4.5  fable loss 4.596
+
+== training bible seed 1: 700,293 tokens, 1500 steps
+  bible/seed1: same-format match 0.451  no-clue 0.444  unknown 9.3%  held-out loss 3.632  fable loss 5.527
+
+== training stories seed 2: 699,379 tokens, 1500 steps
+  stories/seed2: same-format match 0.509  no-clue 0.599  unknown 1.9%  held-out loss 4.46  fable loss 4.546
+
+== training novels seed 2: 699,603 tokens, 1500 steps
+  novels/seed2: same-format match 0.543  no-clue 0.521  unknown 3.3%  held-out loss 4.741  fable loss 5.092
+
+== training stories_shuffled seed 2: 699,379 tokens, 1500 steps
+  stories_shuffled/seed2: same-format match 0.537  no-clue 0.567  unknown 1.9%  held-out loss 4.569  fable loss 4.604
+
+== training stories seed 3: 699,379 tokens, 1500 steps
+  stories/seed3: same-format match 0.500  no-clue 0.577  unknown 1.9%  held-out loss 4.466  fable loss 4.564
+
+== training novels seed 3: 699,603 tokens, 1500 steps
+  novels/seed3: same-format match 0.512  no-clue 0.592  unknown 3.3%  held-out loss 4.682  fable loss 5.044
+
+== training stories_shuffled seed 3: 699,379 tokens, 1500 steps
+  stories_shuffled/seed3: same-format match 0.497  no-clue 0.563  unknown 1.9%  held-out loss 4.501  fable loss 4.571
+
+== training rules seed 0: 128,098 tokens, 275 steps
+  rules/seed0: same-format match 0.500  no-clue 0.544  unknown 14.2%  held-out loss 4.593  fable loss 5.146
+
+== training narrative seed 0: 127,933 tokens, 274 steps
+  narrative/seed0: same-format match 0.565  no-clue 0.546  unknown 16.2%  held-out loss 4.254  fable loss 5.235
+
+==============================================================================
+AESOP MORAL TEST  (67 fables never seen in training; 50% = guessing)
+==============================================================================
+  pairs: same-format 1,131, no word clue 284
+  references (no model): word-family overlap 0.761 same-format / 0.500 no-clue; punctuation shortcut 0.500 same-format
+
+  set               same-format  per seed                       p vs 50%  no-clue       p  unknown held-out
+  stories                 0.523  0.549, 0.544, 0.509, 0.500       0.3298    0.602  0.0645     1.9%    4.460
+  novels                  0.541  0.523, 0.531, 0.543, 0.512       0.2114    0.539  0.2829     3.3%    4.708
+  stories_shuffled        0.531  0.474, 0.560, 0.537, 0.497       0.2834    0.592  0.0880     1.9%    4.516
+  bible                   0.436  0.442, 0.451                     0.8921    0.394  0.9485     9.3%    3.625
+  rules                   0.500  0.500                            0.5072    0.544  0.2399    14.2%    4.593
+  narrative               0.565  0.565                            0.0955    0.546  0.2364    16.2%    4.254
+
+  PRE-REGISTERED VERDICT
+  P1  stories beats 50%: no (p = 0.3298)
+  P1  novels beats 50%: no (p = 0.2114)
+  P1  stories_shuffled beats 50%: no (p = 0.2834)
+  P1  bible beats 50%: no (p = 0.8921)
+  P2 : stories - novels = -0.018  (largest seed-to-seed gap 0.049); fable-level p = 0.6147, model-level p = 0.5571  -> NOT CONFIRMED
+  P2b: stories - stories_shuffled = -0.007  (largest seed-to-seed gap 0.086); fable-level p = 0.5942, model-level p = 0.3571  -> NOT CONFIRMED
+  P3  stories beat 50% on no-clue pairs: NOT CONFIRMED (inconclusive, low power) (p = 0.0645)
+
+  DESCRIPTIVE
+  P3 context, no-clue pairs: stories vs novels  : stories - novels = +0.063  (largest seed-to-seed gap 0.070); fable-level p = 0.2214, model-level p = 0.0286
+  P3 context, no-clue pairs: stories vs shuffled: stories - stories_shuffled = +0.011  (largest seed-to-seed gap 0.067); fable-level p = 0.4163, model-level p = 0.0429
+  S1 : stories - bible = +0.088  (largest seed-to-seed gap 0.049); fable-level p = 0.0820, model-level p = 0.0667
+  S2 : narrative - rules = +0.065  (largest seed-to-seed gap nan); fable-level p = 0.1639, model-level p = nan
