@@ -257,7 +257,7 @@ The flawed first-run results were set aside from the verdict and are kept in `re
 
 In version B the shifting word beat the plain label in **every one of the 3 training runs**: 59 vs 54.5, 56 vs 51, and 63 vs 54.
 
-**Ties matter here.** Most long-story pairs are exact ties, scored 0.5. In version B the plain label tied on 91, 96 and 82 of 100 pairs: once the act is out of view it can't tell the stories apart, so it sits near 50% by design. The shifting word tied on 70, 70 and 54, and of the pairs it did decide, it got 24–6, 21–9 and 36–10 right. No marker ties on every pair in A and B. Descriptive, not pre-registered: in version B the 3-spelling carry also beat the plain label (45 better, 19 worse, p = 0.0008).
+**Ties matter here.** Most long-story pairs are exact ties, scored 0.5. In version B the plain label tied on 91, 96 and 82 of 100 pairs: once the act was out of view it mostly couldn't tell the stories apart. It isn't blind by design: label models write their own markers too, which is how one label run scored 97 on version A. The shifting word tied on 70, 70 and 54, and of the pairs it did decide, it got 24–6, 21–9 and 36–10 right. No marker ties on every pair in A and B. Descriptive, not pre-registered: in version B the 3-spelling carry also beat the plain label (45 better, 19 worse, p = 0.0008).
 
 ### What this means
 - **The owner's carried balance does something a plain label doesn't.** When an everyday act has to be remembered after it has scrolled out of view, models trained with the carry keep their judgment of it alive: about 59–61%, against about 53% for the plain label. That is the first support for the part of the idea that is the owner's own. It counts as **supported once**, not confirmed (see below).
