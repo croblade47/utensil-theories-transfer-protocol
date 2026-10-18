@@ -3,7 +3,7 @@
 Work top to bottom. Record each result in `HANDOFF.md` and `README.md`. Pre-register pass/fail rules (commit them) before any run.
 
 ## 0. Finish what's running
-- [ ] **Experiment 9, the Aesop transfer test.** First check whether it's still running (`pgrep -af aesop_test.py`). If it is, wait: don't start a second copy, because both would write `results_aesop.json`. If not, run `cd experiments && python aesop_test.py > aesop.log 2>&1`. It resumes from `results_aesop.json`, plus any saved models still in `experiments/models/`. About 20–30 minutes per model on 4 CPU cores (window of 128 tokens), 16 models, so roughly 6–8 hours. Tell the owner the time first. Report P1, P2, P2b and P3 first.
+- [x] **Experiment 9, the Aesop transfer test:** DONE, not confirmed (see README experiment 9).
 - [x] **Exploratory start-marker run:** done (stopped early). It made things worse: the shifting word copied "unresolved" down the whole story. It **carries perfectly but updates poorly**.
 
 ## 1. Confirm the owner's carry idea properly (experiment 11 found L2)
