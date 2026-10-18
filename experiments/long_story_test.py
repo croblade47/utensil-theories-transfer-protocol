@@ -44,7 +44,14 @@ PRE-REGISTERED (committed before scoring)
   L3  version A: carry3 beats label, p < 0.05 (secondary)
   Also reported: every method vs 50% (majority vote), and the short version.
 
-Run:  python experiments/long_story_test.py    (about 15-30 minutes, CPU only, no training)
+EXPLORATORY (added after seeing the pre-registered run; not part of the verdict)
+  --start-marker: begin every marked story with the neutral marker "velanok",
+  as every verse in training is preceded by a marker. A diagnostic showed the
+  shifting word copies its marker perfectly down the story but misjudges the first
+  sentence when no marker comes before it. Results go to
+  results_long_story_startmarker.json.
+
+Run:  python experiments/long_story_test.py [--start-marker]   (15-30 minutes, CPU only, no training)
 """
 
 from __future__ import annotations
@@ -68,6 +75,7 @@ from stories_v2 import ITEMS_V2
 torch.set_num_threads(1)            # share the CPU politely with any training job
 HERE = Path(__file__).parent
 OUT = HERE / "results_long_story.json"
+START_MARKER = False
 SEEDS = [0, 1, 2]
 METHODS = ["baseline", "scrambled", "shifting", "label", "carry3"]
 VERDICT_WRONG = "and he did evil in the sight of the lord"
@@ -171,7 +179,8 @@ def judge_marked(model, vocab, sentences):
     forms = [f for f in sw.FORMS if f in vocab.stoi]
     ids = [vocab.stoi[f] for f in forms]
     pos = np.array([mc.POSITION[f] for f in forms])
-    ctx = [1] + vocab.encode(sentences[0]) + [1]
+    start = [vocab.stoi[sw.FORMS[2]]] if START_MARKER else []
+    ctx = [1] + start + vocab.encode(sentences[0]) + [1]
     for s in sentences[1:]:
         scores = [sw.lp_ids(model, ctx, [i]) for i in ids]
         ctx += [ids[int(np.argmax(scores))]] + vocab.encode(s) + [1]
@@ -192,6 +201,10 @@ def judge_plain(model, vocab, sentences):
 
 
 def main():
+    global OUT, START_MARKER
+    import sys
+    if "--start-marker" in sys.argv:
+        START_MARKER, OUT = True, HERE / "results_long_story_startmarker.json"
     verses = load_verses()
     texts = [t for _, t in verses]
     values = sw.word_values(texts)
