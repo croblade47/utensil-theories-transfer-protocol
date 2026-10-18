@@ -23,7 +23,7 @@ The owner decides what to review and who to share with. Never put anything in th
 3. **Open formats** that work on a phone and a laptop without special software: `.docx`, `.pdf`, `.txt`, `.md`, `.csv`, `.json`, `.zip`, `.py`.
 4. **Never hold a file back** from the owner, never deliver only a preview of it, and never require extra sign-ups or approvals to open it.
 5. **Say plainly what you can't control,** instead of implying it's handled. For example:
-   - the repository is private on GitHub, so opening it there needs the owner's login;
+   - the repository is public on GitHub (MIT license): anyone can read it. Changing that is the owner's decision, made in GitHub settings;
    - a cloud session cannot place files on the owner's laptop desktop or phone home screen, or make widgets. Send the files so the owner can save them.
    Never claim a file was placed somewhere it wasn't.
 
