@@ -37,7 +37,7 @@ The project owner's theory: an AI gains real *comprehension*, the ability to app
 - **Experiment 11, the long-story carry test: DONE.**
   - **L2 CONFIRMED:** when an everyday act must be remembered after it scrolls out of view, the shifting word beats the plain label: 59, 56, 63 vs 54.5, 51, 54 (43 pairs better, 21 worse, p = 0.004).
   - **L1 not confirmed:** with an explicit verdict phrase, the plain label won (73, 51, 97). The shifting word misjudges the verdict sentence when no marker comes before it.
-  - An exploratory start-marker run is in `results_long_story_startmarker.json`.
+  - Exploratory start-marker run (stopped early): the shifting word copied "unresolved" all the way down, all ties. Lesson: it **carries perfectly but updates poorly**. Balance carry against update next.
 - **Prior work:** see `PRIOR_WORK.md`. 25 verified citations, and what looks new.
 
 ## Files
@@ -81,6 +81,6 @@ In the spirit of the owner's "remaining" value, these are unresolved questions c
 | Do stories transfer lessons better than rules? | Unclear: rules alone didn't win in experiment 3 | Aesop test (experiment 9) |
 | Re-adding 17 at every appearance ("W1 = 17 + 4") | Untested | Switch `RECHARGE = True` in `shifting_word.py` and rerun |
 | Do the numbers 32, 16, 34, 47 matter? | No reason yet, since only ratios matter | Try as reset sizes or spend rates in the long-story test |
-| Why does the shifting word misjudge an explicit verdict sentence? | Likely: test stories start without a marker, unlike training | Exploratory start-marker run, then a pre-registered fix |
+| Why does the shifting word misjudge an explicit verdict sentence? | It leans on carrying its previous marker more than on reading the new sentence: with a neutral start marker it never changes | Retrain with stronger resets or a faster spend, or more marker changes in training; test the owner's numbers as settings |
 | Does the spelling (shared syllables) matter? | Untestable so far: the word-level tokenizer hides syllables | Sub-word tokenizer experiment (PLAN step 3) |
 | A large AI as the reader (rules given as instructions) | Not run: needs an API key | Add an API key to the environment |
