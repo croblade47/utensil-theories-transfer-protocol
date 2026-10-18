@@ -77,6 +77,7 @@ const wrong = [
   ['Lost evidence', 'Marker diagnostics and the first experiment-11 run were never saved. Trained models and data aren\'t in git, so a fresh machine must retrain (about 2.5 hours for exp 8/10).', 'README exp 11; HANDOFF "Files"', 'Save every run, flawed ones included. Consider storing models outside git.'],
   ['Files hard to find or open', 'Results live on a side branch, not main. The zine master file is a web page named .doc. Nothing was sent as a downloadable file.', 'branches; 5_Other_Master_Files', 'This folder. Strict file rule added to CLAUDE.md.'],
   ['Missing tools', 'No API key, so the large-AI test was never run. Gutenberg and Archive.org were blocked. A new container has no torch or saved models.', 'HANDOFF "How to run"', 'Add an API key, or use helper AI copies as readers with blind, rule-based scoring.'],
+  ['Public repository', 'The repository is public, with an MIT license. Everything in it, including the zine "patent-ready" file with your email address, is readable by anyone. This audit first said "private", which was wrong.', 'GitHub repository settings (visibility: public)', 'Your decision. If you plan a patent, ask a patent attorney before anything more is made public. To change: GitHub, Settings, Danger Zone, Change visibility.'],
   ['Review missed things', 'Three review agents (04:16) did not catch the mid-run test changes.', '226f68c', 'Reviewers should be given the git timeline, not just the write-ups.'],
 ];
 
@@ -91,7 +92,7 @@ const held = [
 ];
 
 const specs = [
-  ['Repository', 'github.com/croblade47/utensil-theories-transfer-protocol (private)'],
+  ['Repository', 'github.com/croblade47/utensil-theories-transfer-protocol. Owner: croblade47 (Garrett Gauthier\'s GitHub account, sole admin). PUBLIC: anyone on the internet can read it. MIT license: anyone may reuse the code.'],
   ['Research branch', 'ccr-1be0d913-1tlzao (NOT on main). 34 research commits, 17 Oct 21:43 to 18 Oct 05:47 UTC, plus "partial results" commits.'],
   ['This folder in the repo', 'AUDIT_PACK_2026-10-18/ on branch ccr-1be0d913-audit-pack (kept separate so it can\'t clash with the running Aesop session).'],
   ['Software (reported by previous session)', 'Python 3.13.16, torch 2.14.1, numpy 2.5.3, 4 CPU cores. Exact seed reproduction needs these versions.'],
