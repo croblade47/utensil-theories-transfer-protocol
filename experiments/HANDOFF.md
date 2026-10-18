@@ -17,6 +17,9 @@ The project owner's theory: an AI gains real *comprehension*, the ability to app
 | 5 | Predict consequences in 20 new stories (word-averaging model) | **Chance.** The gap is understanding a whole act, not knowing the rule |
 | 6 | Same, with a tiny transformer on the Bible | **Chance.** Learned the language, not the consequences |
 | 7 | The owner's **shifting word** (*velanok*): a running moral balance, reset to ±17, spelling changes with it | **68% vs 52% scrambled** on the 20 stories. Judging right/wrong 70%. First result above chance |
+| 8 | Confirmation on 100 new pairs | **Consequences: not confirmed** (the 20-story result was luck). **Judging: 69% vs ~50%** for scrambled and no marker, all 3 runs |
+| 10 | Shifting word vs the established method (plain good/bad label, as in Korbak et al. 2023) | **A tie on one-sentence stories** (~68–71% each). Labeling helps judging; the carry adds nothing *there* |
+| 11 | **Long stories:** the act scrolls out of view, and only carried markers can remember it | **Everyday act: shifting word beats the plain label, CONFIRMED** (59, 56, 63 vs 54.5, 51, 54; p = 0.004). With an explicit verdict phrase, the label won |
 
 ## In progress / pending (update when done)
 - **Experiment 8, the confirmation on 100 new story pairs: DONE.**
@@ -53,14 +56,18 @@ The project owner's theory: an AI gains real *comprehension*, the ability to app
 | `experiments/COMMUNICATION_GUIDE.md` | The owner's words and methods, translated |
 | `experiments/PRIOR_WORK.md` | What already exists in research, and what looks new |
 | `experiments/method_comparison.py` | Experiment 10: shifting word vs plain good/bad label vs 3-spelling carry |
+| `experiments/long_story_test.py` | Experiment 11: carrying a judgment after the act scrolls out of view |
 
 ## How to run anything
 ```bash
 pip install numpy scipy torch          # CPU is fine; each tiny model trains ~11 min on 4 cores
 python experiments/bible_understanding.py
 python experiments/confirm.py          # re-uses saved models in experiments/models/ if present
-python experiments/aesop_test.py
+python experiments/aesop_test.py        # resumes from results_aesop.json
+python experiments/method_comparison.py
+python experiments/long_story_test.py   # add --start-marker for the exploratory version
 ```
+Trained models are saved in `experiments/models/` (not committed, about 15 MB each). Every result file *is* committed, so analyses can be re-printed without retraining.
 Data downloads automatically on first run (KJV and world stories from raw.githubusercontent.com, novels from the NLTK data mirror). In this sandbox only GitHub-hosted files could be downloaded; Gutenberg, Archive.org and Wikisource were blocked.
 
 ## Carried balance: open threads
@@ -73,5 +80,7 @@ In the spirit of the owner's "remaining" value, these are unresolved questions c
 | Does it teach *predicting consequences*? | **Against** (not confirmed, 51/100); the plain model did better | A bigger model, or matching the ending format |
 | Do stories transfer lessons better than rules? | Unclear: rules alone didn't win in experiment 3 | Aesop test (experiment 9) |
 | Re-adding 17 at every appearance ("W1 = 17 + 4") | Untested | Switch `RECHARGE = True` in `shifting_word.py` and rerun |
-| Do the numbers 32, 16, 34, 47 matter? | No reason yet, since only ratios matter | Try as reset sizes or thresholds |
+| Do the numbers 32, 16, 34, 47 matter? | No reason yet, since only ratios matter | Try as reset sizes or spend rates in the long-story test |
+| Why does the shifting word misjudge an explicit verdict sentence? | Likely: test stories start without a marker, unlike training | Exploratory start-marker run, then a pre-registered fix |
+| Does the spelling (shared syllables) matter? | Untestable so far: the word-level tokenizer hides syllables | Sub-word tokenizer experiment (PLAN step 3) |
 | A large AI as the reader (rules given as instructions) | Not run: needs an API key | Add an API key to the environment |

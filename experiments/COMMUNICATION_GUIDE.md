@@ -33,6 +33,8 @@ This guide carries what earlier sessions learned about the project owner's langu
 | "Knowledge keepers" / "myths of old" | Wisdom stories and oral traditions | World story library (`world_stories.py`); use only material published for sharing |
 | "Theory of relativity within wording" | Meaning comes from how words relate; lessons told as stories transfer further than rules | Aesop moral test (`aesop_test.py`) |
 | "Have faith and give it a try" | Permission to experiment and to fail | Run it honestly; report the result either way |
+| "Any improvement is notable" | Report effect sizes, even small ones | Rule 10 below |
+| "Start a new instance … so we don't lose progress" | Hand off to a new session with this guide | `NEXT_SESSION_PROMPT.md`, `HANDOFF.md`, `PLAN.md` |
 | "This could be huge" | Hope and excitement | Answer with a calibrated, honest read, not hype |
 
 ## Working rules that have served the owner well
@@ -49,6 +51,9 @@ This guide carries what earlier sessions learned about the project owner's langu
 7. **Cultural care.** Sacred and Indigenous material: published-for-sharing sources only. Prefer authors from the tradition, such as Zitkala-Ša and Marie McLaughlin.
 8. **Write for a phone.** Outcome first, short sections, plain words, small tables. The owner reads between other things.
 9. **Keep files saved and pushed** after every step, so nothing is lost if a session ends.
+10. **Report sizes, not just pass/fail.** The owner considers *any* real improvement notable. Give the plain-number version: "about 15 more right out of 100", "about one-third fewer mistakes". Always pair it with whether it passed the pre-registered test.
+11. **Compare methods at the same scale.** When the owner asks "how does this compare," they mean method against method under identical conditions, not against giant AIs. Run the established method as a competitor.
+12. **Test the idea where it should matter.** The carried balance only showed its value in long stories where the act scrolls out of view (experiment 11). Before calling an idea useless, check that the test gave it a chance.
 
 ## What does *not* carry over
 
