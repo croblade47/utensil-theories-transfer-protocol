@@ -31,6 +31,10 @@ The project owner's theory: an AI gains real *comprehension*, the ability to app
   - Training sets: world folk tales (9 cultures); the same tales with sentences shuffled within each story (control); novels (control); the Bible. Plus rules vs Bible narrative at small size.
   - 4 seeds each for stories, novels and the shuffled control.
   - Pass/fail rules P1, P2, P2b and P3 are in the docstring. Status: **QUEUED** behind the method comparison (about 3 hours).
+- **Experiment 11, the long-story carry test: DONE.**
+  - **L2 CONFIRMED:** when an everyday act must be remembered after it scrolls out of view, the shifting word beats the plain label: 59, 56, 63 vs 54.5, 51, 54 (43 pairs better, 21 worse, p = 0.004).
+  - **L1 not confirmed:** with an explicit verdict phrase, the plain label won (73, 51, 97). The shifting word misjudges the verdict sentence when no marker comes before it.
+  - An exploratory start-marker run is in `results_long_story_startmarker.json`.
 - **Prior work:** see `PRIOR_WORK.md`. 25 verified citations, and what looks new.
 
 ## Files
@@ -65,7 +69,7 @@ In the spirit of the owner's "remaining" value, these are unresolved questions c
 | Thread | Lean so far | What would settle it |
 |---|---|---|
 | Does the shifting word teach *judging* right vs wrong? | **Strongly for** (69% vs ~50%, 3 runs, 100 new pairs), but a side measure | Pre-registered judging test on fresh stories |
-| Is that from the *carry* (the owner's idea) or labeling in general? | **Labeling in general:** the plain label tied the shifting word (experiment 10) | A **long-story test**, where the act comes early and judgment is asked much later, so carrying matters |
+| Is that from the *carry* (the owner's idea) or labeling in general? | On short stories, labeling in general (experiment 10, a tie). On **long stories, the carry helps: L2 CONFIRMED** (experiment 11, +6 points over the label) | Bigger models, longer stories, and fixing the first-judgment weakness |
 | Does it teach *predicting consequences*? | **Against** (not confirmed, 51/100); the plain model did better | A bigger model, or matching the ending format |
 | Do stories transfer lessons better than rules? | Unclear: rules alone didn't win in experiment 3 | Aesop test (experiment 9) |
 | Re-adding 17 at every appearance ("W1 = 17 + 4") | Untested | Switch `RECHARGE = True` in `shifting_word.py` and rerun |
