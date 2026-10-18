@@ -29,8 +29,13 @@ Filler is added until the act sentence lies entirely outside the final window
 sanity reference.
 
 PRE-REGISTERED (committed before scoring)
-  Counting correct runs (0-3) per pair; one-sided sign test over pairs where
-  counts differ.
+  Score per story pair: 1 if judged right, 0 if wrong, 0.5 on an exact tie.
+  (Correction made after the first model's result: ties had been counted as
+  wrong. A model that can no longer tell the two stories apart produces exact
+  ties, and it should score chance, not zero. This change can only help the
+  methods that don't carry.)
+  Summing those scores over the 3 seeds per pair; one-sided sign test over
+  pairs where the sums differ.
   L1  version A: shifting beats label, p < 0.05
   L2  version B: shifting beats label, p < 0.05
   L3  version A: carry3 beats label, p < 0.05 (secondary)
@@ -199,11 +204,13 @@ def main():
                 for k in range(len(ITEMS_V2)):
                     r, w, npad = build_stories(version, fillers, vocab, k)
                     judge = judge_plain if method == "baseline" else judge_marked
-                    correct.append(bool(judge(model, vocab, r) > judge(model, vocab, w)))
+                    jr, jw = judge(model, vocab, r), judge(model, vocab, w)
+                    correct.append(1.0 if jr > jw else 0.5 if np.isclose(jr, jw) else 0.0)
                     n_pad.append(npad)
                 res[key] = {"correct": correct, "fillers_used": len(fillers), "mean_pad": float(np.mean(n_pad))}
                 OUT.write_text(json.dumps(res))
-                print(f"  {key:22s} judged correctly {sum(correct)}/100  (neutral sentences after act: "
+                ties = sum(c == 0.5 for c in correct)
+                print(f"  {key:22s} score {sum(correct):.1f}/100  ties {ties}  (neutral sentences after act: "
                       f"{np.mean(n_pad):.1f})", flush=True)
     report(res)
 
@@ -222,9 +229,9 @@ def report(res):
                 continue
             c = np.array(runs).sum(0)
             counts[(m, version)] = c
-            maj = int((c * 2 > len(runs)).sum())
-            print(f"    {m:10s} per run {', '.join(str(sum(r)) for r in runs):14s} majority {maj}/100 "
-                  f"(p = {p_at_least(maj, 100):.4f})")
+            above, below = int((c * 2 > len(runs)).sum()), int((c * 2 < len(runs)).sum())
+            print(f"    {m:10s} per run {', '.join(f'{sum(r):.1f}' for r in runs):20s} "
+                  f"pairs above chance {above}, below {below} (p = {p_at_least(above, above + below):.4f})")
 
     def vs(a, b, version, label):
         if (a, version) not in counts or (b, version) not in counts:
