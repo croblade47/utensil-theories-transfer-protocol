@@ -1,0 +1,72 @@
+Loaded 31,102 verses, 793,445 words.
+
+======================================================================
+EXPERIMENT 1 - Colour without sight
+======================================================================
+  white    keeps company with: reddish, hair, black, bright, clothed, skin, spots, snow
+  scarlet  keeps company with: purple, silk, twined, linen, broidered, blue, needlework, agate
+  red      keeps company with: dyed, drowned, skins, sea, white, riding, badgers, horses
+  black    keeps company with: white, hair, reddish, snow, bright, grown, horse, plague
+  purple   keeps company with: blue, silk, scarlet, broidered, linen, twined, fine, needlework
+  green    keeps company with: tree, fig, herb, vine, sycomore, trees, withs, vines
+
+  Object -> colour (pick 1 of 6, chance = 17%): 10/14 = 71%
+    snow->white; wool->purple (expected white); milk->red (expected white); linen->blue (expected white); blood->red; wine->red; night->black; darkness->black; sackcloth->white (expected black); grass->green; tree->green; herb->green; fine->purple; robe->purple
+
+  What colour MEANS (Isaiah 1:18 'sins as scarlet ... white as snow'):
+    white    near purity +0.127 | near sin +0.007  -> leans purity
+    scarlet  near purity +0.078 | near sin +0.008  -> leans purity
+    red      near purity +0.102 | near sin +0.057  -> leans purity
+    crimson  near purity +0.036 | near sin +0.032  -> leans purity
+    black    near purity +0.065 | near sin +0.013  -> leans purity
+
+======================================================================
+EXPERIMENT 2 - Three ways of reading the tokens
+======================================================================
+  A word-by-word     similarity AUC 0.975 | moral AUC 0.957 | colour 10/14
+  B verse-as-unit    similarity AUC 0.974 | moral AUC 0.995 | colour 11/14
+  C parallelism      similarity AUC 0.979 | moral AUC 0.948 | colour 11/14
+  (AUC: 0.50 = guessing, 1.00 = perfect)
+
+======================================================================
+EXPERIMENT 3 - Are the rules the secret? (Romans 7:7)
+======================================================================
+  Rule verses (thou shalt / shall not / commandments / statutes...): 2,801 of 31,102 (9%)
+
+  3a. Learn ONLY from a slice of the text (same size each):
+  rules only                             similarity 0.867        | moral 0.625       
+  random verses (5 draws)                similarity 0.841 ±0.039 | moral 0.709 ±0.081
+  non-rule verses only (5 draws)         similarity 0.843 ±0.046 | moral 0.645 ±0.219
+
+  3b. Learn from everything EXCEPT a slice:
+  full Bible                             similarity 0.975        | moral 0.957       
+  minus the rules                        similarity 0.977        | moral 0.948       
+  minus same number random (5 draws)     similarity 0.973 ±0.002 | moral 0.950 ±0.014
+
+  Verdict (differences inside random noise are called 'no clear difference'):
+    Rules-only vs random, moral meaning:  WORSE
+    Rules-only vs random, general meaning: NO CLEAR DIFFERENCE
+    Removing rules vs removing random:      NO CLEAR DIFFERENCE
+
+======================================================================
+EXPERIMENT 4 - 'I had not known lust, except the law had said, Thou shalt not covet'
+======================================================================
+  Where each wrong act sits on the good(+)/evil(-) axis, with and without the rules:
+  act           full Bible  no rules  times seen without rules
+  kill              -0.017    -0.050    105
+  steal             -0.163    -0.110     16
+  adultery          -0.338    -0.345     34
+  murder            -0.285    -0.291      8
+  covet             -0.077    -0.043      3
+  envy              -0.145    -0.101     18
+  theft               +nan      +nan      2
+  fornication       -0.416    -0.426     34
+  idolatry          -0.160    -0.175      5
+  deceit            -0.309    -0.354     30
+  pride             -0.084    -0.115     45
+  drunkenness       -0.195    -0.054      4
+  hatred            -0.148    -0.153     18
+  falsehood         -0.213    -0.161     12
+  lying             -0.083    -0.047     53
+
+  Wrong acts that lose their wrongness without the rules: 0/15

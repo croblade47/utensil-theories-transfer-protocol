@@ -1,0 +1,9 @@
+{
+  "full/seed0/steps1500": {
+    "shift": 9,
+    "pick": 22,
+    "judge": 9,
+    "n_pairs": 20,
+    "held_out_loss": 3.46
+  }
+}

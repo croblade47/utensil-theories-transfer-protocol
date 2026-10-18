@@ -1,0 +1,34 @@
+{
+  "shifting_word/seed0/steps1500": {
+    "self_shift": 14,
+    "self_pick": 20,
+    "oracle_shift": 14,
+    "oracle_pick": 21,
+    "judge": 14,
+    "n_pairs": 20
+  },
+  "scrambled_control/seed0/steps1500": {
+    "self_shift": 10,
+    "self_pick": 19,
+    "oracle_shift": 10,
+    "oracle_pick": 19,
+    "judge": 12,
+    "n_pairs": 20
+  },
+  "shifting_word/seed1/steps1500": {
+    "self_shift": 13,
+    "self_pick": 21,
+    "oracle_shift": 13,
+    "oracle_pick": 21,
+    "judge": 14,
+    "n_pairs": 20
+  },
+  "scrambled_control/seed1/steps1500": {
+    "self_shift": 11,
+    "self_pick": 22,
+    "oracle_shift": 11,
+    "oracle_pick": 22,
+    "judge": 12,
+    "n_pairs": 20
+  }
+}
