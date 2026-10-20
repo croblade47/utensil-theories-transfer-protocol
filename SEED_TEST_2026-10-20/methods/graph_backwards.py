@@ -15,7 +15,7 @@ PLACEHOLDER NAMES (please read first)
 
 2. GROWING A PAGE FROM AN EXPRESSION (forwards: what the receiver does)
     An expression here is a step rule plus a few unknowns (the "?" marks in the
-    owner's example seed "[+2x y(27/5.2+t=y/?)/(?\\y=t+2.5\\72)yx2]"). The receiver
+    owner's example seed "[+2×y(27/5.2+t=y/?)÷(?\\y=t+2.5\\72)yx2]"). The receiver
     solves the rule step by step. Each step uses only adding, subtracting,
     multiplying, and "mod" (keep the remainder, so every answer stays a whole number).
     Each step plots points that are 0 or 1, and the points stack up into a page.
@@ -49,11 +49,19 @@ PLACEHOLDER NAMES (please read first)
       - Strawberry rules can also be "run backwards": once a rule is found, the
         sender checks whether it also explains the bytes just BEFORE where it was
         found, and if so starts the stretch earlier.
-    A stretch is cut out ("a block") wherever an expression regrows it exactly AND
-    writing the expression down costs fewer bytes than the stretch itself. Every
-    other byte is cucumber. Search budgets (how far back k may reach, how long a
-    strawberry rule may be, how often strawberry is tried) are fixed below so planting
-    stays within about a minute on the test files.
+    Planting has three steps:
+      Step 1  At every place in the data, work backwards to the expressions (blocks)
+              that could start there, and how far each one keeps matching exactly.
+      Step 2  Choose the cuts. A block is worth using only if writing its expression
+              down costs fewer bytes than the stretch it regrows. Blocks may overlap
+              as candidates, and any block may be cut short, so the sender picks the
+              set of cuts that makes the whole seed smallest (dynamic programming,
+              worked from the end of the data backwards).
+      Step 3  Write the seed. Every byte not inside a chosen block is cucumber.
+    Search budgets (how far back k may reach, how many solved rules are checked at
+    each place, how long a strawberry rule may be, how often strawberry is tried)
+    are fixed below so planting stays within about a minute on an old laptop. To see
+    what was found in a seed: describe(seed), or run  python graph_backwards.py FILE
 
 4. WHAT THE SEED CONTAINS (and nothing else)
     A list of records, one per block, in order. Each record starts with one number
@@ -98,7 +106,8 @@ ORANGE_FULL = 2    # a and c given  (2 bytes)
 # Search budgets (sender side only; they never change how a seed is read).
 OR_KMAX = 255          # orange may reach back at most 255 numbers
 OR_MIN_STEPS = 3       # an orange block must regrow at least 3 numbers by its rule
-SB_STEP = 16           # inside cucumber areas, try strawberry every 16 bytes
+OR_MAX_TRIES = 48      # at each place, check at most 48 solved rules against the data
+SB_STEP = 16           # try strawberry every 16 bytes (it is slower than orange)
 SB_WINDOW_BYTES = 128  # strawberry looks at up to 128 bytes (1,024 points) at once
 SB_MIN_BYTES = 8       # ... and at least 8 bytes
 SB_MAX_L = 480         # longest strawberry rule searched for (points looked back)
@@ -385,9 +394,10 @@ def _orange_search(data, D, p, T):
 
     best = {}            # reach-back group (short / medium / long) -> best block
     top_gain = 0
+    tries = 0            # rules checked against the data at this place (budget)
     for k in lags:
-        if top_gain >= n - p - k:           # no longer reach-back can do better
-            break
+        if top_gain >= n - p - k or tries >= OR_MAX_TRIES:
+            break                           # nothing further can do better / budget used
         q = p + k
         # --- solve for the factor a (backwards, from the data's differences) ---
         if dp0:
@@ -423,9 +433,16 @@ def _orange_search(data, D, p, T):
 
                 def pred(m, p=p, q=q, table=table):
                     return data[q:q + m] == data[p:p + m].translate(table)
-            if not pred(OR_MIN_STEPS):
+            # Fewest rule steps this block needs to beat the best already found in
+            # its group (a safe lower bound: the length header is at least 1 byte).
+            target = best[group][0] if group in best else 0
+            need = max(OR_MIN_STEPS, target + 2 + _varint_len(k * 4 + form) + form)
+            if need > n - q:
                 continue
-            m = _longest(pred, OR_MIN_STEPS, n - q)   # numbers grown by the rule
+            tries += 1
+            if not pred(need):
+                continue
+            m = _longest(pred, need, n - q)   # numbers grown by the rule
             length = k + m
             gain = length - _orange_cost(k, form, length)
             if gain > 0 and (group not in best or gain > best[group][0]):
