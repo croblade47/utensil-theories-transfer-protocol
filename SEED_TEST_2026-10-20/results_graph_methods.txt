@@ -1,0 +1,48 @@
+Methods: zip_example, graph_backwards, graph_fit, graph_locate
+Test files: random bytes (no pattern at all) (100,000 bytes), repeating pattern (120,000 bytes), short ordinary text (267 bytes), kjv_first_100k.txt (100,000 bytes), sample_word_file.docx (11,110 bytes)
+
+=== Method: zip_example ===
+Ordinary zip compression (zlib), for comparison.
+test file                           original      seed reduction  exact?  plant s  grow s   xz size
+random bytes (no pattern at all)     100,000   100,041     -0.0%     YES     0.00    0.08   100,064
+repeating pattern                    120,000       204     99.8%     YES     0.00    0.07       160
+short ordinary text                      267        90     66.3%     YES     0.00    0.05       152
+kjv_first_100k.txt                   100,000    29,817     70.2%     YES     0.01    0.04    26,940
+sample_word_file.docx                 11,110    10,007      9.9%     YES     0.00    0.05    10,060
+Grow instructions (the test script + this method's file) are 6,442 bytes; they are shared once, not sent with each seed.
+
+=== Method: graph_backwards ===
+Works backwards from the data to small add/multiply/mod expressions whose page of 0/1 points equals a stretch exactly (strawberry: a 0/1 point rule solved by Berlekamp-Massey; orange: a number rule solved by remainder arithmetic), and stores stretches no expression fits as they are (cucumber).
+test file                           original      seed reduction  exact?  plant s  grow s   xz size
+random bytes (no pattern at all)     100,000   100,003     -0.0%     YES     3.77    0.05   100,064
+repeating pattern                    120,000        10    100.0%     YES     0.40    0.04       160
+short ordinary text                      267        97     63.7%     YES     0.03    0.04       152
+kjv_first_100k.txt                   100,000    93,800      6.2%     YES     3.60    0.08    26,940
+sample_word_file.docx                 11,110    10,897      1.9%     YES     0.53    0.04    10,060
+Grow instructions (the test script + this method's file) are 37,646 bytes; they are shared once, not sent with each seed.
+
+=== Method: graph_fit ===
+Cuts the data into stretches: a stretch that a small add/subtract/multiply expression regrows exactly (strawberry lines and curves, orange cycles) is stored as that expression, rows of the 0/1 page that are flat lines are stored as a line plus its dents, and the rest is stored as it is (cucumber).
+test file                           original      seed reduction  exact?  plant s  grow s   xz size
+random bytes (no pattern at all)     100,000   100,004     -0.0%     YES     1.59    0.07   100,064
+repeating pattern                    120,000        11    100.0%     YES     1.78    0.04       160
+short ordinary text                      267        95     64.4%     YES     0.01    0.04       152
+kjv_first_100k.txt                   100,000    80,677     19.3%     YES     3.50    0.05    26,940
+sample_word_file.docx                 11,110    10,945      1.5%     YES     0.48    0.04    10,060
+Grow instructions (the test script + this method's file) are 40,698 bytes; they are shared once, not sent with each seed.
+
+=== Method: graph_locate ===
+A fixed page of 0/1 plot points grows from a library expression; the seed lists, for each 16-bit chunk, the plot point where that chunk sits on the page.
+test file                           original      seed reduction  exact?  plant s  grow s   xz size
+random bytes (no pattern at all)     100,000   100,005     -0.0%     YES     1.34    0.50   100,064
+repeating pattern                    120,000   120,005     -0.0%     YES     1.41    0.58       160
+short ordinary text                      267       271     -1.5%     YES     1.20    0.47       152
+kjv_first_100k.txt                   100,000   100,005     -0.0%     YES     1.28    0.56    26,940
+sample_word_file.docx                 11,110    11,114     -0.0%     YES     1.23    0.50    10,060
+Grow instructions (the test script + this method's file) are 21,922 bytes; they are shared once, not sent with each seed.
+
+=== Summary: total seed bytes vs total original bytes, and exact regrowth ===
+zip_example            seeds     140,159 of 331,377 bytes  ( 57.7% smaller)   exact: 5/5 files
+graph_backwards        seeds     204,807 of 331,377 bytes  ( 38.2% smaller)   exact: 5/5 files
+graph_fit              seeds     191,732 of 331,377 bytes  ( 42.1% smaller)   exact: 5/5 files
+graph_locate           seeds     331,400 of 331,377 bytes  ( -0.0% smaller)   exact: 5/5 files
