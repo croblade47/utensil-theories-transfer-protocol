@@ -49,6 +49,9 @@ The project owner's theory: an AI gains real *comprehension*, the ability to app
 
 ## Running, and latest results
 - **Experiment 12, understanding as compression: DONE** (`understanding_compression.py`; results in `results_understanding.json` and `.txt`; delivery folder `GROW_UNDERSTANDING_2026-10-20/`). The ladder is confirmed: each rung of shared understanding gives a smaller exact seed. The pre-registered shifting-word question was NOT CONFIRMED (+3.45 bits per verse vs the plain model). Exact regrowth needs the identical number setup: a 1-thread decoder fails on a 2-thread seed.
+  - **Queued, owner-approved (20 Oct):**
+    1. **The numbers test:** the owner's numbers 17, 32, 16, 34, 47 placed where 17 sits in "W1 = 17 + 4 Remaining" (the recharge/remaining rule), singly and in sequence. Script: `numbers_test.py` (being built).
+    2. **Then the "2" test:** write the remaining value into the text as a number the model can read. The tokenizer `[a-z]+|[.,;:?!]` currently drops digits, so the model has never seen the number form of the owner's rule ("to / too / two / 2").
   - **Untested next candidates:**
     - the owner's own "W1 = 17 + 4" recharge rule (RECHARGE was switched off), as an "excess bank";
     - markers computed from text the model can see;
