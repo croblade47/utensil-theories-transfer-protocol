@@ -1,0 +1,140 @@
+THE LADDER OF GREENHOUSES: understanding measured as compression, with exact seeds
+================================================================================================
+Message H: 623 held-out verses (every 50th verse; no model or word list saw them)
+  83,757 characters, 18,051 word/punctuation tokens. SHA-256 of H: 80d0ffa084f89746...
+  Normalised exactly as the models see text: lowercase words and . , ; : ? ! with single spaces,
+  one verse per line. Capitals, verse numbers, apostrophes and hyphens are dropped for EVERY rung alike.
+Soil: 30,479 training verses. Script SHA-256 52cbb153d57d08b3...  started 2026-10-20 16:25:35 UTC
+
+R0-R2  classic compressors (decompressed and compared byte for byte)
+  R0_raw                 seed  83,757 B  (8.000 bpc)  exact: True
+  R1_zlib9               seed  28,565 B  (2.728 bpc)  exact: True
+  R1_xz9e                seed  26,420 B  (2.523 bpc)  exact: True
+  R2_zlib9_library32KB   seed  27,625 B  (2.639 bpc)  exact: True
+
+R3-R5  shared word statistics from the training verses (all fully decoded)
+  R3_word_list           seed  31,262 B  (2.986 bpc)  ideal    31,257 B  decoded, EXACT  (1s+1s)
+  R4_word_freq           seed  19,773 B  (1.889 bpc)  ideal    19,769 B  decoded, EXACT  (1s+1s)
+  R5_word_pairs          seed  14,864 B  (1.420 bpc)  ideal    14,859 B  decoded, EXACT  (2s+1s)
+
+R6-R7  tiny transformers (window = last 64 tokens). Marker models: TOTAL seed pays for the markers
+  R6_baseline_seed0      seed  12,252 B  (1.170 bpc)  ideal    12,248 B  decoded, EXACT  (42s+42s)
+  R6_baseline_seed1      seed  12,153 B  (1.161 bpc)  ideal    12,148 B  decoded, EXACT  (43s+41s)
+  R6_baseline_seed2      seed  12,189 B  (1.164 bpc)  ideal    12,185 B  decoded, EXACT  (43s+43s)
+  R7_shifting_seed0      seed  12,524 B  (1.196 bpc)  ideal    12,520 B  decoded, EXACT  (46s+44s)
+  R7_shifting_seed1      seed  12,411 B  (1.185 bpc)  ideal    12,406 B  decoded, EXACT  (43s+45s)
+  R7_shifting_seed2      seed  12,467 B  (1.191 bpc)  ideal    12,462 B  decoded, EXACT  (42s+40s)
+
+R8  baseline seed 0, allowed to see only the last k tokens (greenhouse built gradually)
+  R8_baseline_seed0_k1   seed  15,111 B  (1.443 bpc)  ideal    15,106 B  decoded, EXACT  (7s+8s)
+  R8_baseline_seed0_k2   seed  13,800 B  (1.318 bpc)  ideal    13,795 B  decoded, EXACT  (9s+9s)
+  R8_baseline_seed0_k4   seed  13,020 B  (1.244 bpc)  ideal    13,016 B  decoded, EXACT  (10s+11s)
+  R8_baseline_seed0_k8   seed  12,508 B  (1.195 bpc)  ideal    12,503 B  decoded, EXACT  (12s+12s)
+  R8_baseline_seed0_k16  seed  12,278 B  (1.173 bpc)  ideal    12,273 B  decoded, EXACT  (16s+16s)
+  R8_baseline_seed0_k64  = R6_baseline_seed0 (1.170 bpc)
+
+R7 (continued)  label, carry3, scrambled: decoded while the run is under 40 minutes
+  R7_label_seed0         seed  12,441 B  (1.188 bpc)  ideal    12,436 B  decoded, EXACT  (42s+41s)
+  R7_label_seed1         seed  12,388 B  (1.183 bpc)  ideal    12,384 B  decoded, EXACT  (42s+41s)
+  R7_label_seed2         seed  12,409 B  (1.185 bpc)  ideal    12,404 B  decoded, EXACT  (43s+42s)
+  R7_carry3_seed0        seed  12,383 B  (1.183 bpc)  ideal    12,379 B  decoded, EXACT  (43s+43s)
+  R7_carry3_seed1        seed  12,468 B  (1.191 bpc)  ideal    12,463 B  decoded, EXACT  (44s+44s)
+  R7_carry3_seed2        seed  12,471 B  (1.191 bpc)  ideal    12,466 B  decoded, EXACT  (43s+44s)
+  R7_scrambled_seed0     seed  12,437 B  (1.188 bpc)  ideal    12,432 B  decoded, EXACT  (43s+41s)
+  R7_scrambled_seed1     seed  12,359 B  (1.180 bpc)  ideal    12,354 B  decoded, EXACT  (42s+41s)
+  R7_scrambled_seed2     seed  12,438 B  (1.188 bpc)  ideal    12,433 B  decoded, EXACT  (45s+45s)
+
+================================================================================================
+TABLE 1  THE LADDER: exact seeds that regrow H byte for byte
+================================================================================================
+  raw H = 83,757 bytes = 670,056 bits.  bpc = seed bits / characters.  Greenhouse = shared in advance, NOT in the seed.
+  rung                         seed bytes     bpc  smaller  regrown exactly?  
+  R0_raw                           83,757   8.000     0.0%  yes (decompressed)
+  R1_zlib9                         28,565   2.728    65.9%  yes (decompressed)
+  R1_xz9e                          26,420   2.523    68.5%  yes (decompressed)
+  R2_zlib9_library32KB             27,625   2.639    67.0%  yes (decompressed)
+  R3_word_list                     31,262   2.986    62.7%  yes (decoded)
+  R4_word_freq                     19,773   1.889    76.4%  yes (decoded)
+  R5_word_pairs                    14,864   1.420    82.3%  yes (decoded)
+  R6_baseline_seed0                12,252   1.170    85.4%  yes (decoded)
+  R6_baseline_seed1                12,153   1.161    85.5%  yes (decoded)
+  R6_baseline_seed2                12,189   1.164    85.4%  yes (decoded)
+  R7_shifting_seed0                12,524   1.196    85.0%  yes (decoded)
+  R7_shifting_seed1                12,411   1.185    85.2%  yes (decoded)
+  R7_shifting_seed2                12,467   1.191    85.1%  yes (decoded)
+  R7_label_seed0                   12,441   1.188    85.1%  yes (decoded)
+  R7_label_seed1                   12,388   1.183    85.2%  yes (decoded)
+  R7_label_seed2                   12,409   1.185    85.2%  yes (decoded)
+  R7_carry3_seed0                  12,383   1.183    85.2%  yes (decoded)
+  R7_carry3_seed1                  12,468   1.191    85.1%  yes (decoded)
+  R7_carry3_seed2                  12,471   1.191    85.1%  yes (decoded)
+  R7_scrambled_seed0               12,437   1.188    85.2%  yes (decoded)
+  R7_scrambled_seed1               12,359   1.180    85.2%  yes (decoded)
+  R7_scrambled_seed2               12,438   1.188    85.1%  yes (decoded)
+  R8_baseline_seed0_k1             15,111   1.443    82.0%  yes (decoded)
+  R8_baseline_seed0_k2             13,800   1.318    83.5%  yes (decoded)
+  R8_baseline_seed0_k4             13,020   1.244    84.5%  yes (decoded)
+  R8_baseline_seed0_k8             12,508   1.195    85.1%  yes (decoded)
+  R8_baseline_seed0_k16            12,278   1.173    85.3%  yes (decoded)
+  R8_baseline_seed0_k64            12,252   1.170    85.4%  yes (decoded)
+
+TABLE 2  TINY TRANSFORMERS, mean of 3 seeds (TOTAL = real decoded seed; WORDS ONLY = markers not paid)
+  (ideal = -log2 code lengths of the same rounded probabilities, no 4-byte header; use it to compare
+   TOTAL with WORDS ONLY on the same footing)
+  method     TOTAL seed B TOTAL bpc               per seed (B) marker bits/verse TOTAL ideal bpc WORDS ONLY bpc
+  baseline         12,198    1.1651     12,252, 12,153, 12,189              0.00          1.1647         1.1647
+  shifting         12,467    1.1908     12,524, 12,411, 12,467              3.02          1.1904         1.1679
+  label            12,413    1.1856     12,441, 12,388, 12,409              2.60          1.1851         1.1658
+  carry3           12,441    1.1883     12,383, 12,468, 12,471              1.95          1.1878         1.1733
+  scrambled        12,411    1.1855     12,437, 12,359, 12,438              2.34          1.1850         1.1676
+
+TABLE 3  EACH METHOD vs BASELINE, paired verse by verse (3-seed average per verse)
+  diff = method minus baseline, bits per verse (negative = smaller seed = better).
+  p one-sided tests 'method smaller'; two-sided in brackets. Permutation: 100,000 sign flips.
+  comparison                 measure    mean diff  smaller/larger           sign p      permutation p
+  shifting vs baseline       TOTAL         +3.454     127/496      1.0000 (0.0000)  1.00000 (0.00001)
+  shifting vs baseline       WORDS ONLY    +0.436     279/344      0.9959 (0.0103)  0.99841 (0.00342)
+  label vs baseline          TOTAL         +2.752     132/491      1.0000 (0.0000)  1.00000 (0.00001)
+  label vs baseline          WORDS ONLY    +0.148     301/322      0.8109 (0.4230)  0.83529 (0.32887)
+  carry3 vs baseline         TOTAL         +3.111     137/486      1.0000 (0.0000)  1.00000 (0.00001)
+  carry3 vs baseline         WORDS ONLY    +1.159     233/390      1.0000 (0.0000)  1.00000 (0.00001)
+  scrambled vs baseline      TOTAL         +2.736     146/477      1.0000 (0.0000)  1.00000 (0.00001)
+  scrambled vs baseline      WORDS ONLY    +0.400     280/343      0.9949 (0.0129)  0.99524 (0.00934)
+  shifting vs scrambled      TOTAL         +0.718     284/339      0.9876 (0.0304)  1.00000 (0.00001)
+  shifting vs scrambled      WORDS ONLY    +0.035     317/306      0.3444 (0.6887)  0.61827 (0.76428)
+  shifting vs label          TOTAL         +0.702     261/362      1.0000 (0.0001)  0.99999 (0.00003)
+  shifting vs label          WORDS ONLY    +0.288     288/335      0.9728 (0.0652)  0.99585 (0.00853)
+
+PRE-REGISTERED VERDICT
+  Does the shifting-word model regrow the held-out verses with a smaller TOTAL seed than baseline?
+  mean difference +3.454 bits per verse (+269 bytes over all of H);  permutation p = 1.00000;  sign test p = 1.0000
+  -> NOT CONFIRMED
+
+TABLE 4  THE GREENHOUSE BUILT GRADUALLY: baseline seed 0 given the last k tokens
+  k tokens seen seed bytes     bpc  smaller than raw
+              1     15,111   1.443             82.0%
+              2     13,800   1.318             83.5%
+              4     13,020   1.244             84.5%
+              8     12,508   1.195             85.1%
+             16     12,278   1.173             85.3%
+             64     12,252   1.170             85.4%
+
+EXACT REGROWTH
+  Fully decoded token by token from seed bytes + greenhouse: 24 runs; byte-for-byte identical to H: 24 of 24.
+  Encoded only (seed size real, not decoded): none
+  R0-R2 were decompressed and compared byte for byte.
+
+SIZE OF THE GREENHOUSES (shared in advance, NOT in any seed)
+  R2 library: 32,768 bytes of training text.  R3-R5 word list: 8,576 entries (R4/R5 add counts; R5 knows 132,894 word pairs).
+  R6-R8 tiny transformer: 3,439,680 numbers (about 13.8 MB as float32), far larger than H (84 KB).
+  A greenhouse pays off only when it is reused for many messages, like a dictionary both people own.
+
+NOTES
+  * Per-verse bits are ideal code lengths -log2(freq/total) of the SAME rounded probabilities the coder
+    uses; their sum is within a few bytes of the real seed (see ideal_bits vs seed_bytes in the JSON).
+  * WORDS ONLY is accounting, not a stand-alone seed: the decoder would need the markers from elsewhere.
+  * Marker word values were computed by the earlier experiments from all verses, held-out ones included;
+    kept unchanged because the models were trained with them. In TOTAL every marker is paid for.
+  * Each held-out verse is coded with the previous held-out verses (50 verses back) as context, not its
+    true neighbours; this is the same for every rung. The 12 groups each restart their context once.
+  * Run time 23.9 minutes on 2 threads (torch 2.14.1+cu130, numpy 2.5.3, Python 3.13.16).

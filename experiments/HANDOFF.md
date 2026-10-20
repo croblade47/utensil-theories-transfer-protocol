@@ -24,11 +24,13 @@ Everything here serves that one goal. Check every step against it:
 - **The owner's own idea, the *carried* balance:** it beat a plain good/bad label **only in long stories**, where the act has to be remembered after it has gone out of view. That's about **6 more right per 100**. **Supported once** (experiment 11), in a re-run after two fixes. Still small and shaky: the carry model gave no answer (an exact tie) on about 65 of 100 pairs, and when it did answer it was right 81 times and wrong 25.
 - **Didn't work:** predicting *consequences*. Chance every time (experiments 5, 6, 8).
 - **Aesop test (stories vs rules, transfer to a new culture):** not confirmed. No training set beat chance.
+- **Understanding as compression (experiment 12):** the better a shared model predicts, the smaller the exact seed that regrows unseen text. The tiny Bible model needed 12.2 KB for 83.8 KB of held-out verses (85.4% smaller, exact), less than half of xz. **The shifting word did not help** on this measure (pre-registered, not confirmed: about 2% larger seeds).
+- **Data seed / graph method (`SEED_TEST_2026-10-20/`):** built three ways and checked. It regrows exactly but only shrinks patterned data (99.99% on a repeating pattern, 6–19% on Bible text, 0% on random data).
 
 ## The project in one paragraph
 The project owner's theory: an AI gains real *comprehension*, the ability to apply meaning to new situations rather than rote, from **rules plus the human errors that break them**. They also hold that **lessons taught as stories transfer further than lessons taught as rules**. We test this with tiny language models trained from scratch on chosen texts, scored on stories they have never seen. Every test beats a coin toss or it doesn't, has a control, and has pass/fail rules saved to git before any result is seen.
 
-## What has been found (experiments 1–11; details in README.md)
+## What has been found (experiments 1–12; details in README.md)
 
 | # | Test | Result |
 |---|---|---|
@@ -43,8 +45,14 @@ The project owner's theory: an AI gains real *comprehension*, the ability to app
 | 9 | Aesop transfer: folk tales vs novels vs shuffled tales vs Bible | **Not confirmed.** No set beat chance (folk tales 52.3%, novels 54.1%, shuffled 53.1%). Hint only: story-based models about 60% on no-word-clue pairs vs 54% for novels, the same for shuffled stories |
 | 10 | Shifting word vs the established method (a plain per-verse good/bad label, as in Korbak et al. 2023) | Pre-registered at 02:17, *after* 7 of 9 experiment-8 models had shown judging was strong, so choosing judging as the main measure came after that peek. **A tie on one-sentence stories** (about 68–71% each). Labeling helps judging; carrying the balance forward adds nothing in stories this short |
 | 11 | **Long stories:** the act falls outside what the model can see (its last 64 tokens), so only carried markers can remember it | **Supported once for everyday acts** (a re-run after two fixes): the shifting word beat the plain label in all 3 runs, about 59% vs 53% (p = 0.004). Most pairs were ties. When the story states the verdict outright, the label won |
+| 12 | **Understanding as compression:** exact seeds that regrow 623 unseen verses, from no understanding up to the tiny transformers | **Understanding shrinks the seed:** raw 8.0 → zip 2.7 → xz 2.5 → word frequencies 1.9 → word pairs 1.4 → tiny transformer 1.17 bits per character, all regrown byte for byte. **Shifting word: not confirmed** (pre-registered); every marker method gave about 2% larger seeds, and no gain on the words even with the marker free |
 
 ## Running, and latest results
+- **Experiment 12, understanding as compression: DONE** (`understanding_compression.py`; results in `results_understanding.json` and `.txt`; delivery folder `GROW_UNDERSTANDING_2026-10-20/`). The ladder is confirmed: each rung of shared understanding gives a smaller exact seed. The pre-registered shifting-word question was NOT CONFIRMED (+3.45 bits per verse vs the plain model). Exact regrowth needs the identical number setup: a 1-thread decoder fails on a 2-thread seed.
+  - **Untested next candidates:**
+    - the owner's own "W1 = 17 + 4" recharge rule (RECHARGE was switched off), as an "excess bank";
+    - markers computed from text the model can see;
+    - training on stories and scoring held-out stories.
 - **Experiment 9, the Aesop transfer test: DONE, not confirmed** (`aesop_test.py` v3; results in `results_aesop.json` and `results_aesop.txt`).
   - **Setup:** 67 fables never seen in training; 1,131 same-format pairs; 284 no-word-clue pairs. Training sets of about 700k tokens; 4 runs each for stories, novels and shuffled stories.
   - **P1 (each set beats chance):** NOT CONFIRMED for any set. Folk tales 52.3%, novels 54.1%, shuffled 53.1%, Bible 43.6%.
