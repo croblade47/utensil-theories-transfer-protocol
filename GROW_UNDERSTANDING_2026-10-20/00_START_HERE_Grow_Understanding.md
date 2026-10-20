@@ -109,6 +109,7 @@ The full dig, with every piece and quote, is `reports/chat_dig_greenhouse_map.md
    - They reproduced the seed fingerprints and recomputed every statistic.
    - They found the thread-count fragility (point 3 of the verdict).
 7. **Records updated:** experiment 12 written into `experiments/README.md` and `experiments/HANDOFF.md`.
+8. **Models saved (owner's request).** The 15 trained models used here and the Bible text were added to the folder and to git, so the seeds can be regrown after this cloud machine is gone. Fingerprints are in `models/SHA256SUMS.txt`.
 
 ## Technical details
 - **Text regrown.** The held-out verses: every 50th verse, which no model trained on. That is 623 verses and 83,757 characters, normalized to lowercase words and . , ; : ? ! for every rung alike. Capitals and verse numbers were dropped for every rung.
@@ -133,7 +134,11 @@ The full dig, with every piece and quote, is `reports/chat_dig_greenhouse_map.md
   3. **Number setup.** Exactness needs the identical software and thread settings. It was tested, and it fails with a different thread count.
   4. **Marker layout.** In this layout each held-out marker depends on neighbouring training verses that are not in view, which makes markers harder to predict. The words-only measure shows no gain either, so the conclusion stands.
 - **Versions.** Python 3.13.16, torch 2.14.1, numpy 2.5.3, 2 threads, 4-core machine.
-- **To run it:** `cd experiments && python understanding_compression.py`. It needs the saved models in `experiments/models/` and the Bible text in `experiments/data/`; both are kept out of git because of their size. The Bible text downloads itself on the first run, from the same public source the other experiments use. The models are rebuilt by the project's training scripts (`confirm.py`, `method_comparison.py`).
+- **To run it:**
+  1. Copy `models/*.pt` into `experiments/models/` and `data/KJV.txt` into `experiments/data/`. Those copies are also in git at those same paths.
+  2. Run `cd experiments && python understanding_compression.py`.
+
+  Exact regrowth also needs the same software versions and 2 threads (see the verdict, point 3).
 
 ## Every file in this folder
 
@@ -146,11 +151,17 @@ The full dig, with every piece and quote, is `reports/chat_dig_greenhouse_map.md
 | `reports/ladder_build_and_check.md` | The builder's full report and the independent checker's report | made from this session's work; only here |
 | `reports/chat_dig_greenhouse_map.md` | Every greenhouse piece from the chat, the final-piece candidates, the owner's numbers | made from this session's work; only here |
 | `reports/fact_check_and_credit.md` | 21 published facts with sources, and what is or isn't claimable | made from this session's work; only here |
-| `GROW_UNDERSTANDING_2026-10-20.zip` (next to the folder) | This whole folder as a plain zip | repository top level |
+| `models/` (15 files, `*_seed{0,1,2}_steps1500.pt`) | The trained greenhouses: plain Bible (baseline), scrambled, shifting, label, carry3; 3 runs each. About 13.8 MB each | `experiments/models/` (same branch; force-added to git) |
+| `models/SHA256SUMS.txt` | Fingerprints of the 15 models, to prove a copy is identical | made here |
+| `data/KJV.txt` | The King James Bible text (public domain), the soil every model was trained on | `experiments/data/KJV.txt` (same branch; force-added) |
+| `GROW_UNDERSTANDING_2026-10-20.zip` (next to the folder) | This whole folder as a plain zip, **except** `models/` and `data/` (see below) | repository top level |
+| `GROW_UNDERSTANDING_2026-10-20_models_seed0.zip`, `_seed1.zip`, `_seed2.zip` (next to the folder) | The 15 models in three plain zips (5 models each, about 64 MB each), each with the fingerprint list | repository top level |
 
 Related folder: `SEED_TEST_2026-10-20/` holds the data-seed test and the graph method, with its own guide and zip.
 
 ## Things outside this folder's control
 - **The repository is public** on GitHub (MIT license): anyone can read these files. Changing that is the owner's decision, in GitHub settings.
 - **A cloud session can't place files on your devices.** It cannot put files on your laptop or phone directly; the files are sent to you in the app to save.
-- **The trained models and the Bible text are not in git** (about 430 MB of models; the 15 used here are about 210 MB). They live only on this cloud machine, which is deleted after the session. The training scripts can rebuild them, which takes several hours. Without the identical models, the seeds can't be regrown, because the models are the greenhouse.
+- **GitHub refuses any single file over 100 MB.** One zip of everything would be about 200 MB, so the models are split into three zips of about 64 MB each, and the main zip leaves out `models/` and `data/`. Every file is still in the folder on GitHub; nothing is held back.
+- **Bible text in the main zip.** The Bible text (4.4 MB) is not in the main zip; it is in the folder, and it also downloads itself on the first run.
+- **Other models stay off GitHub.** Older models from earlier experiments (Aesop and others, about 220 MB) were not requested and remain only on this cloud machine.
