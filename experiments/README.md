@@ -315,3 +315,53 @@ None of these is a confirmation.
 - **The one hint** is that every story-based model scored around 59–60% on the no-clue pairs, against about 54% for novels. That hint is the same for real and shuffled stories, so it points to *story vocabulary and setting* (animals, folk situations), not story *structure*.
 - **The Bible model fell below chance**, likely because Aesop's 1890s English is far from King James English (9.3% unknown words).
 - **For communication:** this result says nothing yet about better communication. It shows that tiny models can't yet *apply a lesson from one culture's stories to another's*, and that bigger models or more text would be needed to test the theory fairly.
+
+## Experiment 12: Understanding as compression (the "greenhouse ladder"): understanding shrinks the exact seed; the shifting word did not help
+
+Script: `understanding_compression.py`. Results: `results_understanding.json` and `results_understanding.txt`. Run 20 October 2026 (about 24 minutes, 2 threads).
+
+**The question.** Two sides share a "greenhouse": knowledge both already have, such as a word list, word statistics or a trained model. Does better understanding let a smaller seed regrow the exact text? And does the owner's shifting word make the model a better grower?
+
+**Text regrown.** The 623 held-out verses, every 50th verse, which no model trained on: 83,757 characters, normalized to lowercase words and . , ; : ? ! for every rung alike.
+
+**How the seeds are made.** Every rung from the word list up is a real seed. An exact integer arithmetic coder turns the greenhouse's predictions into bits, then a decoder regrows the text token by token. The regrown text matched the original byte for byte in 23 of 23 distinct decodes, checked by SHA-256. Unknown words are spelled out inside the seed. Greenhouses were built from training verses only.
+
+### Results (seed size for the same 83,757-character text, all regrown exactly)
+
+| Rung (more shared understanding further down) | Seed bytes | Bits per character | Smaller than raw |
+|---|---|---|---|
+| Raw text | 83,757 | 8.00 | 0% |
+| Shared word list only (every word equally likely) | 31,262 | 2.99 | 62.7% |
+| Zip (no greenhouse) | 28,565 | 2.73 | 65.9% |
+| Zip with a shared 32 KB library | 27,625 | 2.64 | 67.0% |
+| xz (no greenhouse) | 26,420 | 2.52 | 68.5% |
+| Word frequencies | 19,773 | 1.89 | 76.4% |
+| Word pairs | 14,864 | 1.42 | 82.3% |
+| **Tiny transformer, plain Bible (3 runs)** | **12,153–12,252** | **1.16–1.17** | **85.4%** |
+| Tiny transformer + shifting word (3 runs, markers paid for) | 12,411–12,524 | 1.19 | 85.1% |
+| + plain label / carry3 / scrambled control | 12,359–12,471 | 1.18–1.19 | 85.1–85.2% |
+
+**More context helps (the greenhouse built step by step).** With the plain model allowed to see only the last k tokens, the seed shrinks from 15,111 bytes (k = 1) to 13,020 (k = 4), 12,508 (k = 8) and 12,252 (k = 64).
+
+### Pre-registered verdict
+- **Question:** does the shifting-word model regrow the held-out verses with a smaller total seed than the plain model (one-sided, p < 0.05)?
+- **Answer: NOT CONFIRMED.** It went the other way: +3.45 bits per verse (+269 bytes over all of H), and larger on 496 of 623 verses.
+- **Even with the markers given for free,** the words cost slightly more (+0.44 bits per verse). The shifting word tied the scrambled control (+0.04 bits per verse, p = 0.69).
+- **Plain label, carry3 and scrambled** all behaved the same way: the marker costs about 2–3 bits per verse to send, and buys nothing on the words.
+
+### Checked independently (pass)
+- The checker rebuilt the text and the split, and found no leakage.
+- They recomputed the simple rungs with their own code.
+- They regrew 50 verses with a coder of a different design.
+- They reproduced the seeds' SHA-256 values and recomputed every statistic.
+
+Minor notes from the checker:
+1. **Exactness depends on the identical number setup.** A decoder using 1 thread instead of 2 lost sync after 547 of 623 verses. The greenhouse must include the exact software and thread settings; only the whole-number rungs (word list, word frequencies, word pairs) are portable as they stand.
+2. **The layout tilts the marker cost.** Each held-out marker depends on neighbouring training verses that are not in view, so in this layout the marker is hard to predict. The words-only measure shows no gain either, so the conclusion stands.
+3. **Two small label errors in the printed summary.** "24 of 24 decodes" is really 23 distinct decodes, because k = 64 reuses the plain-model run. The greenhouse size printed (3,439,680 numbers) is the shifting model's; the plain model has 3,438,720.
+
+### What this means
+- **Understanding and compression are one measurement.** The better the shared greenhouse predicts, the smaller the exact seed: a tiny model trained on the Bible needs less than half of xz's seed for verses it never saw. This principle is long published (Shannon 1951, the Hutter Prize, Delétang et al. 2023, Huang et al. 2024), so it is not new credit.
+- **A training idea can now be scored with one honest number:** the bits needed to regrow unseen text exactly.
+- **On that number, the shifting word (and every marker method) did not make the tiny model understand plain Bible text better.** Its earlier gains were in judging right and wrong, not in predicting what comes next.
+- **The palm-seed-in-Antarctica question was answered by measurement.** A greenhouse built from floating-point numbers must be rebuilt bit-identically on the receiving side, or the seed dies partway through.
