@@ -9,7 +9,7 @@ The owner's last instruction: **"Stop everything except API"** (21 Oct, 21:50 UT
   - Conditions: plain reading; reading with a running note kept by the owner's carry rule ("what matters, and what remains"); a control note of the same length with no meaning.
   - Score whether later answers stay true to the early intent. Use blind, fixed scoring rules, a chance level, and plain-number sizes.
   - Commit the rules and get the owner's yes before running. Say the cost first (a few dollars).
-- [ ] **0c. Numbers test** (`NUMBERS_TEST_2026-10-21/`): **paused by the owner** at 3 of 18 models. Resume only when the owner says (`bash NUMBERS_TEST_2026-10-21/code/run_full.sh`, about 4 hours). The 3 finished models were requested from the old session; check `experiments/models/` for `num_*` files first.
+- [ ] **0c. Numbers test** (`NUMBERS_TEST_2026-10-21/`): **paused by the owner** at 3 of 18 models. Resume only when the owner says (`bash NUMBERS_TEST_2026-10-21/code/run_full.sh`, about 4 hours). The 3 finished models are saved (`experiments/models/num_*_seed0`), so it resumes from model 4.
 - [ ] **0d. Queued and approved by the owner (20 Oct), after the numbers test:**
   1. the "2" test: write the remaining value into the text as a readable number (the tokenizer drops digits today);
   2. the +/- agent, with the owner's scoring rule (see HANDOFF): many small negatives, fewer larger positives, balanced over ordinary text.

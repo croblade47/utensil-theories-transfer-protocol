@@ -102,7 +102,7 @@ The project owner's theory: an AI gains real *comprehension*, the ability to app
 | `experiments/COMMUNICATION_GUIDE.md` | The owner's words and methods, translated |
 | `experiments/PRIOR_WORK.md` | What already exists in research, and what looks new |
 | `experiments/PLAN.md`, `NEXT_SESSION_PROMPT.md` | Next steps, and the prompt that starts a new session |
-| `experiments/data/KJV.txt`, `experiments/models/` | **In git since 20 Oct** (commit 33a893d): the Bible text and the 15 trained models of experiments 8 and 10 (about 200 MB). The 3 finished numbers-test models were requested from the old session on 21 Oct; check `experiments/models/` for `num_*` files |
+| `experiments/data/KJV.txt`, `experiments/models/` | **In git since 20 Oct** (commit 33a893d): the Bible text and the 15 trained models of experiments 8 and 10 (about 200 MB). The 3 finished numbers-test models (`num_*_seed0`) were added on 21 Oct (commit af8bc57) |
 
 ## How to run anything
 ```bash

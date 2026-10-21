@@ -30,7 +30,7 @@ It contains:
 |---|---|---|---|---|
 | Shared room simulation | 11 Oct | Added a skill for running role-play rooms between AI copies | branch `ccr-e9b75f5f-6rquhp` | Finished |
 | Print-ready prototype pages | 14 Oct | Zine prototype: two starter books with a launch script | **Not in the repository**: delivered only in the app as a zip | Finished |
-| Human error encoding system (the research session) | 17 Oct 21:41 to 21 Oct 21:50 | Experiments 1-12, Aesop test, seed test, technical report, project record, similar-work check, GitHub inventory, numbers test | branch `ccr-1be0d913-1tlzao` | Stopped by you; asked to push its last unsaved files, then stand down |
+| Human error encoding system (the research session) | 17 Oct 21:41 to 21 Oct 21:50 | Experiments 1-12, Aesop test, seed test, technical report, project record, similar-work check, GitHub inventory, numbers test | branch `ccr-1be0d913-1tlzao` | Stopped by you. Pushed its last unsaved files on 21 Oct (46400ff, af8bc57) and stood down |
 | Code session | 18 Oct 02:46-02:52 | "Master patent-ready theory" file for the zine project | branch `ccr-4507ebbb-bfz236`; real Word copy in `AUDIT_PACK_2026-10-18/5_Other_Master_Files/` | Finished |
 | Comprehension research: continuation (the audit session) | 18 Oct 05:47 to 21 Oct | Audit of the research, prompt to the research session, your file rules, Aesop check, this combined handoff | merged into `ccr-1be0d913-1tlzao` | Hands over to the new session |
 | New session | from 21 Oct | Takes over the research | `ccr-1be0d913-1tlzao` | Started with the prompt in this folder |
@@ -56,7 +56,7 @@ It contains:
 | `SEED_TEST_2026-10-20/` | Fair test of your "data seed" idea (no AI needed) |
 | `GROW_UNDERSTANDING_2026-10-20/` | Experiment 12: understanding as compression |
 | `NUMBERS_TEST_2026-10-21/` | Your numbers 17, 32, 16, 34, 47 in the "W1 = 17 + 4" rule. Paused at 3 of 18 models |
-| `PROJECT_RECORD_2026-10-21/` | Full record of 17-21 Oct. **The report itself is missing from GitHub** (see below) |
+| `PROJECT_RECORD_2026-10-21/` | Full record of 17-21 Oct: the report in PDF, Word, text and Markdown, privacy- and fact-checked |
 | `SIMILAR_WORK_CHECK_2026-10-21/` | Search of news, YouTube and papers for similar work |
 | `GITHUB_INVENTORY_2026-10-21/` | What is findable under your name, and a list of your projects and personas |
 | `INTEGRATED_HANDOFF_2026-10-21/` | This folder |
@@ -105,10 +105,9 @@ Scale caveat: every result comes from a model of about 3.4 million parameters. N
   - this combined handoff, and a new session started.
 
 ## Still missing or unresolved
-1. **Project record report:** the folder's guide lists the report (PDF, Word, text, email parts, checks), but only the guide and build scripts are on GitHub. The old session was asked on 21 Oct to push the rest.
-2. **Numbers-test models:** the 3 finished models were saved only on the old session's machine. They were requested the same way. Without them, those 3 must be retrained (about 30 minutes) when the test resumes.
-3. **Zine prototype zip (14 Oct session):** never put in the repository. If you have it, it can be added.
-4. **Your messages:** the project record collects your 59 messages up to 21 Oct 02:15. Later ones exist only in the session transcripts. The key ones are quoted in `experiments/HANDOFF.md` and in this guide.
+1. **Fixed on 21 Oct:** the project record report and the 3 finished numbers-test models were only on the old session's machine. Both are now on GitHub (commits 46400ff and af8bc57). The numbers test can resume from model 4 in any session. The record's unchecked draft sections were held back on purpose, because they were never privacy-checked.
+2. **Zine prototype zip (14 Oct session):** never put in the repository. If you have it, it can be added.
+3. **Your messages:** the project record collects your 59 messages up to 21 Oct 02:15. Later ones exist only in the session transcripts. The key ones are quoted in `experiments/HANDOFF.md` and in this guide.
 
 ## Decisions waiting on you
 1. **API key:** if you added `ANTHROPIC_API_KEY`, the new session will confirm it works. If not: environment menu → Edit → Network secrets (or an environment variable). Never paste it into chat.
@@ -139,4 +138,3 @@ Scale caveat: every result comes from a model of about 3.4 million parameters. N
 ## Things outside this folder's control
 - **Public repository:** anyone can read these files on GitHub. Changing that is your decision.
 - **Your devices:** a cloud session can't place files on your devices. The files are sent to you in the app to save.
-- **The old session:** whether it pushes its last files depends on it running again. If it doesn't, the items in "Still missing" stay missing.
