@@ -341,6 +341,17 @@ JUDGE_DIFFERS = {("num_charge17", "shifting"): 55.0, ("num_seq", "num_charge17")
 
 TRACE_BOOK, TRACE_START, TRACE_LEN = "II Kings", "In the twelfth year of Ahaz", 15
 
+# Fingerprints of the inputs verified verse by verse by the judge's simulation and the review (dry run, 21 Oct).
+VALUES_SHA256 = "d128a7fba45269efeddea5532ffe222c5207ece041763ada1ada5585d3cafdfa"
+MARKED_SHA256 = {
+    "num_charge17": "9c33a096ee60b42025bdc0f3dcf464e6a45476169b8f33f910eac339b6858dee",
+    "num_seq": "966d137dc4aed327d6638b40844766f61854052bff647b2157657044835de18c",
+    "num_seqrev": "124ff079fded6910fecc65f1e7cd103db97dcbbd5eee7b43b637256310f34ef2",
+    "num_const29": "50a02b0c7f765db063d5785ee55d285054d78984bda464269362b3777184c3d3",
+    "num_charge47": "80e8dabb30302158b31816d606f8520d50b87b5f23dbe7a103bf7eadf5c8a4aa",
+    "num_drain0": "f819de4e9dbb820445148e90fefbbc1a6107886eed5d115ca0fbdc4606c0aa0a",
+}
+
 # ---------------------------------------------------------------------------
 # Small helpers
 # ---------------------------------------------------------------------------
@@ -505,8 +516,8 @@ def manipulation(verses, marked, recs, current_forms, clear, pool):
             "CH": list(CONFIGS[name]), "passes": passes, "label": "ok" if passes else "degenerate",
             "shares_all_pct": shares.round(2).tolist(),
             "train_counts": {fm: train_counts[fm] for fm in FORMS},
-            "cap_pct_after_reading": round(cap_after, 3), "cap_pct_spelled_from": round(cap_spell, 3),
-            "cap_pct_checked": round(cap_pct, 3),
+            "cap_pct_after_reading": round(cap_after, 4), "cap_pct_spelled_from": round(cap_spell, 4),
+            "cap_pct_checked": round(cap_pct, 4),
             "mean_abs_R": round(float(np.mean(np.abs(recs[name]["R_spell"]))), 2),
             "verdict_sign_kept_pct": {str(L): round(retention(f, clear, books, L), 1) for L in (1, 3, 5, 10)},
             "judge_sim_shares": exp["shares"], "judge_sim_cap": exp["cap"],
@@ -530,11 +541,15 @@ def trace(verses, recs, current_forms, clear, name, start=None, length=TRACE_LEN
              f"{'clear?':6s} {'R left':>7s}  {'now':8s}  verse"]
     for i in range(start, start + length):
         c = {-1: "WRONG", 1: "RIGHT", 0: "-"}[int(clear[i])]
-        ch = r["charge"][i]
-        lines.append(f"    {i:5d} {r['R_spell'][i]:+16.1f} {FORMS[r['form'][i]]:9s} {ch:+7.1f} {r['W'][i]:+10.1f} "
+        if clear[i]:                                       # step (4) discards the charge on a clear choice
+            ch, W = f"{'(reset)':>7s}", f"{'-':>10s}"
+        else:
+            ch, W = f"{r['charge'][i]:+7.1f}", f"{r['W'][i]:+10.1f}"
+        lines.append(f"    {i:5d} {r['R_spell'][i]:+16.1f} {FORMS[r['form'][i]]:9s} {ch} {W} "
                      f"{c:6s} {r['R_after'][i]:+7.1f}  {FORMS[current_forms[i]]:8s}  {verses[i][1][:58]}")
     lines.append("    (R left = the Remaining after the verse, which spells the NEXT verse's word; a clear choice "
-                 "sets it to +/-17 and restarts the run; 'now' = the current shifting word)")
+                 "sets it to +/-17 and restarts the run, so no charge is used on that verse; 'now' = the current "
+                 "shifting word)")
     return lines
 
 # ---------------------------------------------------------------------------
@@ -603,7 +618,7 @@ def run_m3(key, model, vocab, held_norm, H, markers, decode):
 
 def gather(results, stored, seeds, n_m1, n_m2):
     """Per method: M1 array (seeds x pairs), M2 array (seeds x pairs) for B (and A, short), M3 per-verse mean."""
-    M1, M2, M2A, M2S, M3, M3_seed0_exact, M3_bytes = {}, {}, {}, {}, {}, {}, {}
+    M1, M2, M2A, M2S, M3, M3_seed0_exact, M3_bytes, M3W = {}, {}, {}, {}, {}, {}, {}, {}
     M1_shift = {}
     for m in ALL:
         if m in CONFIGS:
@@ -622,11 +637,13 @@ def gather(results, stored, seeds, n_m1, n_m2):
                 dst[m] = np.array([x["correct"][:n_m2] for x in src2[v]], float)
         if all(x is not None for x in src3):
             M3[m] = np.mean([x["per_verse_total"] for x in src3], 0)
+            if all("per_verse_words" in x for x in src3):
+                M3W[m] = np.mean([x["per_verse_words"] for x in src3], 0)
             M3_bytes[m] = [x["seed_bytes"] for x in src3]
             first = src3[0]
             M3_seed0_exact[m] = bool(first.get("exact")) if first.get("decoded") else None
     return {"M1": M1, "M1_shift": M1_shift, "M2": M2, "M2A": M2A, "M2S": M2S, "M3": M3,
-            "M3_seed0_exact": M3_seed0_exact, "M3_bytes": M3_bytes}
+            "M3_seed0_exact": M3_seed0_exact, "M3_bytes": M3_bytes, "M3W": M3W}
 
 
 def pair_test(a, b):
@@ -677,6 +694,8 @@ def run_tests(data, man, dry):
                     r["sign_p_holm"] = pa
                     r["sign_pass"] = bool(r["valid"] and not r.get("degenerate") and pa < ALPHA)
                     r["tests_disagree"] = r["sign_pass"] != r["pass"]
+                    if "sign_p" in r:          # also flag a disagreement before the Holm correction
+                        r["tests_disagree_raw"] = (r["p"] < ALPHA) != (r["sign_p"] < ALPHA)
             tests[measure][fam] = recs
     return tests
 
@@ -710,6 +729,10 @@ def verdicts(tests):
     if on["M1"]:
         s += ("; credited to the owner's recharge (R1 passes on M1)" if r1["M1"] else
               "; NOT credited to the recharge alone: R1 does not pass on M1, so the AI's drain may account for it")
+    else:
+        sec = [m for m in ("M2", "M3") if on[m]]
+        if sec:
+            s += "; " + "; ".join(f"R1 {'passes' if r1[m] else 'does not pass'} on {m}" for m in sec)
     out["The owner's recharge rule helps (num_charge17 in F1; R1 decides the credit)"] = (s, on)
     s, on = status(lambda m: any(r["pass"] for r in tests[m]["F1"]))
     which = {m: [r["new"] for r in tests[m]["F1"] if r["pass"]] for m in ("M1", "M2", "M3")}
@@ -828,8 +851,11 @@ def report(results, stored, seeds, n_m1, n_m2, dry):
         vb = f"{100 * (v.mean() / base.mean() - 1):+10.2f}%" if base is not None else f"{'-':>11s}"
         ex = data["M3_seed0_exact"].get(mth)
         exs = "yes (decoded)" if ex else ("NO - M3 VOID" if ex is False else "not decoded")
+        wo = f"  words only {data['M3W'][mth].mean():.3f}" if mth in data["M3W"] else ""
         out(f"  {mth:13s} {v.mean():15.3f} {vb} {', '.join(f'{b:,}' for b in data['M3_bytes'][mth]):>28s}  {exs}"
-            + ("" if mth in CONFIGS else "  [stored]"))
+            + wo + ("" if mth in CONFIGS else "  [stored]"))
+    out("  ('words only' = bits for the words alone, descriptive: a marker that is merely harder to guess raises the")
+    out("   TOTAL without the model understanding any less)")
     other = [(k, r) for k, r in results["M3"].items() if r.get("decoded") and not r.get("exact")]
     if other:
         out("  DECODE MISMATCH on: " + ", ".join(k for k, _ in other))
@@ -838,6 +864,10 @@ def report(results, stored, seeds, n_m1, n_m2, dry):
     # ---- tests ----
     tests = run_tests(data, man, dry)
     out("=" * 104)
+    bad = [k for k, r in results.get("repro", {}).items() if not r.get("identical")]
+    if bad:
+        out("WARNING: the control reproduction check DIFFERS for " + ", ".join(bad) + ". The stored control scores "
+            "used below may not match this setup; read the F1/F2 rows with care.")
     out("TABLE 4  PRE-REGISTERED TESTS (one-sided, 'new is better'; Holm within each family and measure; pass = Holm p < 0.05)")
     fam_names = {"F1": "F1  each new config vs shifting", "F2": "F2  each new config vs baseline (on M2: vs chance)",
                  "F3": "F3  the owner's numbers", "F4": "F4  mechanism (single test)"}
@@ -857,7 +887,8 @@ def report(results, stored, seeds, n_m1, n_m2, dry):
                 elif r.get("degenerate"):
                     flag = "descriptive only (degenerate: " + ", ".join(r["degenerate"]) + ")"
                 if measure == "M3":
-                    dis = "  TESTS DISAGREE" if r.get("tests_disagree") else ""
+                    dis = ("  TESTS DISAGREE (after Holm)" if r.get("tests_disagree") else
+                           "  tests disagree before Holm" if r.get("tests_disagree_raw") else "")
                     out(f"      {r['label']:34s} mean diff {r['mean_diff_bits_per_verse']:+7.3f} bits/verse  "
                         f"smaller/larger {r['verses_smaller']:>3d}/{r['verses_larger']:<3d}  perm p {r['p']:.5f} "
                         f"(Holm {r['p_holm']:.4f})  sign p {r['sign_p']:.4f} (Holm {r['sign_p_holm']:.4f})  {flag}{dis}")
@@ -951,7 +982,8 @@ def main():
         models_dir, out_json, out_txt = scratch / "models", scratch / "results_numbers_dry.json", \
             scratch / "results_numbers_dry.txt"
         # start fresh, removing only the files an earlier dry run made
-        for f in [out_json, out_txt] + sorted(models_dir.glob("num_*_seed0_steps5.pt")):
+        for f in ([] if args.report_only else
+                  [out_json, out_txt] + sorted(models_dir.glob("num_*_seed0_steps5.pt"))):
             f.unlink(missing_ok=True)
         models_dir.mkdir(parents=True, exist_ok=True)
         seeds, steps, n_m1, n_v1, n_m2 = [0], 5, 8, 4, 4
@@ -990,6 +1022,13 @@ def main():
     current, n_clear_sw = sw.mark_up(verses, values)
     current_forms = np.array([FORMS.index(x.split(" ", 1)[0]) for x in current])
     assert int((clear != 0).sum()) == n_clear_sw            # the same clear choices as sw.mark_up
+    # pin the inputs to the versions the judge and the reviewers verified verse by verse
+    assert sha(json.dumps(values, sort_keys=True).encode()) == VALUES_SHA256, "word values differ from the verified ones"
+    assert (int((clear == 1).sum()), int((clear == -1).sum())) == (1033, 988), "clear choices differ"
+    for c in CONFIGS:
+        assert sha("\n".join(marked[c]).encode()) == MARKED_SHA256[c], f"{c}: markup differs from the verified one"
+    log("  inputs pinned: word values, 2,021 clear choices (1,033 right, 988 wrong) and all six markups "
+        "match the verified versions")
 
     frozen = {"RESET": RESET, "CAP": CAP, "NBAR": NBAR_FROZEN, "DRAIN": DRAIN_FROZEN, "CONFIGS": CONFIGS,
               "SCALE": sw.SCALE, "CLEAR_PCT": CLEAR_PCT, "FORMS": FORMS, "steps": steps, "seeds": seeds,
@@ -1011,6 +1050,8 @@ def main():
         results.setdefault(k, {})
 
     def save():
+        if args.report_only:            # a provisional report must never overwrite the running job's results file
+            return
         atomic_write(out_json, json.dumps(results, default=_jsonable))
 
     # ---- manipulation check, spelling counts, traces ----
@@ -1034,11 +1075,13 @@ def main():
     stored, under = load_stored(seeds, n_m1, n_m2)
 
     if args.report_only:
+        if dry:                          # the stored M3 controls cover the 623 held-out verses, not the 40 dev verses
+            stored["M3"] = {}
         lines, ana = report(results, stored, seeds, n_m1, n_m2, dry)
-        results["analysis"] = ana
-        save()
-        atomic_write(out_txt, "\n".join(lines) + "\n")
+        prov = out_txt.with_name(out_txt.stem + "_provisional.txt")
+        atomic_write(prov, "\n".join(lines) + "\n")
         print("\n".join(lines))
+        print(f"\n(report only: wrote {prov}; {out_json.name} was not touched)")
         return
 
     # ---- control reproduction check (extra) ----

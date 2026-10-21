@@ -5,7 +5,7 @@ The test of the owner's numbers **17, 32, 16, 34, 47**, placed where the owner p
 
 In that rule, each time the shifting word appears it gets a fresh **charge**, and whatever was **left over** last time is carried on top. The words of the verse then use up most of the charge, and the word is spelled from what is left. This "recharge" part of the owner's rule was switched off in every earlier experiment, so **this is the first time the owner's full rule is tested.**
 
-**Status: running.** This guide is updated at each step.
+**Status: the review passed and the full run (18 models, about 4-5 hours) started on 21 October.** This guide is updated at each step.
 
 ## What is being tested, in plain words
 Six new versions of the shifting word, each trained 3 times (18 small models):
@@ -42,6 +42,17 @@ The pass/fail rules were written before any of the 18 models was trained. They a
    - all six versions pass the pre-registered check (no spelling stuck, at most 1.23% of verses at the cap);
    - the saved shifting and plain models reproduce their stored scores exactly through the new script;
    - the exact-seed coder regrows the text byte for byte.
+6. **21 October: independent review.** Four reviewers each checked the script from one angle: the rule's arithmetic, how markers are scored, the statistics against the pre-registration, and run safety. The session hit its usage limit twice, so this ran in pieces (02:20-02:40, 13:10-13:30 and 17:40 UTC).
+   - **Three reviewers finished: all "ready", no blocking problems,** 12 minor notes.
+   - The fourth (run safety) was cut off twice; its checks were done directly at 17:40 UTC instead.
+   - Every finding and what was done about it is in `review/review_findings_and_fixes.md`.
+7. **Small fixes, no change to the frozen design:**
+   - the inputs are pinned (the run refuses to start if the word values or any of the six markings differ from the verified versions);
+   - a provisional report can no longer overwrite the results;
+   - the report gains a words-only column and clearer warnings;
+   - two cosmetic display fixes.
+8. **Second dry run after the fixes (17:40 UTC): passed.** Fingerprints of the repository before and after showed nothing changed.
+9. **Full run started** (18 models). It saves and pushes partial results every 10 minutes.
 
 ## Technical details
 - **The rule, step by step** (for each verse, in order):
@@ -50,7 +61,7 @@ The pass/fail rules were written before any of the 18 models was trained. They a
   3. If a direction exists, the next charge from the list is added: W = R + charge (in the direction of the last clear choice).
   4. If the verse is a clear right or wrong: R = +17 or -17, the direction is set, and the list restarts.
      Otherwise each valued word in the verse adds its value to W, then W shrinks by 14.1% (the "drain"). What is left is the new R, capped at ±51.
-- **The drain (14.1% per valued word)** was the AI's choice, not the owner's. It was set so that the owner's plain rule settles at exactly W = 17 + 4 = 21 in ordinary text, leaving 4. That is what keeps the word from getting stuck at the top, which is why the recharge was switched off before.
+- **The drain (14.1% per valued word)** was the AI's choice, not the owner's. It was set so that, for a verse with the average number of valued words (10.9), the owner's plain rule settles at exactly W = 17 + 4 = 21, leaving 4. Real verses vary (0 to 40 valued words), so across real neutral text it settles a little higher, near 22.4, leaving about 5.4 (a reviewer's correction). That drain is what keeps the word from getting stuck at the top, which is why the recharge was switched off before.
 - **Frozen constants:** RESET 17, CAP 51, NBAR 10.9043 valued words per training verse, DRAIN 0.141073.
 - **Models:** the same tiny transformer as experiments 6–12 (64 words of view, 1,500 training steps), seeds 0, 1 and 2.
 - **Tests:** one-sided sign tests over story pairs (measures 1 and 2) and a paired permutation test over verses (measure 3), with Holm correction within each group of comparisons.
@@ -65,6 +76,12 @@ The pass/fail rules were written before any of the 18 models was trained. They a
 | `design/interpretations_and_design.md` | The three readings of the owner's notation and the judge's final design and pass/fail rules, word for word | made from this session's work; only here |
 | `design/judge_simulation/sim_rules.py`, `sim_judge.py`, `sim_extra.py`, `values.json` | The judge's simulation of the six rules on the Bible (no training), and the word values it used | made in this session; only here |
 | `design/builder_check_markup_matches_judge.py` | The builder's check that the script marks every verse exactly as the judge's simulation does | made in this session; only here |
+| `dry_run/dry_run_log.txt`, `results_numbers_dry.txt`, `.json` | The first dry run (21 Oct 02:06 UTC): log, printed tables and every number. Dry-run numbers mean nothing; they check the machinery | made in this session; only here |
+| `dry_run/second_dry_run_after_fixes_*.txt`, `second_dry_run_results.txt` | The second dry run after the review fixes (17:40 UTC), and the provisional-report test | made in this session; only here |
+| `review/review_findings_and_fixes.md` | Every reviewer finding, what was done about each, and the checks each reviewer ran | made in this session; only here |
+| `code/run_full.sh`, `code/autosave.sh` | Start the full run in the background; save and push partial results every 10 minutes | made in this session; only here |
+| `logs/full_run_log.txt` | The full run's log, growing as it runs | made by the run; only here |
+| `results/results_numbers.json`, `.txt` | Copies of the results (partial until the run ends) | `experiments/results_numbers.json` and `.txt` (same branch) |
 
 ## Things outside this folder's control
 - **The repository is public** on GitHub (MIT license): anyone can read these files. Changing that is the owner's decision, in GitHub settings.
