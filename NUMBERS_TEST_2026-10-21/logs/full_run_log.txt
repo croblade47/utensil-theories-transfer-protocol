@@ -436,3 +436,5 @@
 [21:36:25] num_seqrev seed 0: already scored
 
 == [21:36:25] training num_const29 seed 0 (1500 steps, 30,479 verses, vocab 8,581)
+    step   500  loss 3.779  (268s)
+[21:48:57] numbers_test.py FULL RUN  -> /home/user/utensil-theories-transfer-protocol/experiments/results_numbers.json
