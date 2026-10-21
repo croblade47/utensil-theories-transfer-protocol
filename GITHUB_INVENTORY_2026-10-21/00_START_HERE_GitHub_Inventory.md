@@ -46,6 +46,7 @@ Created 29 July 2026. 6 branches, about 388 MB of history (includes the saved mo
 | File | What it is | Where the original lives |
 |---|---|---|
 | `00_START_HERE_GitHub_Inventory.md` / `.docx` | This report | branch `ccr-1be0d913-1tlzao`, this folder |
+| `01_Consolidated_Projects_and_Personas.md` / `.docx` | Projects and personas consolidated from Drive and Gmail | this folder |
 
 ## Second search (21 October 2026, the owner's addresses and project names)
 Searched, as the owner asked: the owner's three Gmail addresses, the echosofalara.com domain, and the project names Echoes of Alara, Earth Swarm, SaCoLu, Veridan and Nexus.
