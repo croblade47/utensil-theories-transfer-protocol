@@ -46,3 +46,14 @@ Created 29 July 2026. 6 branches, about 388 MB of history (includes the saved mo
 | File | What it is | Where the original lives |
 |---|---|---|
 | `00_START_HERE_GitHub_Inventory.md` / `.docx` | This report | branch `ccr-1be0d913-1tlzao`, this folder |
+
+## Second search (21 October 2026, the owner's addresses and project names)
+Searched, as the owner asked: the owner's three Gmail addresses, the echosofalara.com domain, and the project names Echoes of Alara, Earth Swarm, SaCoLu, Veridan and Nexus.
+
+- **The three email addresses:** found on no public web page.
+- **echosofalara.com / Echoes of Alara:** the site did not appear in search results. It may be new, unindexed, or not linked from anywhere yet.
+- **SaCoLu, Veridan, Earth Swarm:** no public page under these names was found. Only unrelated items came up (other "contextual logic" papers, ESA's Swarm satellites, Ethereum's Swarm).
+- **Leads that may or may not be the owner's (not confirmed):**
+  - GitHub account `Garrettc123`, repository `NEXUS-AI-CORE` ("NEXUS: Autonomous AI Commerce & Real Estate Intelligence Engine by Garcar Enterprise"): https://github.com/Garrettc123/NEXUS-AI-CORE
+  - Scratch user `garrettg28`: https://scratch.mit.edu/users/garrettg28
+- **Limit:** web search only shows what search engines have indexed. Pages behind logins, new sites, and private repositories don't show up.
