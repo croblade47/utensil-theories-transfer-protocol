@@ -57,3 +57,6 @@ Searched, as the owner asked: the owner's three Gmail addresses, the echosofalar
   - GitHub account `Garrettc123`, repository `NEXUS-AI-CORE` ("NEXUS: Autonomous AI Commerce & Real Estate Intelligence Engine by Garcar Enterprise"): https://github.com/Garrettc123/NEXUS-AI-CORE
   - Scratch user `garrettg28`: https://scratch.mit.edu/users/garrettg28
 - **Limit:** web search only shows what search engines have indexed. Pages behind logins, new sites, and private repositories don't show up.
+- **Tenir_5 and Solidus (third search):**
+  - Nothing public found for "Tenir_5".
+  - "Solidus" returns only an unrelated crypto company, Solidus AI Tech (AITECH token, led by Paul Farhi), with no link to the owner.

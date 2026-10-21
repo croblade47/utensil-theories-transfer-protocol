@@ -290,3 +290,5 @@
     step  1500  loss 3.189  (803s)
   [18:50:37] saved /home/user/utensil-theories-transfer-protocol/experiments/models/num_seq_seed0_steps1500.pt  (807s)
   [18:50:43] M1 num_seq/seed0: judge 66/100, consequence 55/100  (6s)
+  [18:51:24] M2 num_seq/seed0/B: score 55.5/100, ties 63  (41s)
+  [18:52:08] M2 num_seq/seed0/A: score 58.5/100, ties 67  (44s)
