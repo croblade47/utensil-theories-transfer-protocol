@@ -1,6 +1,13 @@
 # Handoff: where the project stands
 
-**Read this first in any new session, then `COMMUNICATION_GUIDE.md`, then `PLAN.md`.**
+**Read this first in any new session, then `COMMUNICATION_GUIDE.md`, then `PLAN.md`.** The owner's standing rules are in `CLAUDE.md` at the top of the repository (files, nothing locked, authorship).
+
+## Start here (updated 21 Oct 2026, combined from all sessions)
+- **Everything is on this branch** (`ccr-1be0d913-1tlzao`): research, all delivery folders, the audit, and the standing rules. The combined guide is `INTEGRATED_HANDOFF_2026-10-21/00_START_HERE_Integrated_Handoff.docx`. It covers every session, branch, folder and result, plus what is still missing.
+- **The owner's last instruction (21 Oct, 21:50 UTC): "Stop everything except API".** The numbers test is paused at 3 of 18 models. Do not resume it, or start any training, unless the owner asks.
+- **Next:** the conversation test with a large AI as the reader, which needs `ANTHROPIC_API_KEY` in the environment. Check whether it is set (never print it). Draft the pass/fail rules for the owner's approval before running anything (PLAN step 0).
+- **Where the project stands:** about rung 1 of 5 toward the goal. Two small signs of better understanding in a tiny model; four clear failures (consequences, Aesop, carry on stated verdicts, carry in compression). Communication itself is still untested.
+- **The repository is public** (MIT license). Keep personal details out of it.
 
 ## Objective (the owner's words), and the drift guard
 > **Increase an LLM's ability to "comprehend" and "understand" in a way that improves communication.**
@@ -95,7 +102,7 @@ The project owner's theory: an AI gains real *comprehension*, the ability to app
 | `experiments/COMMUNICATION_GUIDE.md` | The owner's words and methods, translated |
 | `experiments/PRIOR_WORK.md` | What already exists in research, and what looks new |
 | `experiments/PLAN.md`, `NEXT_SESSION_PROMPT.md` | Next steps, and the prompt that starts a new session |
-| `experiments/data/`, `experiments/models/` | **Not in git.** Data re-downloads automatically; models must be retrained |
+| `experiments/data/KJV.txt`, `experiments/models/` | **In git since 20 Oct** (commit 33a893d): the Bible text and the 15 trained models of experiments 8 and 10 (about 200 MB). The 3 finished numbers-test models were requested from the old session on 21 Oct; check `experiments/models/` for `num_*` files |
 
 ## How to run anything
 ```bash
@@ -123,8 +130,8 @@ In the spirit of the owner's "remaining" value, these are the questions carried 
 | Does the *carry* (the owner's idea) add anything beyond labeling? | **Supported once, in long stories** (experiment 11, +6 per 100, a re-run after fixes, shaky: about 65 ties per 100); a tie in short ones | A fresh long-story set at several distances |
 | Why does the shifting word misjudge explicit verdicts? | It updates its marker too little: with a neutral start marker it never changed | First check whether greedy marker choice hides updates; then retrain with a stronger reset or faster spend |
 | Does it teach *predicting consequences*? | **Against:** not confirmed (51/100); the plain model did better | A bigger model, or matching the ending format |
-| Do stories transfer lessons better than rules? | Unclear: rules alone didn't win in experiment 3 | Aesop test (experiment 9) |
-| Re-adding 17 at every appearance ("W1 = 17 + 4") | Untested. With it on, the balance pins at the ±51 cap | **New code needed:** train a separate model with its own file name, with RECHARGE on, without editing the shared settings in `shifting_word.py`. Cached results and model names don't record RECHARGE |
-| Do the numbers 32, 16, 34, 47 matter? | No reason yet, since only ratios matter | Try them as RESET sizes, or as ratios (e.g. SPEND = 17/34 per word). A raw SPEND of 16–47 would erase the balance at once |
+| Do stories transfer lessons better than rules? | **Against, at this size:** the Aesop test (experiment 9) failed all four checks; stories did not beat novels or shuffled stories | Only a bigger reader could reopen it |
+| Re-adding 17 at every appearance ("W1 = 17 + 4") | **Being tested:** the numbers test (`NUMBERS_TEST_2026-10-21/`) uses the full rule with a drain; paused at 3 of 18 models, no verdict yet | **New code needed:** train a separate model with its own file name, with RECHARGE on, without editing the shared settings in `shifting_word.py`. Cached results and model names don't record RECHARGE |
+| Do the numbers 32, 16, 34, 47 matter? | **Being tested** in the numbers test (paused at 3 of 18 models, no verdict) | Try them as RESET sizes, or as ratios (e.g. SPEND = 17/34 per word). A raw SPEND of 16–47 would erase the balance at once |
 | Does the spelling (shared syllables) matter? | Untestable so far: the word-level tokenizer hides syllables | A sub-word tokenizer experiment |
-| A large AI as the reader | Not run: needs an API key | Add an API key to the environment |
+| A large AI as the reader | Not run yet. The owner was given the steps to add `ANTHROPIC_API_KEY` on 21 Oct | The conversation test (PLAN step 0), once the key is in and the owner approves the pass/fail rules |

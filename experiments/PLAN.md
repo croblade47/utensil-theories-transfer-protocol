@@ -2,9 +2,18 @@
 
 Work top to bottom. Record each result in `HANDOFF.md` and `README.md`. Pre-register pass/fail rules (commit them) before any run.
 
-## 0. Finish what's running
-- [x] **Experiment 9, the Aesop transfer test:** DONE, not confirmed (see README experiment 9).
-- [x] **Exploratory start-marker run:** done (stopped early). It made things worse: the shifting word copied "unresolved" down the whole story. It **carries perfectly but updates poorly**.
+## 0. Now (updated 21 Oct 2026)
+The owner's last instruction: **"Stop everything except API"** (21 Oct, 21:50 UTC). Work in this order, and start nothing else unless the owner asks.
+- [ ] **0a. API key.** Check whether `ANTHROPIC_API_KEY` is set in the environment. Never print it or ask for it in chat. If it's missing, tell the owner in one line where to add it (environment menu → Edit → Network secrets, or an environment variable) and wait.
+- [ ] **0b. Conversation test: draft the pass/fail rules for the owner's approval** (the communication version of experiment 11; see 1b below). A large AI reads long conversations where the person states an intent or fact early, then many ordinary turns follow.
+  - Conditions: plain reading; reading with a running note kept by the owner's carry rule ("what matters, and what remains"); a control note of the same length with no meaning.
+  - Score whether later answers stay true to the early intent. Use blind, fixed scoring rules, a chance level, and plain-number sizes.
+  - Commit the rules and get the owner's yes before running. Say the cost first (a few dollars).
+- [ ] **0c. Numbers test** (`NUMBERS_TEST_2026-10-21/`): **paused by the owner** at 3 of 18 models. Resume only when the owner says (`bash NUMBERS_TEST_2026-10-21/code/run_full.sh`, about 4 hours). The 3 finished models were requested from the old session; check `experiments/models/` for `num_*` files first.
+- [ ] **0d. Queued and approved by the owner (20 Oct), after the numbers test:**
+  1. the "2" test: write the remaining value into the text as a readable number (the tokenizer drops digits today);
+  2. the +/- agent, with the owner's scoring rule (see HANDOFF): many small negatives, fewer larger positives, balanced over ordinary text.
+- [x] Experiment 9 (Aesop): done, not confirmed. Experiment 12 (compression): done. Seed test: done. Start-marker run: done.
 
 ## 1. Confirm the owner's carry idea properly (experiment 11 supported it once, in a re-run after fixes)
 - [ ] **A fresh long-story set, pre-registered**, with the shifting word vs the plain label as the main test.
