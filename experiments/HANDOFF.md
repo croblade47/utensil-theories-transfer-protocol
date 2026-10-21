@@ -52,6 +52,11 @@ The project owner's theory: an AI gains real *comprehension*, the ability to app
   - **Queued, owner-approved (20 Oct):**
     1. **The numbers test:** the owner's numbers 17, 32, 16, 34, 47 placed where 17 sits in "W1 = 17 + 4 Remaining" (the recharge/remaining rule), singly and in sequence. Script: `numbers_test.py` (being built).
     2. **Then the "2" test:** write the remaining value into the text as a number the model can read. The tokenizer `[a-z]+|[.,;:?!]` currently drops digits, so the model has never seen the number form of the owner's rule ("to / too / two / 2").
+    3. **Then the +/- agent:** classify every input as + or - information, keep the balance with the owner's rule, and report only its placement on the line, never the exact number. The owner: "dont do this step yourself but make sure it happens."
+       - **The owner's scoring rule (21 Oct), in their words:** "Positive inferences in a sentence are like, you know, moral high ground, telling the truth, or, you know, highly reasonable information ... Negative would be questionable morals, nonsense, you know, misspelling, stuff like that. Should always pull a negative. There should be a negative and a positive balance. There actually should almost be more negatives than positive, because the positives are actually higher numbers when they're there, and the negatives are lower numbers, but there are more negatives ... but it does balance."
+       - **In short:** many small negatives, fewer but larger positives, every input pulls a little negative, and over ordinary text the two sides balance. Keep both sides as well as the net.
+       - **Not yet tested.** Today's word values are symmetric (36.0% negative vs 37.4% positive valued words in the Bible text, average sizes 2.31 vs 2.27, net almost exactly 0), so this rule is a new shape. The exact sizes are still the owner's to choose.
+       - **Related:** another AI's "ComprehensionSeed" blueprint (21 Oct) has the same add/subtract living memory. Its scoring functions are undefined, so it is an outline, not running code. Keep the personal name in one of its framework names out of the repository.
   - **Untested next candidates:**
     - the owner's own "W1 = 17 + 4" recharge rule (RECHARGE was switched off), as an "excess bank";
     - markers computed from text the model can see;
