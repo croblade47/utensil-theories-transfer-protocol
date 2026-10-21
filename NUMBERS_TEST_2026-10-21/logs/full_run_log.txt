@@ -438,3 +438,145 @@
 == [21:36:25] training num_const29 seed 0 (1500 steps, 30,479 verses, vocab 8,581)
     step   500  loss 3.779  (268s)
 [21:48:57] numbers_test.py FULL RUN  -> /home/user/utensil-theories-transfer-protocol/experiments/results_numbers.json
+[21:49:04] word values: 6,836 words (7s)
+  NBAR = 10.9043, DRAIN = 0.141073 (frozen 10.9043, 0.141073): OK
+  neutral text, plain rule: settles at W = 21.000, Remaining = 4.000 (the owner's 17 + 4)
+  inputs pinned: word values, 2,021 clear choices (1,033 right, 988 wrong) and all six markups match the verified versions
+
+[21:49:10] MANIPULATION CHECK (2,021 clear choices of 31,102 verses)
+  num_charge17  shares  10.8  23.1  32.0  20.1  13.9  at cap 0.03%  -> PASS   (judge sim max diff 0.05 pts)
+                training Bible: anoksha 3,306, oksharu 7,026, velanok 9,787, sharuvel 6,122, ruvelan 4,238
+  num_seq       shares  19.1  20.4  22.2  16.7  21.6  at cap 0.27%  -> PASS   (judge sim max diff 0.05 pts)
+                training Bible: anoksha 5,829, oksharu 6,206, velanok 6,788, sharuvel 5,092, ruvelan 6,564
+  num_seqrev    shares  19.7  19.8  22.1  16.5  21.9  at cap 0.31%  -> PASS   (judge sim max diff 0.04 pts)
+                training Bible: anoksha 6,006, oksharu 6,044, velanok 6,739, sharuvel 5,023, ruvelan 6,667
+  num_const29   shares  19.4  20.8  21.1  16.7  22.0  at cap 0.26%  -> PASS   (judge sim max diff 0.05 pts)
+                training Bible: anoksha 5,902, oksharu 6,349, velanok 6,452, sharuvel 5,088, ruvelan 6,688
+  num_charge47  shares  29.0  15.3  13.5  12.2  30.0  at cap 1.23%  -> PASS   (judge sim max diff 0.04 pts)
+                training Bible: anoksha 8,846, oksharu 4,669, velanok 4,109, sharuvel 3,733, ruvelan 9,122
+  num_drain0    shares   4.4  17.7  52.8  19.8   5.3  at cap 0.00%  -> PASS   (judge sim max diff 0.01 pts)
+                training Bible: anoksha 1,338, oksharu 5,388, velanok 16,116, sharuvel 6,032, ruvelan 1,605
+
+  num_charge17  CH = (17,)   (II Kings, 15 verses in a row)
+        # R (spelled from) spelling   charge W=R+charge clear?  R left  now       verse
+     9984             +1.9 velanok     +17.0      +18.9 -         -0.2  velanok   In the twelfth year of Ahaz king of Judah began Hoshea the
+     9985             -0.2 velanok   (reset)          - WRONG    -17.0  velanok   And he did that which was evil in the sight of the Lord, b
+     9986            -17.0 anoksha     -17.0      -34.0 -         -6.4  anoksha   Against him came up Shalmaneser king of Assyria; and Hoshe
+     9987             -6.4 oksharu     -17.0      -23.4 -         -3.8  anoksha   And the king of Assyria found conspiracy in Hoshea: for he
+     9988             -3.8 velanok     -17.0      -20.8 -         -7.5  anoksha   Then the king of Assyria came up throughout all the land, 
+     9989             -7.5 oksharu     -17.0      -24.5 -         -6.6  anoksha   In the ninth year of Hoshea the king of Assyria took Samar
+     9990             -6.6 oksharu     -17.0      -23.6 -         -4.7  anoksha   For so it was, that the children of Israel had sinned agai
+     9991             -4.7 oksharu     -17.0      -21.7 -         -3.1  anoksha   And walked in the statutes of the heathen, whom the Lord c
+     9992             -3.1 velanok     -17.0      -20.1 -         +0.7  anoksha   And the children of Israel did secretly those things that 
+     9993             +0.7 velanok     -17.0      -16.3 -         -0.4  anoksha   And they set them up images and groves in every high hill,
+     9994             -0.4 velanok   (reset)          - WRONG    -17.0  oksharu   And there they burnt incense in all the high places, as di
+     9995            -17.0 anoksha     -17.0      -34.0 -        -21.8  anoksha   For they served idols, whereof the Lord had said unto them
+     9996            -21.8 anoksha   (reset)          - WRONG    -17.0  anoksha   Yet the Lord testified against Israel, and against Judah, 
+     9997            -17.0 anoksha     -17.0      -34.0 -         -1.0  anoksha   Notwithstanding they would not hear, but hardened their ne
+     9998             -1.0 velanok     -17.0      -18.0 -         +1.9  oksharu   And they rejected his statutes, and his covenant that he m
+    (R left = the Remaining after the verse, which spells the NEXT verse's word; a clear choice sets it to +/-17 and restarts the run, so no charge is used on that verse; 'now' = the current shifting word)
+
+  num_seq  CH = (32, 16, 34, 47, 17)   (II Kings, 15 verses in a row)
+        # R (spelled from) spelling   charge W=R+charge clear?  R left  now       verse
+     9984             +8.4 sharuvel    +17.0      +25.4 -         +0.5  velanok   In the twelfth year of Ahaz king of Judah began Hoshea the
+     9985             +0.5 velanok   (reset)          - WRONG    -17.0  velanok   And he did that which was evil in the sight of the Lord, b
+     9986            -17.0 anoksha     -32.0      -49.0 -        -10.2  anoksha   Against him came up Shalmaneser king of Assyria; and Hoshe
+     9987            -10.2 oksharu     -16.0      -26.2 -         -3.9  anoksha   And the king of Assyria found conspiracy in Hoshea: for he
+     9988             -3.9 velanok     -34.0      -37.9 -        -11.3  anoksha   Then the king of Assyria came up throughout all the land, 
+     9989            -11.3 oksharu     -47.0      -58.3 -         -8.8  anoksha   In the ninth year of Hoshea the king of Assyria took Samar
+     9990             -8.8 oksharu     -17.0      -25.8 -         -4.8  anoksha   For so it was, that the children of Israel had sinned agai
+     9991             -4.8 oksharu     -32.0      -36.8 -         -6.0  anoksha   And walked in the statutes of the heathen, whom the Lord c
+     9992             -6.0 oksharu     -16.0      -22.0 -         +0.5  anoksha   And the children of Israel did secretly those things that 
+     9993             +0.5 velanok     -34.0      -33.5 -         -4.2  anoksha   And they set them up images and groves in every high hill,
+     9994             -4.2 oksharu   (reset)          - WRONG    -17.0  oksharu   And there they burnt incense in all the high places, as di
+     9995            -17.0 anoksha     -32.0      -49.0 -        -28.8  anoksha   For they served idols, whereof the Lord had said unto them
+     9996            -28.8 anoksha   (reset)          - WRONG    -17.0  anoksha   Yet the Lord testified against Israel, and against Judah, 
+     9997            -17.0 anoksha     -32.0      -49.0 -         -3.8  anoksha   Notwithstanding they would not hear, but hardened their ne
+     9998             -3.8 velanok     -16.0      -19.8 -         +1.9  oksharu   And they rejected his statutes, and his covenant that he m
+    (R left = the Remaining after the verse, which spells the NEXT verse's word; a clear choice sets it to +/-17 and restarts the run, so no charge is used on that verse; 'now' = the current shifting word)
+
+  num_seqrev  CH = (47, 34, 16, 32, 17)   (II Kings, 15 verses in a row)
+        # R (spelled from) spelling   charge W=R+charge clear?  R left  now       verse
+     9984             +4.8 sharuvel    +17.0      +21.8 -         +0.1  velanok   In the twelfth year of Ahaz king of Judah began Hoshea the
+     9985             +0.1 velanok   (reset)          - WRONG    -17.0  velanok   And he did that which was evil in the sight of the Lord, b
+     9986            -17.0 anoksha     -47.0      -64.0 -        -14.0  anoksha   Against him came up Shalmaneser king of Assyria; and Hoshe
+     9987            -14.0 anoksha     -34.0      -48.0 -         -4.7  anoksha   And the king of Assyria found conspiracy in Hoshea: for he
+     9988             -4.7 oksharu     -16.0      -20.7 -         -7.5  anoksha   Then the king of Assyria came up throughout all the land, 
+     9989             -7.5 oksharu     -32.0      -39.5 -         -7.6  anoksha   In the ninth year of Hoshea the king of Assyria took Samar
+     9990             -7.6 oksharu     -17.0      -24.6 -         -4.7  anoksha   For so it was, that the children of Israel had sinned agai
+     9991             -4.7 oksharu     -47.0      -51.7 -         -8.8  anoksha   And walked in the statutes of the heathen, whom the Lord c
+     9992             -8.8 oksharu     -34.0      -42.8 -         -1.3  anoksha   And the children of Israel did secretly those things that 
+     9993             -1.3 velanok     -16.0      -17.3 -         -0.6  anoksha   And they set them up images and groves in every high hill,
+     9994             -0.6 velanok   (reset)          - WRONG    -17.0  oksharu   And there they burnt incense in all the high places, as di
+     9995            -17.0 anoksha     -47.0      -64.0 -        -35.8  anoksha   For they served idols, whereof the Lord had said unto them
+     9996            -35.8 anoksha   (reset)          - WRONG    -17.0  anoksha   Yet the Lord testified against Israel, and against Judah, 
+     9997            -17.0 anoksha     -47.0      -64.0 -         -6.6  anoksha   Notwithstanding they would not hear, but hardened their ne
+     9998             -6.6 oksharu     -34.0      -40.6 -         +1.1  oksharu   And they rejected his statutes, and his covenant that he m
+    (R left = the Remaining after the verse, which spells the NEXT verse's word; a clear choice sets it to +/-17 and restarts the run, so no charge is used on that verse; 'now' = the current shifting word)
+
+  num_const29  CH = (29.2,)   (II Kings, 15 verses in a row)
+        # R (spelled from) spelling   charge W=R+charge clear?  R left  now       verse
+     9984             +4.9 sharuvel    +29.2      +34.1 -         +1.4  velanok   In the twelfth year of Ahaz king of Judah began Hoshea the
+     9985             +1.4 velanok   (reset)          - WRONG    -17.0  velanok   And he did that which was evil in the sight of the Lord, b
+     9986            -17.0 anoksha     -29.2      -46.2 -         -9.5  anoksha   Against him came up Shalmaneser king of Assyria; and Hoshe
+     9987             -9.5 oksharu     -29.2      -38.7 -         -4.4  anoksha   And the king of Assyria found conspiracy in Hoshea: for he
+     9988             -4.4 oksharu     -29.2      -33.6 -        -10.3  anoksha   Then the king of Assyria came up throughout all the land, 
+     9989            -10.3 oksharu     -29.2      -39.5 -         -7.6  anoksha   In the ninth year of Hoshea the king of Assyria took Samar
+     9990             -7.6 oksharu     -29.2      -36.8 -         -5.7  anoksha   For so it was, that the children of Israel had sinned agai
+     9991             -5.7 oksharu     -29.2      -34.9 -         -5.6  anoksha   And walked in the statutes of the heathen, whom the Lord c
+     9992             -5.6 oksharu     -29.2      -34.8 -         -0.6  anoksha   And the children of Israel did secretly those things that 
+     9993             -0.6 velanok     -29.2      -29.8 -         -3.4  anoksha   And they set them up images and groves in every high hill,
+     9994             -3.4 velanok   (reset)          - WRONG    -17.0  oksharu   And there they burnt incense in all the high places, as di
+     9995            -17.0 anoksha     -29.2      -46.2 -        -27.5  anoksha   For they served idols, whereof the Lord had said unto them
+     9996            -27.5 anoksha   (reset)          - WRONG    -17.0  anoksha   Yet the Lord testified against Israel, and against Judah, 
+     9997            -17.0 anoksha     -29.2      -46.2 -         -3.3  anoksha   Notwithstanding they would not hear, but hardened their ne
+     9998             -3.3 velanok     -29.2      -32.5 -         +1.4  oksharu   And they rejected his statutes, and his covenant that he m
+    (R left = the Remaining after the verse, which spells the NEXT verse's word; a clear choice sets it to +/-17 and restarts the run, so no charge is used on that verse; 'now' = the current shifting word)
+
+  num_charge47  CH = (47,)   (II Kings, 15 verses in a row)
+        # R (spelled from) spelling   charge W=R+charge clear?  R left  now       verse
+     9984             +9.2 sharuvel    +47.0      +56.2 -         +3.6  velanok   In the twelfth year of Ahaz king of Judah began Hoshea the
+     9985             +3.6 velanok   (reset)          - WRONG    -17.0  velanok   And he did that which was evil in the sight of the Lord, b
+     9986            -17.0 anoksha     -47.0      -64.0 -        -14.0  anoksha   Against him came up Shalmaneser king of Assyria; and Hoshe
+     9987            -14.0 anoksha     -47.0      -61.0 -         -5.1  anoksha   And the king of Assyria found conspiracy in Hoshea: for he
+     9988             -5.1 oksharu     -47.0      -52.1 -        -14.4  anoksha   Then the king of Assyria came up throughout all the land, 
+     9989            -14.4 anoksha     -47.0      -61.4 -         -9.0  anoksha   In the ninth year of Hoshea the king of Assyria took Samar
+     9990             -9.0 oksharu     -47.0      -56.0 -         -7.1  anoksha   For so it was, that the children of Israel had sinned agai
+     9991             -7.1 oksharu     -47.0      -54.1 -         -9.2  anoksha   And walked in the statutes of the heathen, whom the Lord c
+     9992             -9.2 oksharu     -47.0      -56.2 -         -2.5  anoksha   And the children of Israel did secretly those things that 
+     9993             -2.5 velanok     -47.0      -49.5 -         -7.7  anoksha   And they set them up images and groves in every high hill,
+     9994             -7.7 oksharu   (reset)          - WRONG    -17.0  oksharu   And there they burnt incense in all the high places, as di
+     9995            -17.0 anoksha     -47.0      -64.0 -        -35.8  anoksha   For they served idols, whereof the Lord had said unto them
+     9996            -35.8 anoksha   (reset)          - WRONG    -17.0  anoksha   Yet the Lord testified against Israel, and against Judah, 
+     9997            -17.0 anoksha     -47.0      -64.0 -         -6.6  anoksha   Notwithstanding they would not hear, but hardened their ne
+     9998             -6.6 oksharu     -47.0      -53.6 -         +0.7  oksharu   And they rejected his statutes, and his covenant that he m
+    (R left = the Remaining after the verse, which spells the NEXT verse's word; a clear choice sets it to +/-17 and restarts the run, so no charge is used on that verse; 'now' = the current shifting word)
+
+  num_drain0  CH = (0,)   (II Kings, 15 verses in a row)
+        # R (spelled from) spelling   charge W=R+charge clear?  R left  now       verse
+     9984             -2.2 velanok      +0.0       -2.2 -         -2.3  velanok   In the twelfth year of Ahaz king of Judah began Hoshea the
+     9985             -2.3 velanok   (reset)          - WRONG    -17.0  velanok   And he did that which was evil in the sight of the Lord, b
+     9986            -17.0 anoksha      +0.0      -17.0 -         -2.0  anoksha   Against him came up Shalmaneser king of Assyria; and Hoshe
+     9987             -2.0 velanok      +0.0       -2.0 -         -3.1  anoksha   And the king of Assyria found conspiracy in Hoshea: for he
+     9988             -3.1 velanok      +0.0       -3.1 -         -3.6  anoksha   Then the king of Assyria came up throughout all the land, 
+     9989             -3.6 velanok      +0.0       -3.6 -         -5.2  anoksha   In the ninth year of Hoshea the king of Assyria took Samar
+     9990             -5.2 oksharu      +0.0       -5.2 -         -3.3  anoksha   For so it was, that the children of Israel had sinned agai
+     9991             -3.3 velanok      +0.0       -3.3 -         +0.3  anoksha   And walked in the statutes of the heathen, whom the Lord c
+     9992             +0.3 velanok      +0.0       +0.3 -         +2.5  anoksha   And the children of Israel did secretly those things that 
+     9993             +2.5 velanok      +0.0       +2.5 -         +3.7  anoksha   And they set them up images and groves in every high hill,
+     9994             +3.7 velanok   (reset)          - WRONG    -17.0  oksharu   And there they burnt incense in all the high places, as di
+     9995            -17.0 anoksha      +0.0      -17.0 -        -13.8  anoksha   For they served idols, whereof the Lord had said unto them
+     9996            -13.8 anoksha   (reset)          - WRONG    -17.0  anoksha   Yet the Lord testified against Israel, and against Judah, 
+     9997            -17.0 anoksha      +0.0      -17.0 -         +2.2  anoksha   Notwithstanding they would not hear, but hardened their ne
+     9998             +2.2 velanok      +0.0       +2.2 -         +2.6  oksharu   And they rejected his statutes, and his covenant that he m
+    (R left = the Remaining after the verse, which spells the NEXT verse's word; a clear choice sets it to +/-17 and restarts the run, so no charge is used on that verse; 'now' = the current shifting word)
+
+[21:49:10] CONTROL REPRODUCTION CHECK
+  [21:49:11] loaded shifting_seed0_steps1500.pt
+  [21:49:12] loaded baseline_seed0_steps1500.pt
+
+[21:49:13] num_charge17 seed 0: already scored
+[21:49:13] num_seq seed 0: already scored
+[21:49:13] num_seqrev seed 0: already scored
+
+== [21:49:13] training num_const29 seed 0 (1500 steps, 30,479 verses, vocab 8,581)
