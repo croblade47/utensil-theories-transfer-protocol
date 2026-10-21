@@ -580,3 +580,4 @@
 [21:49:13] num_seqrev seed 0: already scored
 
 == [21:49:13] training num_const29 seed 0 (1500 steps, 30,479 verses, vocab 8,581)
+[21:50:40] STOPPED by the owner's request; 3 of 18 models finished and saved. Resume with: bash NUMBERS_TEST_2026-10-21/code/run_full.sh
