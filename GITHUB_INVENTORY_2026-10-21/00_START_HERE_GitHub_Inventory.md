@@ -60,3 +60,24 @@ Searched, as the owner asked: the owner's three Gmail addresses, the echosofalar
 - **Tenir_5 and Solidus (third search):**
   - Nothing public found for "Tenir_5".
   - "Solidus" returns only an unrelated crypto company, Solidus AI Tech (AITECH token, led by Paul Farhi), with no link to the owner.
+
+## Fourth check (21 October 2026): the owner's files, and the Garrettc123 account
+**The owner's own files** (uploaded to this session) name these projects:
+- **SaCoLu:** an AI personality design drawn from looking after plants (joy at growth, adjusting to distress, valuing effort, care without simulated emotion).
+- **Echo Key:** a project tracker and notebook, and a data collection and transparency framework.
+- **Alara:** a psychological and technical architecture document.
+- **EBEC:** a reconstruction file.
+- **AI Office:** a database setup script (a public Claude artifact, July 2025).
+- **Single-project app template:** a data-collector "bones" app in React.
+- **Other files:** a maintenance report template, and the AI helper mini booklets.
+- **PanelBot:** a modular-construction design report. **Note: that file credits a different person as its author.**
+
+**On GitHub:**
+- None of these project names appears in `croblade47/utensil-theories-transfer-protocol` (except references inside the research record).
+- None appears in the `Garrettc123` hub repository either.
+
+**The Garrettc123 account** ("Garcar Enterprise"):
+- **What it is:** a large public set of business-automation repositories, created from December 2025 on. Its hub links 76 repositories, among them NEXUS-AI-CORE, APEX, autonomous-orchestrator-core, garcar-payments, process-copilot and zeus-dashboard.
+- **The owner says this account is theirs.** But its commits are signed with a **different full name and a different email address** from the owner's, and none of the owner's project names (SaCoLu, Echo Key, Alara, Earth Swarm, Veridan) appears in it.
+- **So ownership is not confirmed** by what is public. The owner can confirm it by signing in to GitHub as Garrettc123, or by checking that account's email settings.
+- **Self-reported figures:** the READMEs claim large revenue and "zero-human" operation. These are self-reported, and its own verified inventory marks almost everything "active dev" or "built", not "production".
