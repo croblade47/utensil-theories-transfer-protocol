@@ -30,3 +30,8 @@ The owner decides what to review and who to share with. Never put anything in th
 ## Also read
 - `experiments/HANDOFF.md`: the objective and drift guard.
 - `experiments/COMMUNICATION_GUIDE.md`: how the owner communicates.
+
+## STRICT RULE 3: authorship
+Garrett C. Gauthier is the sole owner and author of this project and all of its ideas. AI systems (including Claude in Claude Code) are tools used by the owner, not co-authors.
+1. **No AI co-author lines.** Do not add "Co-Authored-By" trailers for any AI to commits, pull requests or documents.
+2. **Credit AI only as a tool,** for example: "Testing was done with Claude (Anthropic) in Claude Code."
