@@ -81,3 +81,20 @@ Searched, as the owner asked: the owner's three Gmail addresses, the echosofalar
 - **The owner says this account is theirs.** But its commits are signed with a **different full name and a different email address** from the owner's, and none of the owner's project names (SaCoLu, Echo Key, Alara, Earth Swarm, Veridan) appears in it.
 - **So ownership is not confirmed** by what is public. The owner can confirm it by signing in to GitHub as Garrettc123, or by checking that account's email settings.
 - **Self-reported figures:** the READMEs claim large revenue and "zero-human" operation. These are self-reported, and its own verified inventory marks almost everything "active dev" or "built", not "production".
+
+## Fifth check (21 October 2026): personas, themes and technical work compared
+**The owner's personas and project names** (from the owner's own files):
+- handles "Blade" and "Nexus-Echo";
+- the SaCoLu trinity: Veridian (the architect), Lusa (the muse, who builds the "Canvas of Mythos") and Nexus (the archivist);
+- Echoes of Alara, the Echo Key, the error-encoding method and EBEC.
+
+**What matches the Garrettc123 account:**
+- shared words: "Echo" (an "Echo Revenue Flow"), "Nexus" (NEXUS-AI-CORE) and "swarm" (an adaptive sales "swarm");
+- the same mobile set-up: building and running code on an Android phone with Termux. The owner's EBEC V3/V4 ran on Termux, and the account has Termux and Pixel deployment scripts.
+
+**What does not match:**
+- **The themes.** The owner's work is about the mind and meaning: psychology, narrative therapy, art interpretation, human error as signal, resilience, AI comprehension, and privacy-first memory. The Garrettc123 work is about money: sales leads, Stripe payments, crypto settlement, revenue dashboards and "zero-human" business automation.
+- **The vocabulary.** Searching the account for resonance, comprehension, living memory, plants, human error, Alara, SaCoLu or Veridian found nothing.
+- **The identity.** "Blade" and "Nexus-Echo" are the owner's recorded personas. The account's commit name is a different full name, with a different email.
+
+**Conclusion:** the overlap is in names and tools, not in the ideas. The public evidence does not show that Garrettc123 is the owner's. Only the owner can settle it, by signing in to that account.
