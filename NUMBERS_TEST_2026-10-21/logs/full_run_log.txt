@@ -143,3 +143,4 @@
 
 
 == [17:47:26] training num_charge17 seed 0 (1500 steps, 30,479 verses, vocab 8,581)
+    step   500  loss 3.768  (296s)
