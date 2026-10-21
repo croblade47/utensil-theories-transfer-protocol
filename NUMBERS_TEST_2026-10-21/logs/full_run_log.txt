@@ -292,3 +292,4 @@
   [18:50:43] M1 num_seq/seed0: judge 66/100, consequence 55/100  (6s)
   [18:51:24] M2 num_seq/seed0/B: score 55.5/100, ties 63  (41s)
   [18:52:08] M2 num_seq/seed0/A: score 58.5/100, ties 67  (44s)
+  [18:52:12] M2 num_seq/seed0/short: score 66.0/100, ties 0  (4s)
