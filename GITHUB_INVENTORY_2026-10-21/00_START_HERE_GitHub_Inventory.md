@@ -98,3 +98,17 @@ Searched, as the owner asked: the owner's three Gmail addresses, the echosofalar
 - **The identity.** "Blade" and "Nexus-Echo" are the owner's recorded personas. The account's commit name is a different full name, with a different email.
 
 **Conclusion:** the overlap is in names and tools, not in the ideas. The public evidence does not show that Garrettc123 is the owner's. Only the owner can settle it, by signing in to that account.
+
+## Personas and AI builds (the owner's own projects; checked 21 October 2026)
+The owner builds personas: AIs set up for specific tasks, like skills. They go back to 2023. Found so far:
+
+| Persona / build | What it is | Where found | Date |
+|---|---|---|---|
+| The Pipeline Foreman (Project Tenir 5) | An MVP automation script, made to fund the Alara work | the Echo Key tracker and notebook | 13 Dec 2025 |
+| Echo Key logging Gem and Transparency Gem | Two linked Gemini Gems: one tracks the conversation and drift, one lets the participant see and control their own data | the Echo Key data collection and transparency framework | 2026 |
+| SaCoLu trinity: Veridian, Lusa, Nexus | Three cooperating AI roles: architect, muse, archivist | the Echo Key tracker | 2026 |
+| Shared-room simulation (Claude skill) | Several AIs (Claude, Gemini, Copilot) sit at one "table", share the same files, and talk in turn until they agree | repository branch `ccr-e9b75f5f-6rquhp` | 11 Oct 2026 |
+| Alex | A persona the owner made | **not found** in the uploaded files or on GitHub | - |
+| Persona (project) | - | **not found** | - |
+
+**Why most personas aren't visible:** personas built as Gemini Gems, ChatGPT GPTs or Claude Projects live inside those apps' accounts. They aren't on GitHub or the public web, so they can't be found from here. To inventory them, copy each one's name and instructions, or export them, and add them to this folder.
