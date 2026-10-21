@@ -74,7 +74,7 @@ num_seq
   and the +4 shows where they belong, in the 17 slot. Day 1: "syllables rotation sequence" and "This may
   continue on for long periods" (so it cycles rather than stops). The owner's list begins with 17, the same
   value as the day-1 reset.
-  why included: The owner's literal numbers, in his order, as N. It does not pin (simulated: spellings
+  why included: The owner's literal numbers, in their order, as N. It does not pin (simulated: spellings
   19.1/20.4/22.2/16.7/21.6%, 0.27% of verses at the cap). Its marker differs from num_charge17 on 28.1% of
   verses.
 
@@ -134,9 +134,8 @@ This is fixed before any of the 18 models is trained. Nothing is tuned on storie
 0. MANIPULATION CHECK (Bible markup only, before training)
 A config passes if at most 5% of verses sit at the ±51 cap and every spelling covers at least 3% of verses. A
 config that fails is still trained, but it is labelled 'degenerate' and its results are descriptive only.
-Expected values, from the judge's scratch simulation
-/tmp/claude-0/-home-user-utensil-theories-transfer-protocol/ace947b8-053f-52e2-a284-890744a0e973/scratchpad/judge_numbers/sim_rules.py:
-all six pass. The constants are frozen: NBAR 10.9043, DRAIN 0.141073, CAP 51, RESET 17, the CH lists as given,
+Expected values, from the judge's scratch simulation (a copy is saved in
+NUMBERS_TEST_2026-10-21/design/judge_simulation/sim_rules.py): all six pass. The constants are frozen: NBAR 10.9043, DRAIN 0.141073, CAP 51, RESET 17, the CH lists as given,
 word_values, SCALE 30, the verdict regexes, CLEAR_PCT 3, FORMS and the cut points.
 
 1. MEASURES (per config, seeds 0, 1, 2)
@@ -170,7 +169,7 @@ word_values, SCALE 30, the verdict regexes, CLEAR_PCT 3, FORMS and the cut point
 - F4, mechanism: R1 num_charge17 > num_drain0. This is a single test at alpha 0.05.
 
 4. VERDICTS (decided on M1)
-- 'The owner's numbers matter' = N1 passes on M1: his sequence beats a plain 17 in the same rule.
+- 'The owner's numbers matter' = N1 passes on M1: their sequence beats a plain 17 in the same rule.
 - 'The sequence itself matters' = N1, N2 and N3 all pass on M1.
 - '47 in the 17 slot helps' = N4 passes on M1.
 - 'The owner's recharge rule helps' = num_charge17 passes F1 on M1. It is credited to the recharge, and not to

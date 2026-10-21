@@ -1,0 +1,313 @@
+THE NUMBERS TEST: the owner's numbers 17, 32, 16, 34, 47 in the place of 17 in "W1 = 17 + 4 Remaining"
+========================================================================================================
+DRY RUN: 5 training steps, seed 0 only, small subsets. A machinery check; THE NUMBERS BELOW MEAN NOTHING.
+Frozen constants: RESET 17, CAP 51, NBAR 10.9043, DRAIN 0.141073, SCALE 30, CLEAR_PCT 3, spellings anoksha, oksharu, velanok, sharuvel, ruvelan
+Seeds [0], 5 training steps. Script SHA-256 85ca6105098bd7b7...
+
+TABLE 0  MANIPULATION CHECK (Bible markup only, no model). Pass: <= 5% of verses at the +/-51 cap and
+         every spelling on >= 3% of verses. Shares over all 31,102 verses; the judge's simulation below each row.
+  config        CH                      anoksha  oksharu  velanok sharuvel  ruvelan  at cap  kept 1/3/5/10  result
+  num_charge17  (17,)                      10.8     23.1     32.0     20.1     13.9   0.03%  100/70/65/60   PASS
+                (judge sim)                10.8     23.1     32.0     20.1     13.9   0.03%   max share diff 0.05 points
+  num_seq       (32, 16, 34, 47, 17)       19.1     20.4     22.2     16.7     21.6   0.27%  100/72/87/86   PASS
+                (judge sim)                19.1     20.4     22.2     16.7     21.6   0.27%   max share diff 0.05 points
+  num_seqrev    (47, 34, 16, 32, 17)       19.7     19.8     22.1     16.5     21.9   0.30%  100/85/78/76   PASS
+                (judge sim)                19.7     19.8     22.1     16.5     21.9   0.31%   max share diff 0.04 points
+  num_const29   (29.2,)                    19.4     20.8     21.1     16.7     22.0   0.26%  100/80/78/75   PASS
+                (judge sim)                19.4     20.8     21.1     16.7     22.0   0.26%   max share diff 0.05 points
+  num_charge47  (47,)                      29.0     15.3     13.5     12.2     30.0   1.23%  100/89/88/86   PASS
+                (judge sim)                29.0     15.3     13.5     12.2     30.0   1.23%   max share diff 0.04 points
+  num_drain0    (0,)                        4.4     17.7     52.8     19.8      5.3   0.00%  100/41/33/28   PASS
+                (judge sim)                 4.4     17.7     52.8     19.8      5.3   0.00%   max share diff 0.01 points
+  shifting now  (RESET 17, SPEND 0.5)      20.0     13.6     29.8     13.2     23.4          100/76/63/49
+  ('kept 1/3/5/10' = % of clear choices whose sign the word still shows 1, 3, 5 and 10 verses later)
+
+  % of verses whose word differs between two rules:
+                 charge17       seq    seqrev   const29  charge47    drain0  shifting
+  charge17            0.0      28.1      29.1      30.9      52.9      51.7      55.0
+  seq                28.1       0.0      22.3      13.5      28.1      65.3      56.9
+  seqrev             29.1      22.3       0.0      15.9      27.1      65.8      56.8
+  const29            30.9      13.5      15.9       0.0      26.8      67.0      57.3
+  charge47           52.9      28.1      27.1      26.8       0.0      76.1      59.0
+  drain0             51.7      65.3      65.8      67.0      76.1       0.0      50.6
+  shifting           55.0      56.9      56.8      57.3      59.0      50.6       0.0
+  judge's figures for the same pairs: charge17 vs shifting 55.0 (here 55.0), seq vs charge17 28.1 (here 28.1), seqrev vs seq 22.3 (here 22.3), const29 vs seq 13.5 (here 13.5), const29 vs charge17 30.9 (here 30.9), charge47 vs charge17 52.9 (here 52.9)
+
+SPELLING COUNTS over the training Bible (the verses the models learn from)
+  num_charge17  anoksha 3,306  oksharu 7,026  velanok 9,787  sharuvel 6,122  ruvelan 4,238
+  num_seq       anoksha 5,829  oksharu 6,206  velanok 6,788  sharuvel 5,092  ruvelan 6,564
+  num_seqrev    anoksha 6,006  oksharu 6,044  velanok 6,739  sharuvel 5,023  ruvelan 6,667
+  num_const29   anoksha 5,902  oksharu 6,349  velanok 6,452  sharuvel 5,088  ruvelan 6,688
+  num_charge47  anoksha 8,846  oksharu 4,669  velanok 4,109  sharuvel 3,733  ruvelan 9,122
+  num_drain0    anoksha 1,338  oksharu 5,388  velanok 16,116  sharuvel 6,032  ruvelan 1,605
+
+TRACE: the rule at work, verse by verse
+  num_charge17  CH = (17,)   (II Kings, 15 verses in a row)
+        # R (spelled from) spelling   charge W=R+charge clear?  R left  now       verse
+     9984             +1.9 velanok     +17.0      +18.9 -         -0.2  velanok   In the twelfth year of Ahaz king of Judah began Hoshea the
+     9985             -0.2 velanok     +17.0      +16.8 WRONG    -17.0  velanok   And he did that which was evil in the sight of the Lord, b
+     9986            -17.0 anoksha     -17.0      -34.0 -         -6.4  anoksha   Against him came up Shalmaneser king of Assyria; and Hoshe
+     9987             -6.4 oksharu     -17.0      -23.4 -         -3.8  anoksha   And the king of Assyria found conspiracy in Hoshea: for he
+     9988             -3.8 velanok     -17.0      -20.8 -         -7.5  anoksha   Then the king of Assyria came up throughout all the land, 
+     9989             -7.5 oksharu     -17.0      -24.5 -         -6.6  anoksha   In the ninth year of Hoshea the king of Assyria took Samar
+     9990             -6.6 oksharu     -17.0      -23.6 -         -4.7  anoksha   For so it was, that the children of Israel had sinned agai
+     9991             -4.7 oksharu     -17.0      -21.7 -         -3.1  anoksha   And walked in the statutes of the heathen, whom the Lord c
+     9992             -3.1 velanok     -17.0      -20.1 -         +0.7  anoksha   And the children of Israel did secretly those things that 
+     9993             +0.7 velanok     -17.0      -16.3 -         -0.4  anoksha   And they set them up images and groves in every high hill,
+     9994             -0.4 velanok     -17.0      -17.4 WRONG    -17.0  oksharu   And there they burnt incense in all the high places, as di
+     9995            -17.0 anoksha     -17.0      -34.0 -        -21.8  anoksha   For they served idols, whereof the Lord had said unto them
+     9996            -21.8 anoksha     -17.0      -38.8 WRONG    -17.0  anoksha   Yet the Lord testified against Israel, and against Judah, 
+     9997            -17.0 anoksha     -17.0      -34.0 -         -1.0  anoksha   Notwithstanding they would not hear, but hardened their ne
+     9998             -1.0 velanok     -17.0      -18.0 -         +1.9  oksharu   And they rejected his statutes, and his covenant that he m
+    (R left = the Remaining after the verse, which spells the NEXT verse's word; a clear choice sets it to +/-17 and restarts the run; 'now' = the current shifting word)
+
+  num_seq  CH = (32, 16, 34, 47, 17)   (II Kings, 15 verses in a row)
+        # R (spelled from) spelling   charge W=R+charge clear?  R left  now       verse
+     9984             +8.4 sharuvel    +17.0      +25.4 -         +0.5  velanok   In the twelfth year of Ahaz king of Judah began Hoshea the
+     9985             +0.5 velanok     +32.0      +32.5 WRONG    -17.0  velanok   And he did that which was evil in the sight of the Lord, b
+     9986            -17.0 anoksha     -32.0      -49.0 -        -10.2  anoksha   Against him came up Shalmaneser king of Assyria; and Hoshe
+     9987            -10.2 oksharu     -16.0      -26.2 -         -3.9  anoksha   And the king of Assyria found conspiracy in Hoshea: for he
+     9988             -3.9 velanok     -34.0      -37.9 -        -11.3  anoksha   Then the king of Assyria came up throughout all the land, 
+     9989            -11.3 oksharu     -47.0      -58.3 -         -8.8  anoksha   In the ninth year of Hoshea the king of Assyria took Samar
+     9990             -8.8 oksharu     -17.0      -25.8 -         -4.8  anoksha   For so it was, that the children of Israel had sinned agai
+     9991             -4.8 oksharu     -32.0      -36.8 -         -6.0  anoksha   And walked in the statutes of the heathen, whom the Lord c
+     9992             -6.0 oksharu     -16.0      -22.0 -         +0.5  anoksha   And the children of Israel did secretly those things that 
+     9993             +0.5 velanok     -34.0      -33.5 -         -4.2  anoksha   And they set them up images and groves in every high hill,
+     9994             -4.2 oksharu     -47.0      -51.2 WRONG    -17.0  oksharu   And there they burnt incense in all the high places, as di
+     9995            -17.0 anoksha     -32.0      -49.0 -        -28.8  anoksha   For they served idols, whereof the Lord had said unto them
+     9996            -28.8 anoksha     -16.0      -44.8 WRONG    -17.0  anoksha   Yet the Lord testified against Israel, and against Judah, 
+     9997            -17.0 anoksha     -32.0      -49.0 -         -3.8  anoksha   Notwithstanding they would not hear, but hardened their ne
+     9998             -3.8 velanok     -16.0      -19.8 -         +1.9  oksharu   And they rejected his statutes, and his covenant that he m
+    (R left = the Remaining after the verse, which spells the NEXT verse's word; a clear choice sets it to +/-17 and restarts the run; 'now' = the current shifting word)
+
+  num_seqrev  CH = (47, 34, 16, 32, 17)   (II Kings, 15 verses in a row)
+        # R (spelled from) spelling   charge W=R+charge clear?  R left  now       verse
+     9984             +4.8 sharuvel    +17.0      +21.8 -         +0.1  velanok   In the twelfth year of Ahaz king of Judah began Hoshea the
+     9985             +0.1 velanok     +47.0      +47.1 WRONG    -17.0  velanok   And he did that which was evil in the sight of the Lord, b
+     9986            -17.0 anoksha     -47.0      -64.0 -        -14.0  anoksha   Against him came up Shalmaneser king of Assyria; and Hoshe
+     9987            -14.0 anoksha     -34.0      -48.0 -         -4.7  anoksha   And the king of Assyria found conspiracy in Hoshea: for he
+     9988             -4.7 oksharu     -16.0      -20.7 -         -7.5  anoksha   Then the king of Assyria came up throughout all the land, 
+     9989             -7.5 oksharu     -32.0      -39.5 -         -7.6  anoksha   In the ninth year of Hoshea the king of Assyria took Samar
+     9990             -7.6 oksharu     -17.0      -24.6 -         -4.7  anoksha   For so it was, that the children of Israel had sinned agai
+     9991             -4.7 oksharu     -47.0      -51.7 -         -8.8  anoksha   And walked in the statutes of the heathen, whom the Lord c
+     9992             -8.8 oksharu     -34.0      -42.8 -         -1.3  anoksha   And the children of Israel did secretly those things that 
+     9993             -1.3 velanok     -16.0      -17.3 -         -0.6  anoksha   And they set them up images and groves in every high hill,
+     9994             -0.6 velanok     -32.0      -32.6 WRONG    -17.0  oksharu   And there they burnt incense in all the high places, as di
+     9995            -17.0 anoksha     -47.0      -64.0 -        -35.8  anoksha   For they served idols, whereof the Lord had said unto them
+     9996            -35.8 anoksha     -34.0      -69.8 WRONG    -17.0  anoksha   Yet the Lord testified against Israel, and against Judah, 
+     9997            -17.0 anoksha     -47.0      -64.0 -         -6.6  anoksha   Notwithstanding they would not hear, but hardened their ne
+     9998             -6.6 oksharu     -34.0      -40.6 -         +1.1  oksharu   And they rejected his statutes, and his covenant that he m
+    (R left = the Remaining after the verse, which spells the NEXT verse's word; a clear choice sets it to +/-17 and restarts the run; 'now' = the current shifting word)
+
+  num_const29  CH = (29.2,)   (II Kings, 15 verses in a row)
+        # R (spelled from) spelling   charge W=R+charge clear?  R left  now       verse
+     9984             +4.9 sharuvel    +29.2      +34.1 -         +1.4  velanok   In the twelfth year of Ahaz king of Judah began Hoshea the
+     9985             +1.4 velanok     +29.2      +30.6 WRONG    -17.0  velanok   And he did that which was evil in the sight of the Lord, b
+     9986            -17.0 anoksha     -29.2      -46.2 -         -9.5  anoksha   Against him came up Shalmaneser king of Assyria; and Hoshe
+     9987             -9.5 oksharu     -29.2      -38.7 -         -4.4  anoksha   And the king of Assyria found conspiracy in Hoshea: for he
+     9988             -4.4 oksharu     -29.2      -33.6 -        -10.3  anoksha   Then the king of Assyria came up throughout all the land, 
+     9989            -10.3 oksharu     -29.2      -39.5 -         -7.6  anoksha   In the ninth year of Hoshea the king of Assyria took Samar
+     9990             -7.6 oksharu     -29.2      -36.8 -         -5.7  anoksha   For so it was, that the children of Israel had sinned agai
+     9991             -5.7 oksharu     -29.2      -34.9 -         -5.6  anoksha   And walked in the statutes of the heathen, whom the Lord c
+     9992             -5.6 oksharu     -29.2      -34.8 -         -0.6  anoksha   And the children of Israel did secretly those things that 
+     9993             -0.6 velanok     -29.2      -29.8 -         -3.4  anoksha   And they set them up images and groves in every high hill,
+     9994             -3.4 velanok     -29.2      -32.6 WRONG    -17.0  oksharu   And there they burnt incense in all the high places, as di
+     9995            -17.0 anoksha     -29.2      -46.2 -        -27.5  anoksha   For they served idols, whereof the Lord had said unto them
+     9996            -27.5 anoksha     -29.2      -56.7 WRONG    -17.0  anoksha   Yet the Lord testified against Israel, and against Judah, 
+     9997            -17.0 anoksha     -29.2      -46.2 -         -3.3  anoksha   Notwithstanding they would not hear, but hardened their ne
+     9998             -3.3 velanok     -29.2      -32.5 -         +1.4  oksharu   And they rejected his statutes, and his covenant that he m
+    (R left = the Remaining after the verse, which spells the NEXT verse's word; a clear choice sets it to +/-17 and restarts the run; 'now' = the current shifting word)
+
+  num_charge47  CH = (47,)   (II Kings, 15 verses in a row)
+        # R (spelled from) spelling   charge W=R+charge clear?  R left  now       verse
+     9984             +9.2 sharuvel    +47.0      +56.2 -         +3.6  velanok   In the twelfth year of Ahaz king of Judah began Hoshea the
+     9985             +3.6 velanok     +47.0      +50.6 WRONG    -17.0  velanok   And he did that which was evil in the sight of the Lord, b
+     9986            -17.0 anoksha     -47.0      -64.0 -        -14.0  anoksha   Against him came up Shalmaneser king of Assyria; and Hoshe
+     9987            -14.0 anoksha     -47.0      -61.0 -         -5.1  anoksha   And the king of Assyria found conspiracy in Hoshea: for he
+     9988             -5.1 oksharu     -47.0      -52.1 -        -14.4  anoksha   Then the king of Assyria came up throughout all the land, 
+     9989            -14.4 anoksha     -47.0      -61.4 -         -9.0  anoksha   In the ninth year of Hoshea the king of Assyria took Samar
+     9990             -9.0 oksharu     -47.0      -56.0 -         -7.1  anoksha   For so it was, that the children of Israel had sinned agai
+     9991             -7.1 oksharu     -47.0      -54.1 -         -9.2  anoksha   And walked in the statutes of the heathen, whom the Lord c
+     9992             -9.2 oksharu     -47.0      -56.2 -         -2.5  anoksha   And the children of Israel did secretly those things that 
+     9993             -2.5 velanok     -47.0      -49.5 -         -7.7  anoksha   And they set them up images and groves in every high hill,
+     9994             -7.7 oksharu     -47.0      -54.7 WRONG    -17.0  oksharu   And there they burnt incense in all the high places, as di
+     9995            -17.0 anoksha     -47.0      -64.0 -        -35.8  anoksha   For they served idols, whereof the Lord had said unto them
+     9996            -35.8 anoksha     -47.0      -82.8 WRONG    -17.0  anoksha   Yet the Lord testified against Israel, and against Judah, 
+     9997            -17.0 anoksha     -47.0      -64.0 -         -6.6  anoksha   Notwithstanding they would not hear, but hardened their ne
+     9998             -6.6 oksharu     -47.0      -53.6 -         +0.7  oksharu   And they rejected his statutes, and his covenant that he m
+    (R left = the Remaining after the verse, which spells the NEXT verse's word; a clear choice sets it to +/-17 and restarts the run; 'now' = the current shifting word)
+
+  num_drain0  CH = (0,)   (II Kings, 15 verses in a row)
+        # R (spelled from) spelling   charge W=R+charge clear?  R left  now       verse
+     9984             -2.2 velanok      +0.0       -2.2 -         -2.3  velanok   In the twelfth year of Ahaz king of Judah began Hoshea the
+     9985             -2.3 velanok      +0.0       -2.3 WRONG    -17.0  velanok   And he did that which was evil in the sight of the Lord, b
+     9986            -17.0 anoksha      +0.0      -17.0 -         -2.0  anoksha   Against him came up Shalmaneser king of Assyria; and Hoshe
+     9987             -2.0 velanok      +0.0       -2.0 -         -3.1  anoksha   And the king of Assyria found conspiracy in Hoshea: for he
+     9988             -3.1 velanok      +0.0       -3.1 -         -3.6  anoksha   Then the king of Assyria came up throughout all the land, 
+     9989             -3.6 velanok      +0.0       -3.6 -         -5.2  anoksha   In the ninth year of Hoshea the king of Assyria took Samar
+     9990             -5.2 oksharu      +0.0       -5.2 -         -3.3  anoksha   For so it was, that the children of Israel had sinned agai
+     9991             -3.3 velanok      +0.0       -3.3 -         +0.3  anoksha   And walked in the statutes of the heathen, whom the Lord c
+     9992             +0.3 velanok      +0.0       +0.3 -         +2.5  anoksha   And the children of Israel did secretly those things that 
+     9993             +2.5 velanok      +0.0       +2.5 -         +3.7  anoksha   And they set them up images and groves in every high hill,
+     9994             +3.7 velanok      +0.0       +3.7 WRONG    -17.0  oksharu   And there they burnt incense in all the high places, as di
+     9995            -17.0 anoksha      +0.0      -17.0 -        -13.8  anoksha   For they served idols, whereof the Lord had said unto them
+     9996            -13.8 anoksha      +0.0      -13.8 WRONG    -17.0  anoksha   Yet the Lord testified against Israel, and against Judah, 
+     9997            -17.0 anoksha      +0.0      -17.0 -         +2.2  anoksha   Notwithstanding they would not hear, but hardened their ne
+     9998             +2.2 velanok      +0.0       +2.2 -         +2.6  oksharu   And they rejected his statutes, and his covenant that he m
+    (R left = the Remaining after the verse, which spells the NEXT verse's word; a clear choice sets it to +/-17 and restarts the run; 'now' = the current shifting word)
+
+========================================================================================================
+TABLE 1  M1 (PRIMARY): judging right vs wrong on 8 new story pairs (50% = guessing)
+  method        correct per seed    mean %  majority  p vs 50%   consequence per seed (descriptive)
+  num_charge17  3                     37.5     3/8      0.8555   2
+  num_seq       3                     37.5     3/8      0.8555   2
+  num_seqrev    3                     37.5     3/8      0.8555   2
+  num_const29   3                     37.5     3/8      0.8555   2
+  num_charge47  3                     37.5     3/8      0.8555   2
+  num_drain0    3                     37.5     3/8      0.8555   1
+  shifting      5                     62.5     5/8      0.3633   6  [stored]
+  baseline      3                     37.5     3/8      0.8555   5  [stored]
+  label         6                     75.0     6/8      0.1445   4  [stored]
+  carry3        7                     87.5     7/8      0.0352   5  [stored]
+  scrambled     4                     50.0     4/8      0.6367   3  [stored]
+
+TABLE 2  M2: long stories, version B (the act pushed out of the 64-token view), 4 pairs (50% = guessing)
+  method        B score per seed       B mean %   ties   A mean % (descr.) short mean % (descr.)
+  num_charge17  2.0                        50.0      4                50.0                  50.0
+  num_seq       2.0                        50.0      4                50.0                  50.0
+  num_seqrev    2.0                        50.0      4                50.0                  50.0
+  num_const29   2.0                        50.0      4                50.0                  50.0
+  num_charge47  2.0                        50.0      4                50.0                  50.0
+  num_drain0    2.0                        50.0      4                50.0                  50.0
+  shifting      3.0                        75.0      2                75.0                 100.0  [stored]
+  baseline      2.0                        50.0      4                50.0                  25.0  [stored]
+  label         2.0                        50.0      4                75.0                 100.0  [stored]
+  carry3        3.5                        87.5      1               100.0                 100.0  [stored]
+  scrambled     2.0                        50.0      4                50.0                  75.0  [stored]
+
+TABLE 3  M3: exact-seed TOTAL bits per verse (40 verses; marker + words + verse end; lower = better)
+  method        mean bits/verse vs baseline          seed bytes per seed  seed 0 regrown exactly?
+  num_charge17          370.128    +147.23%                        1,855  yes (decoded)
+  num_seq               369.828    +147.03%                        1,854  yes (decoded)
+  num_seqrev            369.923    +147.09%                        1,854  yes (decoded)
+  num_const29           369.921    +147.09%                        1,854  yes (decoded)
+  num_charge47          370.014    +147.15%                        1,855  yes (decoded)
+  num_drain0            369.901    +147.08%                        1,854  yes (decoded)
+  shifting              154.031      +2.89%                          775  not decoded  [stored]
+  baseline              149.710      +0.00%                          753  not decoded  [stored]
+  label         (not scored yet)
+  carry3        (not scored yet)
+  scrambled     (not scored yet)
+
+========================================================================================================
+TABLE 4  PRE-REGISTERED TESTS (one-sided, 'new is better'; Holm within each family and measure; pass = Holm p < 0.05)
+
+  M1  judging on story pairs (sign test over pairs)
+    F1  each new config vs shifting
+      num_charge17 > shifting             37.5% vs  62.5%  better on   1, worse on   3, tied   4  p 0.9375 (Holm 1.0000)  -
+      num_seq > shifting                  37.5% vs  62.5%  better on   1, worse on   3, tied   4  p 0.9375 (Holm 1.0000)  -
+      num_seqrev > shifting               37.5% vs  62.5%  better on   1, worse on   3, tied   4  p 0.9375 (Holm 1.0000)  -
+      num_const29 > shifting              37.5% vs  62.5%  better on   1, worse on   3, tied   4  p 0.9375 (Holm 1.0000)  -
+      num_charge47 > shifting             37.5% vs  62.5%  better on   1, worse on   3, tied   4  p 0.9375 (Holm 1.0000)  -
+      num_drain0 > shifting               37.5% vs  62.5%  better on   1, worse on   3, tied   4  p 0.9375 (Holm 1.0000)  -
+    F2  each new config vs baseline (on M2: vs chance)
+      num_charge17 > baseline             37.5% vs  37.5%  better on   3, worse on   3, tied   2  p 0.6562 (Holm 1.0000)  -
+      num_seq > baseline                  37.5% vs  37.5%  better on   3, worse on   3, tied   2  p 0.6562 (Holm 1.0000)  -
+      num_seqrev > baseline               37.5% vs  37.5%  better on   3, worse on   3, tied   2  p 0.6562 (Holm 1.0000)  -
+      num_const29 > baseline              37.5% vs  37.5%  better on   3, worse on   3, tied   2  p 0.6562 (Holm 1.0000)  -
+      num_charge47 > baseline             37.5% vs  37.5%  better on   3, worse on   3, tied   2  p 0.6562 (Holm 1.0000)  -
+      num_drain0 > baseline               37.5% vs  37.5%  better on   3, worse on   3, tied   2  p 0.6562 (Holm 1.0000)  -
+    F3  the owner's numbers
+      N1 num_seq > num_charge17           37.5% vs  37.5%  better on   0, worse on   0, tied   8  p 1.0000 (Holm 1.0000)  -
+      N2 num_seq > num_seqrev             37.5% vs  37.5%  better on   0, worse on   0, tied   8  p 1.0000 (Holm 1.0000)  -
+      N3 num_seq > num_const29            37.5% vs  37.5%  better on   0, worse on   0, tied   8  p 1.0000 (Holm 1.0000)  -
+      N4 num_charge47 > num_charge17      37.5% vs  37.5%  better on   0, worse on   0, tied   8  p 1.0000 (Holm 1.0000)  -
+    F4  mechanism (single test)
+      R1 num_charge17 > num_drain0        37.5% vs  37.5%  better on   0, worse on   0, tied   8  p 1.0000 (Holm 1.0000)  -
+
+  M2  long stories, version B (sign test over pairs)
+    F1  each new config vs shifting
+      num_charge17 > shifting             50.0% vs  75.0%  better on   0, worse on   2, tied   2  p 1.0000 (Holm 1.0000)  -
+      num_seq > shifting                  50.0% vs  75.0%  better on   0, worse on   2, tied   2  p 1.0000 (Holm 1.0000)  -
+      num_seqrev > shifting               50.0% vs  75.0%  better on   0, worse on   2, tied   2  p 1.0000 (Holm 1.0000)  -
+      num_const29 > shifting              50.0% vs  75.0%  better on   0, worse on   2, tied   2  p 1.0000 (Holm 1.0000)  -
+      num_charge47 > shifting             50.0% vs  75.0%  better on   0, worse on   2, tied   2  p 1.0000 (Holm 1.0000)  -
+      num_drain0 > shifting               50.0% vs  75.0%  better on   0, worse on   2, tied   2  p 1.0000 (Holm 1.0000)  -
+    F2  each new config vs baseline (on M2: vs chance)
+      num_charge17 > baseline             50.0% vs  50.0%  better on   0, worse on   0, tied   4  p 1.0000 (Holm 1.0000)  -
+      num_seq > baseline                  50.0% vs  50.0%  better on   0, worse on   0, tied   4  p 1.0000 (Holm 1.0000)  -
+      num_seqrev > baseline               50.0% vs  50.0%  better on   0, worse on   0, tied   4  p 1.0000 (Holm 1.0000)  -
+      num_const29 > baseline              50.0% vs  50.0%  better on   0, worse on   0, tied   4  p 1.0000 (Holm 1.0000)  -
+      num_charge47 > baseline             50.0% vs  50.0%  better on   0, worse on   0, tied   4  p 1.0000 (Holm 1.0000)  -
+      num_drain0 > baseline               50.0% vs  50.0%  better on   0, worse on   0, tied   4  p 1.0000 (Holm 1.0000)  -
+    F3  the owner's numbers
+      N1 num_seq > num_charge17           50.0% vs  50.0%  better on   0, worse on   0, tied   4  p 1.0000 (Holm 1.0000)  -
+      N2 num_seq > num_seqrev             50.0% vs  50.0%  better on   0, worse on   0, tied   4  p 1.0000 (Holm 1.0000)  -
+      N3 num_seq > num_const29            50.0% vs  50.0%  better on   0, worse on   0, tied   4  p 1.0000 (Holm 1.0000)  -
+      N4 num_charge47 > num_charge17      50.0% vs  50.0%  better on   0, worse on   0, tied   4  p 1.0000 (Holm 1.0000)  -
+    F4  mechanism (single test)
+      R1 num_charge17 > num_drain0        50.0% vs  50.0%  better on   0, worse on   0, tied   4  p 1.0000 (Holm 1.0000)  -
+
+  M3  TOTAL bits per verse (sign-flip permutation test; sign test alongside)
+    F1  each new config vs shifting
+      num_charge17 > shifting            mean diff +216.098 bits/verse  smaller/larger   0/40   perm p 1.00000 (Holm 1.0000)  sign p 1.0000 (Holm 1.0000)  -
+      num_seq > shifting                 mean diff +215.797 bits/verse  smaller/larger   0/40   perm p 1.00000 (Holm 1.0000)  sign p 1.0000 (Holm 1.0000)  -
+      num_seqrev > shifting              mean diff +215.892 bits/verse  smaller/larger   0/40   perm p 1.00000 (Holm 1.0000)  sign p 1.0000 (Holm 1.0000)  -
+      num_const29 > shifting             mean diff +215.890 bits/verse  smaller/larger   0/40   perm p 1.00000 (Holm 1.0000)  sign p 1.0000 (Holm 1.0000)  -
+      num_charge47 > shifting            mean diff +215.983 bits/verse  smaller/larger   0/40   perm p 1.00000 (Holm 1.0000)  sign p 1.0000 (Holm 1.0000)  -
+      num_drain0 > shifting              mean diff +215.870 bits/verse  smaller/larger   0/40   perm p 1.00000 (Holm 1.0000)  sign p 1.0000 (Holm 1.0000)  -
+    F2  each new config vs baseline (on M2: vs chance)
+      num_charge17 > baseline            mean diff +220.418 bits/verse  smaller/larger   0/40   perm p 1.00000 (Holm 1.0000)  sign p 1.0000 (Holm 1.0000)  -
+      num_seq > baseline                 mean diff +220.118 bits/verse  smaller/larger   0/40   perm p 1.00000 (Holm 1.0000)  sign p 1.0000 (Holm 1.0000)  -
+      num_seqrev > baseline              mean diff +220.213 bits/verse  smaller/larger   0/40   perm p 1.00000 (Holm 1.0000)  sign p 1.0000 (Holm 1.0000)  -
+      num_const29 > baseline             mean diff +220.211 bits/verse  smaller/larger   0/40   perm p 1.00000 (Holm 1.0000)  sign p 1.0000 (Holm 1.0000)  -
+      num_charge47 > baseline            mean diff +220.304 bits/verse  smaller/larger   0/40   perm p 1.00000 (Holm 1.0000)  sign p 1.0000 (Holm 1.0000)  -
+      num_drain0 > baseline              mean diff +220.191 bits/verse  smaller/larger   0/40   perm p 1.00000 (Holm 1.0000)  sign p 1.0000 (Holm 1.0000)  -
+    F3  the owner's numbers
+      N1 num_seq > num_charge17          mean diff  -0.300 bits/verse  smaller/larger  32/8    perm p 0.00001 (Holm 0.0000)  sign p 0.0001 (Holm 0.0004)  PASS
+      N2 num_seq > num_seqrev            mean diff  -0.095 bits/verse  smaller/larger  30/10   perm p 0.00872 (Holm 0.0174)  sign p 0.0011 (Holm 0.0022)  PASS
+      N3 num_seq > num_const29           mean diff  -0.093 bits/verse  smaller/larger  31/9    perm p 0.00109 (Holm 0.0033)  sign p 0.0003 (Holm 0.0010)  PASS
+      N4 num_charge47 > num_charge17     mean diff  -0.114 bits/verse  smaller/larger  25/15   perm p 0.07091 (Holm 0.0709)  sign p 0.0769 (Holm 0.0769)  -
+    F4  mechanism (single test)
+      R1 num_charge17 > num_drain0       mean diff  +0.228 bits/verse  smaller/larger  14/26   perm p 0.99759 (Holm 0.9976)  sign p 0.9808 (Holm 0.9808)  -
+
+  Descriptive only (not part of any verdict): label, carry3 and scrambled vs shifting and vs baseline
+    M1 label     vs shifting   75.0% vs  62.5%, better on 1, worse on 0, p 0.5000
+    M1 label     vs baseline   75.0% vs  37.5%, better on 5, worse on 2, p 0.2266
+    M1 carry3    vs shifting   87.5% vs  62.5%, better on 2, worse on 0, p 0.2500
+    M1 carry3    vs baseline   87.5% vs  37.5%, better on 5, worse on 1, p 0.1094
+    M1 scrambled vs shifting   50.0% vs  62.5%, better on 1, worse on 2, p 0.8750
+    M1 scrambled vs baseline   50.0% vs  37.5%, better on 2, worse on 1, p 0.5000
+    M2 label     vs shifting   50.0% vs  75.0%, better on 0, worse on 2, p 1.0000
+    M2 label     vs baseline   50.0% vs  50.0%, better on 0, worse on 0, p 1.0000
+    M2 carry3    vs shifting   87.5% vs  75.0%, better on 2, worse on 1, p 0.5000
+    M2 carry3    vs baseline   87.5% vs  50.0%, better on 3, worse on 0, p 0.1250
+    M2 scrambled vs shifting   50.0% vs  75.0%, better on 0, worse on 2, p 1.0000
+    M2 scrambled vs baseline   50.0% vs  50.0%, better on 0, worse on 0, p 1.0000
+
+========================================================================================================
+PRE-REGISTERED VERDICTS (decided on M1; a pass on M2 or M3 alone is a 'secondary sign', never a confirmation;
+every other outcome is 'not shown at this scale', never 'disproved')
+  [DRY RUN: verdict machinery only; these verdicts mean nothing]
+  The owner's numbers matter (N1):
+      secondary sign only (passes on M3, not on M1): not a confirmation
+  The sequence itself matters (N1, N2 and N3):
+      secondary sign only (passes on M3, not on M1): not a confirmation
+  47 in the 17 slot helps (N4):
+      not shown at this scale
+  The owner's recharge rule helps (num_charge17 in F1; R1 decides the credit):
+      not shown at this scale
+  Useful for the project (any config passes F1):
+      not shown at this scale
+
+  Expectation written before the run (not part of the verdict): ties with shifting on M1, as all marker
+  methods have tied so far, and num_seq about equal to num_seqrev.
+
+LIMITS: tiny model, 3 seeds, 100 pairs; only large effects can be detected. word_values were computed on all
+verses, held-out ones included (kept as before for comparability; flagged for M3).
+
+CONTROL REPRODUCTION CHECK (the stored control scores are reused unchanged; this re-scores saved control
+models with the same code paths to check the setup matches)
+  M1/shifting/seed0            REPRODUCED EXACTLY  method_comparison.score vs stored v2_judge
+  M1/baseline/seed0            REPRODUCED EXACTLY  confirm.score_baseline vs stored v2_judge
+  M2/shifting/seed0/B          REPRODUCED EXACTLY  judge_marked, version B
