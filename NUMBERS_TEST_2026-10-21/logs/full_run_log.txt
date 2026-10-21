@@ -287,3 +287,6 @@
 == [18:37:10] training num_seq seed 0 (1500 steps, 30,479 verses, vocab 8,581)
     step   500  loss 3.767  (274s)
     step  1000  loss 3.366  (537s)
+    step  1500  loss 3.189  (803s)
+  [18:50:37] saved /home/user/utensil-theories-transfer-protocol/experiments/models/num_seq_seed0_steps1500.pt  (807s)
+  [18:50:43] M1 num_seq/seed0: judge 66/100, consequence 55/100  (6s)
