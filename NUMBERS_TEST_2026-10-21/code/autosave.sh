@@ -11,7 +11,6 @@ save() {
   if ! git diff --cached --quiet; then
     git commit -q -m "Numbers test: partial results ($1)
 
-Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01VCh7XeJpj5JpCzQtSzh7gK"
     for wait in 2 4 8 16; do
       git pull -q --rebase --autostash origin $BRANCH && git push -q origin $BRANCH && break
