@@ -1,0 +1,170 @@
+
+== judging ==
+  shifting judging, 3 runs: [67.0, 72.0, 67.0] (mean 68.7)
+      [results_confirm.json shifting/seed*/v2_judge]
+  shifting consequences, 3 runs: [50.0, 55.0, 55.0] (mean 53.3)
+      [results_confirm.json shifting/seed*/v2_shift]
+  baseline judging, 3 runs: [49.0, 60.0, 40.0] (mean 49.7)
+      [results_confirm.json baseline/seed*/v2_judge]
+  baseline consequences, 3 runs: [62.0, 55.0, 61.0] (mean 59.3)
+      [results_confirm.json baseline/seed*/v2_shift]
+  scrambled judging, 3 runs: [56.0, 42.0, 60.0] (mean 52.7)
+      [results_confirm.json scrambled/seed*/v2_judge]
+  scrambled consequences, 3 runs: [49.0, 55.0, 50.0] (mean 51.3)
+      [results_confirm.json scrambled/seed*/v2_shift]
+
+== methods ==
+  shifting judging (exp 10): [67.0, 72.0, 67.0] (mean 68.7)
+      [results_methods.json shifting/seed*/v2_judge]
+  label judging (exp 10): [71.0, 69.0, 63.0] (mean 67.7)
+      [results_methods.json label/seed*/v2_judge]
+  carry3 judging (exp 10): [66.0, 72.0, 74.0] (mean 70.7)
+      [results_methods.json carry3/seed*/v2_judge]
+  baseline judging (exp 10): [49.0, 60.0, 40.0] (mean 49.7)
+      [results_methods.json baseline/seed*/v2_judge]
+  scrambled judging (exp 10): [56.0, 42.0, 60.0] (mean 52.7)
+      [results_methods.json scrambled/seed*/v2_judge]
+
+== long_story ==
+  shifting condition B: [59.0, 56.0, 63.0] (mean 59.3), ties per run [70, 70, 54]
+      [results_long_story.json shifting/seed*/B/correct]
+  shifting condition A: [45.0, 57.0, 62.5] (mean 54.8), ties per run [68, 80, 53]
+      [results_long_story.json shifting/seed*/A/correct]
+  shifting condition short: [67.0, 72.0, 67.0] (mean 68.7), ties per run [0, 0, 0]
+      [results_long_story.json shifting/seed*/short/correct]
+  label condition B: [54.5, 51.0, 54.0] (mean 53.2), ties per run [91, 96, 82]
+      [results_long_story.json label/seed*/B/correct]
+  label condition A: [73.0, 51.0, 97.0] (mean 73.7), ties per run [54, 96, 6]
+      [results_long_story.json label/seed*/A/correct]
+  label condition short: [71.0, 69.0, 63.0] (mean 67.7), ties per run [0, 0, 0]
+      [results_long_story.json label/seed*/short/correct]
+  carry3 condition B: [59.0, 63.5, 59.0] (mean 60.5), ties per run [58, 61, 54]
+      [results_long_story.json carry3/seed*/B/correct]
+  carry3 condition A: [71.5, 58.5, 54.5] (mean 61.5), ties per run [51, 63, 59]
+      [results_long_story.json carry3/seed*/A/correct]
+  carry3 condition short: [66.0, 72.0, 74.0] (mean 70.7), ties per run [0, 0, 0]
+      [results_long_story.json carry3/seed*/short/correct]
+  baseline condition B: [50.0, 50.0, 50.0] (mean 50.0), ties per run [100, 100, 100]
+      [results_long_story.json baseline/seed*/B/correct]
+  baseline condition A: [50.0, 50.0, 50.0] (mean 50.0), ties per run [100, 100, 100]
+      [results_long_story.json baseline/seed*/A/correct]
+  baseline condition short: [49.0, 60.0, 40.0] (mean 49.7), ties per run [0, 0, 0]
+      [results_long_story.json baseline/seed*/short/correct]
+  scrambled condition B: [50.5, 43.5, 52.0] (mean 48.7), ties per run [91, 43, 46]
+      [results_long_story.json scrambled/seed*/B/correct]
+  scrambled condition A: [44.5, 49.5, 57.0] (mean 50.3), ties per run [85, 53, 52]
+      [results_long_story.json scrambled/seed*/A/correct]
+  scrambled condition short: [56.0, 42.0, 60.0] (mean 52.7), ties per run [0, 0, 0]
+      [results_long_story.json scrambled/seed*/short/correct]
+  B, pairs answered (not a tie), 300 in all: carry answered 106 (right 81); label answered 31 (right 25)
+      [results_long_story.json shifting|label/seed*/B/correct]
+  B, pairs both answered: 16 pairs: carry right 13, label right 13
+      [results_long_story.json shifting|label/seed*/B/correct]
+
+== small_tests ==
+  Exp 7 shifting word, consequence pairs (20): [70.0, 65.0] (mean 67.5)
+      [results_shifting_word.json shifting_word/*/self_shift]
+  Exp 7 scrambled control (20): [50.0, 55.00000000000001] (mean 52.5)
+      [results_shifting_word.json scrambled_control/*/self_shift]
+  Exp 6 tiny transformer, consequences (20): 45%
+      [results_transformer.json full/seed0/steps1500/shift]
+
+== aesop ==
+  stories, same-format pairs: 52.3
+      [results_aesop.txt summary table]
+  novels, same-format pairs: 54.1
+      [results_aesop.txt summary table]
+  stories_shuffled, same-format pairs: 53.1
+      [results_aesop.txt summary table]
+  bible, same-format pairs: 43.6
+      [results_aesop.txt summary table]
+  rules, same-format pairs: 50.0
+      [results_aesop.txt summary table]
+  narrative, same-format pairs: 56.5
+      [results_aesop.txt summary table]
+  verdict line: P1  stories beats 50%: no (p = 0.3298)
+      [results_aesop.txt PRE-REGISTERED VERDICT]
+  verdict line: P1  novels beats 50%: no (p = 0.2114)
+      [results_aesop.txt PRE-REGISTERED VERDICT]
+  verdict line: P1  stories_shuffled beats 50%: no (p = 0.2834)
+      [results_aesop.txt PRE-REGISTERED VERDICT]
+  verdict line: P1  bible beats 50%: no (p = 0.8921)
+      [results_aesop.txt PRE-REGISTERED VERDICT]
+  verdict line: P2 : stories - novels = -0.018  (largest seed-to-seed gap 0.049); fable-level p = 0.6147, model-level p = 0.5571  -> NOT CONFIRMED
+      [results_aesop.txt PRE-REGISTERED VERDICT]
+  verdict line: P2b: stories - stories_shuffled = -0.007  (largest seed-to-seed gap 0.086); fable-level p = 0.5942, model-level p = 0.3571  -> NOT CONFIRMED
+      [results_aesop.txt PRE-REGISTERED VERDICT]
+  verdict line: P3  stories beat 50% on no-clue pairs: NOT CONFIRMED (inconclusive, low power) (p = 0.0645)
+      [results_aesop.txt PRE-REGISTERED VERDICT]
+
+== compression ==
+  R0_raw: 83757 bytes, 8.000 bits/char, exact True
+      [results_understanding.json rungs/R0_raw]
+  R1_zlib9: 28565 bytes, 2.728 bits/char, exact True
+      [results_understanding.json rungs/R1_zlib9]
+  R1_xz9e: 26420 bytes, 2.523 bits/char, exact True
+      [results_understanding.json rungs/R1_xz9e]
+  R4_word_freq: 19773 bytes, 1.889 bits/char, exact True
+      [results_understanding.json rungs/R4_word_freq]
+  R5_word_pairs: 14864 bytes, 1.420 bits/char, exact True
+      [results_understanding.json rungs/R5_word_pairs]
+  R6_baseline_seed0: 12252 bytes, 1.170 bits/char, exact True
+      [results_understanding.json rungs/R6_baseline_seed0]
+  R6_baseline_seed1: 12153 bytes, 1.161 bits/char, exact True
+      [results_understanding.json rungs/R6_baseline_seed1]
+  R6_baseline_seed2: 12189 bytes, 1.164 bits/char, exact True
+      [results_understanding.json rungs/R6_baseline_seed2]
+  pre-registered: shifting vs baseline: +3.45 bits per verse, p = 1.0, NOT CONFIRMED
+      [results_understanding.json preregistered]
+
+== numbers ==
+  models finished: 3 of 18 (num_charge17/seed0, num_seq/seed0, num_seqrev/seed0)
+      [results_numbers.json M1 keys; meta/frozen CONFIGS x seeds]
+  num_charge17/seed0 judging (partial, no verdict): 66
+      [results_numbers.json M1/num_charge17/seed0/v2_judge]
+  num_seq/seed0 judging (partial, no verdict): 66
+      [results_numbers.json M1/num_seq/seed0/v2_judge]
+  num_seqrev/seed0 judging (partial, no verdict): 62
+      [results_numbers.json M1/num_seqrev/seed0/v2_judge]
+
+== git ==
+  99622d3 long-story rules saved: 2026-10-18T03:44:42+00:00 Pre-register long-story test: does the carried balance help once the act is out of view?
+      [git log]
+  c93f383 long-story fix: ties count 0.5: 2026-10-18T03:45:54+00:00 Long-story test: count exact ties as 0.5 (found after first model scored 0/100)
+      [git log]
+  6fc220d long-story fix: first marker out of view: 2026-10-18T03:51:38+00:00 Long-story test: push the first marker out of view too (design fix during run 1)
+      [git log]
+  6e365ef exp 10 rules saved: 2026-10-18T02:17:19+00:00 Pre-register method comparison: shifting word vs plain good/bad label vs 3-spelling carry
+      [git log]
+  01b9050 exp 11 write-up (message says 'L2 confirmed'): 2026-10-18T04:04:22+00:00 Experiment 11 write-up: carried balance beats plain label on long everyday-act stories (L2 confirmed)
+      [git log]
+
+== CLAIM CHECKS (handoff wording vs raw data) ==
+  MATCH   Labeling right/wrong: judging about 69 vs 50 per 100
+          computed: 68.7 vs 49.7
+  MATCH   ...in all 3 runs
+          computed: shifting > no marker in each run: True
+  MATCH   Exp 10: shifting word ties the plain label on short stories (about 68-71% each)
+          computed: shifting 68.7, label 67.7
+  MATCH   Long stories, everyday act: carry 59 vs label 53
+          computed: 59.3 vs 53.2
+  MATCH   Stated verdict (A): label won (73, 51, 97)
+          computed: label [73.0, 51.0, 97.0] vs shifting [45.0, 57.0, 62.5]
+  MATCH   Drift check (22 Oct): the gap comes from answering more often, not judging better
+          computed: both answered 16: carry 13 vs label 13 right
+  MATCH   Exp 7: 68% vs 52% scrambled on 20 stories
+          computed: 67.5 vs 52.5
+  MATCH   Exp 6: chance on consequences (45-55%)
+          computed: 45%
+  MATCH   Aesop: folk tales 52.3, novels 54.1, shuffled 53.1, Bible 43.6
+          computed: stories 52.3, novels 54.1, stories_shuffled 53.1, bible 43.6
+  MATCH   Compression ladder: 8.0 -> 1.17 bits per character
+          computed: raw 8.000 -> transformer mean 1.165
+  MATCH   Tiny model seed is less than half of xz
+          computed: ratio 0.46
+  MATCH   Shifting word did not help compression (about +3.45 bits/verse, NOT CONFIRMED)
+          computed: +3.45, NOT CONFIRMED
+  MATCH   Numbers test paused at 3 of 18 models
+          computed: 3 of 18
+
+13 claims checked, 0 differ.
