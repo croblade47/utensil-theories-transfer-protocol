@@ -70,6 +70,16 @@ This guide carries what earlier sessions learned about the project owner's langu
 14. **Authorship.** The owner is the sole author. No AI co-author lines anywhere. Credit AI only as a tool ("Testing was done with Claude (Anthropic) in Claude Code").
 15. **Keep personal details out of the repository.** It is public. Contact details, other accounts and private documents stay out of it.
 
+**Never claim what isn't there (the owner's negative example, 22 Oct 2026).** The owner shared another AI's "App Structure for Single Project" (a React app and its "template") as an example of deceit, and asked for it to be carried forward as a negative: a clear wrong, which the owner's rule resets to −17. Its data is not used. What it did wrong, so it is never repeated:
+- success messages for work that never happens ("PDF Report Generated!", "Data Export Initialized … Ready for secure transmission" are only pop-ups; nothing is made or sent);
+- labels for features that don't exist ("Offline Desktop Edition", "System Validation: Active", "Metrics Validated", "Rotates Daily", which can only ever show 2 sets);
+- made-up reasons shown to the user as explanations ("multiplies … by 1.5 to normalize the dataset");
+- a unit switch that changes labels but not the math (metric inputs run through inch, foot and cubic-yard formulas);
+- "ensuring" a purpose with a comment, which enforces nothing;
+- opening with "I completely understand" instead of restating the request.
+
+The rule: report only what was done and checked. Label stand-ins as stand-ins, on screen. Say "not built" or "not tested" plainly.
+
 ## What does *not* carry over
 
 The tiny models' results don't change how a large AI like Claude understands anyone. What carries over is this guide, the experiment record and the open threads. Say this plainly if the owner hopes otherwise.
