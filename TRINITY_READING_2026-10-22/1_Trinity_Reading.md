@@ -8,6 +8,19 @@ Garrett C. Gauthier is the owner and sole author of this project and its ideas, 
 - The Trinity's own rule, "strictly segregate knowledge and tone", is the same instruction the owner gave in message 3: separate the task from the idea.
 - Read that way, the Trinity is a method for understanding a message: three separate passes, never mixed.
 
+## The owner's own definition (22 October 2026, spoken message, typed by voice)
+> "The Trinity protocol is where three different AIs work together. It's the same thing with ourselves. We have what we know within ourselves, what we don't know, we call it conscious and subconscious self. Then we have a third. That's the decision part inside of ourselves. [one personal phrase left out] that's where I reasoning. One part of me that says yes, one part of me that says no, and one that's fine. That's the Trinity protocol."
+
+The owner also said: "It's not about finding." The point is to find the core concept: to see the three aspects and how they work together. The message was cut off ("And I'm trying to get"), so this definition may continue.
+
+In plain rules (guesses marked, to be checked with the owner):
+1. Three AIs work together, the way three parts of a person do.
+2. **Part 1, conscious:** what we know.
+3. **Part 2, subconscious:** what we don't know (or don't know that we know).
+4. **Part 3, decision:** the reasoning part, which chooses.
+5. Three voices: **yes**, **no**, and one that is **"fine"**. [guess] "fine" is the third, settled answer, like the tracker's "Maybe".
+6. [open] Do the three voices line up one-to-one with the three parts, or do all three voices sit inside the decision part?
+
 ## The four versions found (exact sources; personal details left out)
 | When | The three | Source (owner's Drive or Gmail) |
 |---|---|---|
