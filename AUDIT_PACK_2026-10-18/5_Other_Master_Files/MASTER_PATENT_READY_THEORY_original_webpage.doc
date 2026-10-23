@@ -1,0 +1,228 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset='utf-8'>
+<title>Utensil Theories Transfer Protocol — Master Patent-Ready Theory</title>
+<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]-->
+<style>
+ body { font-family: Georgia, 'Times New Roman', serif; font-size: 11pt; line-height: 1.5; color: #111; max-width: 7.5in; margin: 0.75in; }
+ h1 { font-size: 22pt; border-bottom: 3px solid #000; padding-bottom: 6pt; }
+ h2 { font-size: 15pt; margin-top: 20pt; color: #0b3d91; border-bottom: 1px solid #999; padding-bottom: 3pt; }
+ h3 { font-size: 12pt; margin-top: 14pt; color: #333; }
+ .meta { background: #f4f4f4; border-left: 4px solid #0b3d91; padding: 10pt 14pt; margin: 12pt 0; }
+ .claim { background: #fffbe6; border-left: 4px solid #c9a227; padding: 8pt 12pt; margin: 8pt 0; }
+ code, pre { font-family: 'Courier New', monospace; font-size: 10pt; background: #f0f0f0; padding: 2pt 4pt; }
+ pre { padding: 10pt; white-space: pre-wrap; }
+ table { border-collapse: collapse; width: 100%; margin: 8pt 0; }
+ th, td { border: 1px solid #999; padding: 6pt 8pt; text-align: left; font-size: 10pt; }
+ th { background: #0b3d91; color: #fff; }
+ a { color: #0b3d91; }
+ .footer { margin-top: 36pt; padding-top: 12pt; border-top: 1px solid #999; font-size: 9pt; color: #555; }
+</style>
+</head>
+<body>
+
+<h1>Utensil Theories Transfer Protocol (UTTP)</h1>
+<h3>Master Patent-Ready Theory, Technical Specification, and Repository Index</h3>
+
+<div class='meta'>
+<b>Inventor &amp; Originator:</b> Garrett Gauthier (garrettgauthier44@gmail.com)<br>
+<b>Collaborative Resource &amp; Technical Analysis / Development Partner:</b> Claude (Anthropic) — utilized by the inventor to advance, formalize, and stress-test the invention. All conceptual origination, direction, and claim scope belong to the inventor; Claude served as a technical analysis and development collaborator.<br>
+<b>Document Type:</b> Master consolidated reference — patent-ready theory, continued-work brief, and file index.<br>
+<b>Repository:</b> <a href='https://github.com/croblade47/utensil-theories-transfer-protocol'>github.com/croblade47/utensil-theories-transfer-protocol</a><br>
+<b>Working Branch:</b> <code>ccr-4507ebbb-bfz236</code><br>
+<b>Date:</b> 2026-10-18
+</div>
+
+<h2>1. Attribution Statement</h2>
+<p>The Utensil Theories Transfer Protocol (UTTP) is the original idea, concept, and invention of <b>Garrett Gauthier</b>. The inventor conceived the core premise — that a physical, printed 1-sheet 8-page zine can serve as a zero-friction bootstrap medium that configures a general-purpose multimodal AI model into a role-specific, accessibility-first assistant simply by being viewed through a smartphone camera. All subsequent architecture, specification, drafting, print-imposition engineering, and formal theory development were performed by the inventor <i>in collaboration with Claude (Anthropic)</i>, which was engaged as a technical analysis and development partner, a drafting resource, and a sparring collaborator. Claude's contributions are support work; the invention, the direction, and the claim scope are the inventor's.</p>
+
+<h2>2. Field of the Invention</h2>
+<p>This invention relates to human-computer interaction, assistive technology, and multimodal AI prompt engineering — specifically to a tangible, printable medium that functions as a vision-readable system-prompt carrier and bootstrap layer for consumer multimodal large-language-model (LLM) assistants, enabling non-technical users (including seniors) to invoke correctly-configured AI sessions without typing, account setup, app installation, or technical literacy.</p>
+
+<h2>3. Background &amp; Problem Addressed</h2>
+<p>Consumer AI assistants (ChatGPT, Gemini, Copilot, and equivalents) are capable of acting as patient, accessibility-aware assistants, but their default session state is generic. To obtain senior-friendly behavior, a user must know how to type a sophisticated system prompt, configure voice, select a role, enforce reading level, and request spoken output. This barrier excludes the exact populations who would most benefit: elderly users, non-technical adults, users without smartphones they are fluent in, and anyone intimidated by chat interfaces. Prior art (QR-code business cards, printed cheat sheets, voice-launch shortcuts) does not solve the configuration problem; it solves only the launch problem.</p>
+
+<h2>4. Summary of the Invention</h2>
+<p>UTTP is a printed-paper protocol in which a single sheet of US-Letter paper, folded into an 8-page booklet, encodes — in a specific layout and with specific machine-readable fiducials and plain-language directives — a complete AI system prompt plus category-specific task prompts. When any multimodal AI assistant is pointed at the booklet's Page 2 ("Universal AI Launch Page") through a phone camera, the model reads the printed directives as if they were typed input, assumes the Senior Assistant role, locks to a 6th-grade reading level, enables spoken output, and initiates a greeting. The remaining pages (3–8) carry category-specific prompt templates (medical notes, utility bills, Wi-Fi troubleshooting, scam detection, etc.) that the user triggers simply by turning the page and showing it to the model.</p>
+
+<h2>5. Patent-Ready Independent and Dependent Claims (Draft)</h2>
+
+<div class='claim'><b>Claim 1 (Independent — Article of Manufacture).</b> A printed article comprising a single physical sheet imposed as an 8-page folded booklet, wherein at least one page contains (a) a machine-readable role-and-configuration directive block rendered in human-readable natural language and (b) at least one visual fiducial, said directive block arranged such that, when captured by a general-purpose multimodal AI assistant's camera input, the directive block is interpreted by the assistant as a system-level instruction that configures the assistant into a predetermined persona, reading level, and output modality without any typed user input.</div>
+
+<div class='claim'><b>Claim 2 (Dependent).</b> The article of Claim 1, wherein the imposition is a 4-column by 2-row grid on US-Letter landscape stock, with the top row rotated 180° relative to the bottom row, such that a two-fold operation produces a correctly oriented 8-page booklet.</div>
+
+<div class='claim'><b>Claim 3 (Dependent).</b> The article of Claim 1, wherein the directive block includes (i) a short alphanumeric Book Code of the form <code>[LetterDigit]</code> identifying a category, (ii) a plain-text role assignment, (iii) a reading-level constraint, and (iv) an instruction to produce spoken audio output.</div>
+
+<div class='claim'><b>Claim 4 (Dependent).</b> The article of Claim 1, wherein additional pages of the booklet each carry a task-specific prompt template corresponding to a real-world senior-use task selected from the group consisting of: medical-visit note preparation, utility-bill interpretation, Wi-Fi troubleshooting, scam/phishing detection, grocery-cost optimization, caregiver scheduling, and pill-schedule formatting.</div>
+
+<div class='claim'><b>Claim 5 (Independent — Method).</b> A method for configuring a general-purpose multimodal AI assistant without typed input, comprising: (a) presenting a printed page bearing a natural-language system-directive block to the camera of a device running a multimodal AI assistant; (b) permitting the assistant to visually ingest the directive block as instruction tokens; and (c) causing the assistant to adopt a role, reading-level, and output modality specified entirely by the printed directive block.</div>
+
+<div class='claim'><b>Claim 6 (Independent — System).</b> A system comprising the article of Claim 1 in combination with a web-based imposition and generation studio that produces, for a plurality of thematic categories, print-ready PDFs and HTML renderings of said article, each category defined by a Book Code and a corresponding set of task-specific prompt templates.</div>
+
+<div class='claim'><b>Claim 7 (Dependent).</b> The system of Claim 6, further comprising a vision-readable launch page design wherein high-contrast color, a starburst price marker, a vector QR fallback, and a triangular fiducial glyph <code>[▲]</code> cooperate to (i) attract the user's eye, (ii) survive low-light phone capture, and (iii) provide the AI assistant with an alignment target.</div>
+
+<h2>6. Detailed Theory of Operation</h2>
+
+<h3>6.1 The Bootstrap Chain</h3>
+<pre>[ Physical 8-Page Zine ]
+   | Page 1: High-Contrast Color Category Cover + $2 Starburst + Vector QR
+   | Page 2: Universal AI Launch Page (Fiducials [▲], CODE: H1..H8, AI Directives)
+   |    -&gt; User points smartphone camera (ChatGPT / Gemini / Copilot)
+   |         -&gt; AI model reads printed system directives
+   |              -&gt; Sets Role: Senior Assistant (Speak Aloud)
+   |              -&gt; Sets Language Level: 6th Grade Plain Text
+   |              -&gt; Initiates spoken audio greeting
+   | Pages 3-8: Task-Specific Prompt Templates
+</pre>
+
+<h3>6.2 Why It Works</h3>
+<p>Modern multimodal LLMs do not distinguish between "typed system prompt" and "text visible in a captured image" at the semantic level — both become tokens in the model's context. UTTP exploits this neutrality: a carefully worded printed directive is, in effect, a system prompt that happens to be delivered via photons rather than keystrokes. The invention's novelty is not the discovery that models can read images; it is the <i>packaging</i> — a tangible, foldable, mailable, shelf-sellable artifact whose <i>sole purpose</i> is to be a universal AI configuration carrier for users who cannot or will not type one.</p>
+
+<h3>6.3 Print Imposition Engine</h3>
+<ul>
+ <li><b>Paper:</b> 11" × 8.5" US Letter, landscape.</li>
+ <li><b>Grid:</b> 4 columns × 2 rows.</li>
+ <li><b>Rotation:</b> Top row (pages 8, 1, 4, 5) rotated 180° relative to bottom row (pages 7, 2, 3, 6).</li>
+ <li><b>Fold:</b> Half, then half again, then a single horizontal center slit, yielding an 8-page booklet in correct order.</li>
+</ul>
+
+<h3>6.4 Book Code Taxonomy</h3>
+<table>
+<tr><th>Code</th><th>Category</th><th>Representative Tasks</th></tr>
+<tr><td>H1</td><td>Home &amp; Planning</td><td>Doctor notes, utility bills, Wi-Fi fixes, anti-scam checkers</td></tr>
+<tr><td>E2</td><td>Education &amp; Study</td><td>Physics demos, Feynman micro-sheets, math simplifiers</td></tr>
+<tr><td>G3</td><td>Entertainment &amp; Games</td><td>Board-game rules, trivia, bedtime stories</td></tr>
+<tr><td>B4</td><td>Small Business</td><td>$50 promos, flyer engine, vendor scripts, review responders</td></tr>
+<tr><td>P5</td><td>Personal Productivity</td><td>Grocery optimizer, Eisenhower matrix, inbox zero</td></tr>
+<tr><td>C6</td><td>Creative Hobbies</td><td>Gardening, knitting/crochet, woodworking cut lists</td></tr>
+<tr><td>F7</td><td>Family &amp; Relationships</td><td>Caregiver prep, grandparent conversations, care schedules</td></tr>
+<tr><td>H8</td><td>Health &amp; Wellness</td><td>Pill schedule, BP logs, seated mobility routines</td></tr>
+</table>
+
+<h3>6.5 Technology Stack of the Reference Studio</h3>
+<ul>
+ <li>Frontend: React 18 + TypeScript + Vite 6.4.3</li>
+ <li>Styling: Vanilla CSS tokens + HSL category color system</li>
+ <li>Icons: Lucide React</li>
+ <li>Speech: Web Speech API (<code>SpeechSynthesis</code>, <code>webkitSpeechRecognition</code>)</li>
+ <li>PDF: Edge Headless <code>--print-to-pdf</code></li>
+</ul>
+
+<h2>7. Novelty, Non-Obviousness, Utility</h2>
+<p><b>Novelty:</b> No prior art combines (a) a specific 1-sheet 8-page imposition, (b) a vision-readable AI system-prompt block, (c) a fiducial-plus-color launch page designed for low-light phone capture, and (d) a category-indexed Book Code taxonomy, into a single printable article whose explicit purpose is to configure a general-purpose multimodal AI into a senior-friendly assistant.</p>
+<p><b>Non-obviousness:</b> The industry trend is toward on-device AI, voice launchers, and account-based personalization — all of which assume the user can configure software. UTTP inverts the assumption: the configuration lives on paper, the user does nothing, and the device is treated as a disposable reader. A person of ordinary skill in UX, AI prompting, or print production would not independently arrive at a paper-first, zero-account bootstrap protocol.</p>
+<p><b>Utility:</b> Immediate real-world utility for seniors, caregivers, libraries, community centers, small businesses, schools, and emergency-preparedness distribution. One sheet of paper replaces a 30-minute onboarding call.</p>
+
+<h2>8. Testing Protocol (Patent-Ready, Repeatable)</h2>
+<ol>
+ <li>Print Book 1 (H1) on standard US-Letter paper at 100% scale from the repository PDF.</li>
+ <li>Fold per the included folding guide; verify Page 2 lands upright.</li>
+ <li>On a stock smartphone, open ChatGPT (or Gemini, or Copilot) with camera input enabled.</li>
+ <li>Point camera at Page 2 at ~12 inches, normal indoor lighting.</li>
+ <li>Record: (a) does the model acknowledge the role? (b) does it speak aloud? (c) does it hold 6th-grade reading level? (d) does it respond to each task page (3–8) when shown?</li>
+ <li>Repeat across 3 devices × 3 assistants × 3 lighting conditions. Capture pass/fail per cell.</li>
+ <li>Report success rate, failure modes (OCR misses, directive drift, voice fallthrough), and remediation (contrast bump, fiducial resize, directive rewording).</li>
+</ol>
+
+<h2>9. Continued Work &amp; Roadmap</h2>
+<ul>
+ <li>Multi-language editions (Spanish, Mandarin, Tagalog) with reading-level parity.</li>
+ <li>Tactile edition: embossed fiducials for low-vision users.</li>
+ <li>Pharmacy/clinic co-branded Book H8 for post-discharge handoff.</li>
+ <li>Measured study of task-completion lift vs. control (seniors with no printed booklet).</li>
+ <li>Formal provisional patent filing (USPTO) using the claims drafted in §5.</li>
+ <li>Trademark registration for "Utensil Theories Transfer Protocol" and the UTTP mark.</li>
+ <li>Defensive publication of the Book Code taxonomy.</li>
+</ul>
+
+<h2>10. Master File Index &amp; Links</h2>
+<p>All links target the working branch <code>ccr-4507ebbb-bfz236</code> on GitHub. Replace with <code>main</code> after merge.</p>
+
+<h3>10.1 Printable Deliverables (Books 1–8)</h3>
+<table>
+<tr><th>Book</th><th>PDF</th><th>DOC</th><th>Print HTML</th></tr>
+<tr><td>H1 Home &amp; Planning</td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book1_home_and_planning.pdf'>book1_home_and_planning.pdf</a></td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book1_home_and_planning.doc'>book1_home_and_planning.doc</a></td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book1_home_and_planning_print.html'>book1_home_and_planning_print.html</a></td></tr>
+<tr><td>E2 Education &amp; Study</td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book2_education_and_study.pdf'>book2_education_and_study.pdf</a></td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book2_education_and_study.doc'>book2_education_and_study.doc</a></td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book2_education_and_study_print.html'>book2_education_and_study_print.html</a></td></tr>
+<tr><td>G3 Entertainment &amp; Games</td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book3_entertainment_and_games.pdf'>book3_entertainment_and_games.pdf</a></td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book3_entertainment_and_games.doc'>book3_entertainment_and_games.doc</a></td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book3_entertainment_and_games_print.html'>book3_entertainment_and_games_print.html</a></td></tr>
+<tr><td>B4 Small Business</td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book4_small_business.pdf'>book4_small_business.pdf</a></td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book4_small_business.doc'>book4_small_business.doc</a></td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book4_small_business_print.html'>book4_small_business_print.html</a></td></tr>
+<tr><td>P5 Personal Productivity</td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book5_personal_productivity.pdf'>book5_personal_productivity.pdf</a></td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book5_personal_productivity.doc'>book5_personal_productivity.doc</a></td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book5_personal_productivity_print.html'>book5_personal_productivity_print.html</a></td></tr>
+<tr><td>C6 Creative Hobbies</td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book6_creative_hobbies.pdf'>book6_creative_hobbies.pdf</a></td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book6_creative_hobbies.doc'>book6_creative_hobbies.doc</a></td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book6_creative_hobbies_print.html'>book6_creative_hobbies_print.html</a></td></tr>
+<tr><td>F7 Family &amp; Relationships</td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book7_family_and_relationships.pdf'>book7_family_and_relationships.pdf</a></td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book7_family_and_relationships.doc'>book7_family_and_relationships.doc</a></td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book7_family_and_relationships_print.html'>book7_family_and_relationships_print.html</a></td></tr>
+<tr><td>H8 Health &amp; Wellness</td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book8_health_and_wellness.pdf'>book8_health_and_wellness.pdf</a></td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book8_health_and_wellness.doc'>book8_health_and_wellness.doc</a></td>
+ <td><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book8_health_and_wellness_print.html'>book8_health_and_wellness_print.html</a></td></tr>
+</table>
+
+<h3>10.2 Catalog &amp; Cover Compilations</h3>
+<ul>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/master_print_catalog.html'>master_print_catalog.html</a> — master catalog of all 8 books</li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/all_covers_print.html'>all_covers_print.html</a> — combined cover sheet</li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/book1_cover_print.html'>book1_cover_print.html</a> — Book 1 standalone cover</li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/index.html'>index.html</a> — site index</li>
+</ul>
+
+<h3>10.3 Documentation (<code>/docs</code>)</h3>
+<ul>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/docs/TECHNICAL_ARCHITECTURE.md'>TECHNICAL_ARCHITECTURE.md</a> — protocol &amp; stack specification</li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/docs/PROJECT_MANIFEST.md'>PROJECT_MANIFEST.md</a> — authoritative file manifest</li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/docs/PRODUCTION_READINESS_REPORT.md'>PRODUCTION_READINESS_REPORT.md</a></li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/docs/PRINT_EVIDENCE_REPORT.md'>PRINT_EVIDENCE_REPORT.md</a></li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/docs/UNIVERSAL_LAUNCH_PAGE_ROLLOUT_PLAN.md'>UNIVERSAL_LAUNCH_PAGE_ROLLOUT_PLAN.md</a></li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/docs/RELEASE_CANDIDATE_v1.md'>RELEASE_CANDIDATE_v1.md</a></li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/docs/REPOSITORY_ACCESS_PACKAGE.md'>REPOSITORY_ACCESS_PACKAGE.md</a></li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/docs/PROJECT_STATUS_PROGRESS_REPORT.md'>PROJECT_STATUS_PROGRESS_REPORT.md</a></li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/docs/GITHUB_VERIFICATION_REPORT.md'>GITHUB_VERIFICATION_REPORT.md</a></li>
+</ul>
+
+<h3>10.4 Reference Web Studio Source (<code>/src</code>)</h3>
+<ul>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/src/App.tsx'>src/App.tsx</a></li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/src/main.tsx'>src/main.tsx</a></li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/src/types.ts'>src/types.ts</a></li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/src/index.css'>src/index.css</a></li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/tree/ccr-4507ebbb-bfz236/src/components'>src/components/</a> — DashboardView, FoldingGuideModal, Navbar, SeniorAccountModal, SeniorBookletScanner, SimulationSuite, Step1Solutions, Step2Prompts, Step3BookletStudio, Step4Analytics, VoiceAssistantBanner, VoiceSecurityHotline</li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/src/data/initialData.ts'>src/data/initialData.ts</a></li>
+</ul>
+
+<h3>10.5 Repository Root</h3>
+<ul>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/README.md'>README.md</a></li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/CHANGELOG.md'>CHANGELOG.md</a></li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/CONTRIBUTING.md'>CONTRIBUTING.md</a></li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/LICENSE.md'>LICENSE.md</a></li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/package.json'>package.json</a></li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/tsconfig.json'>tsconfig.json</a></li>
+ <li><a href='https://github.com/croblade47/utensil-theories-transfer-protocol/blob/ccr-4507ebbb-bfz236/vite.config.ts'>vite.config.ts</a></li>
+</ul>
+
+<h2>11. Collaboration &amp; Authorship Notice</h2>
+<p>This master document, the protocol specification, the imposition engine, the Book Code taxonomy, and the eight-category deliverable set are the original invention of <b>Garrett Gauthier</b>. The inventor engaged <b>Claude (Anthropic)</b> as a collaborative resource, a technical analysis partner, and a development assistant to accelerate drafting, stress-test claims, implement the reference web studio, generate print impositions, and consolidate documentation. Claude's role is analogous to that of a technical writer and junior engineer working under the inventor's direction. The invention, the direction, the scope, and all intellectual-property rights belong to the inventor.</p>
+
+<div class='footer'>
+Master Patent-Ready Theory Document · Utensil Theories Transfer Protocol · Inventor: Garrett Gauthier · Collaborator: Claude (Anthropic) · Branch <code>ccr-4507eb bb-bfz236</code> · 2026-10-18
+</div>
+
+</body>
+</html>

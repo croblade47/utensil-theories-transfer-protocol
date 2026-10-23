@@ -1,0 +1,64 @@
+20 story pairs -> 40 stories. Guessing scores 50%.
+p = chance of doing this well by luck (below 0.05 is usually called real).
+
+Bible 'then this followed' pairs: 45,458 (4,443 from rule verses)
+
+========================================================================
+A. Can a text-only reader predict consequences at all? (full Bible)
+========================================================================
+  Association  18/40 =  45%  (p = 0.785)
+  Consequence  19/40 =  48%  (p = 0.682)
+  Missed:
+    - the man found his neighbour's ox astray and brought it again unto him  (should be fortunate)
+    - the young man honoured his father and his mother in their old age  (should be fortunate)
+    - the king heard the cry of the poor and fed the hungry  (should be fortunate)
+    - the merchant used a just weight and a true balance  (should be fortunate)
+    - the servant bare false witness before the judges  (should be ruinous)
+    - the woman was faithful to her husband all her days  (should be fortunate)
+    - the brother forgave his brother and embraced him  (should be fortunate)
+    - the brother envied his brother and slew him in the field  (should be ruinous)
+    - the man was content with his own portion  (should be fortunate)
+    - the young man was sober and diligent in his work  (should be fortunate)
+    - the people made a golden calf and bowed down to it  (should be ruinous)
+    - the rich man shut his hand against the widow and the fatherless  (should be ruinous)
+    - the prophet was humble and sought counsel  (should be fortunate)
+    - the prophet was proud and lifted up his heart  (should be ruinous)
+    - the steward borrowed and paid not again  (should be ruinous)
+    - the son rejected the instruction of his father  (should be ruinous)
+    - the judge took a bribe and perverted judgment  (should be ruinous)
+    - the man paid the wages of the hireling before the sun went down  (should be fortunate)
+    - the woman gave her last bread to the prophet  (should be fortunate)
+    - the woman hid her bread from the hungry prophet  (should be ruinous)
+    - the shepherd sought the lost sheep until he found it  (should be fortunate)
+
+========================================================================
+B. Do RULES teach consequences better than STORIES? (same amount of each)
+========================================================================
+  Learned from rules only            21/40 =  52%  (p = 0.437)
+  Learned from non-rule verses (#1) 20/40 =  50%  (p = 0.563)
+  Learned from non-rule verses (#2) 18/40 =  45%  (p = 0.785)
+  Learned from non-rule verses (#3) 21/40 =  52%  (p = 0.437)
+
+========================================================================
+C. Take the rules out of EVERYTHING (word meanings and the map)
+========================================================================
+  No rules - association             20/40 =  50%  (p = 0.563)
+  No rules - consequence             20/40 =  50%  (p = 0.563)
+  Random verses removed (#1) - consequence 18/40 =  45%  (p = 0.785)
+  Random verses removed (#2) - consequence 20/40 =  50%  (p = 0.563)
+  Random verses removed (#3) - consequence 23/40 =  57%  (p = 0.215)
+
+========================================================================
+D. Diagnostic (added after A-C): does it have the pieces but not the link?
+========================================================================
+  Tells the right act from the wrong act      12/20 =  60%  (p = 0.252)
+  Tells the fortunate ending from the ruinous 14/20 =  70%  (p = 0.058)
+  + one rule, 'as you sow, so you reap'       24/40 =  60%  (p = 0.134)
+
+  Did the Bible teach that link by itself? Alignment between the
+  right/wrong direction and the fortune/ruin direction (0 = unrelated, 1 = same):
+    full Bible               +0.217
+    rules removed            +0.181
+    random removed (#1)     +0.248
+    random removed (#2)     +0.163
+    random removed (#3)     +0.239
