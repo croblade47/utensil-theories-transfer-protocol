@@ -55,3 +55,15 @@ npm run build
 ## 🛡️ License
 
 Distributed under the MIT License. See [`LICENSE.md`](LICENSE.md) for details.
+
+---
+
+## 🧠 Also in this repo: Metaphor-Driven Security Design (MDSD)
+
+A framework for designing layered security defenses in plain English, by telling stories about attackers and translating the stories into real security moves. Written for people without security training, with a specialist review protocol so the drafts can be finished responsibly.
+
+- **Start here:** [`docs/MDSD_INDEX.md`](docs/MDSD_INDEX.md)
+- **Learn the method:** [`docs/MDSD_HOW_TO_GUIDE.md`](docs/MDSD_HOW_TO_GUIDE.md)
+- **Ten worked examples:** [`docs/MDSD_WORKED_EXAMPLES.md`](docs/MDSD_WORKED_EXAMPLES.md)
+- **Full framework:** [`docs/METAPHOR_SECURITY_FRAMEWORK.md`](docs/METAPHOR_SECURITY_FRAMEWORK.md)
+- **Services and commercial offers:** [`docs/MDSD_LAUNCH_KIT.md`](docs/MDSD_LAUNCH_KIT.md)

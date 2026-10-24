@@ -1,0 +1,101 @@
+{
+  "results": [
+    {
+      "attack": "SQL injection",
+      "passed_through": true,
+      "dwell_ms": 0.0,
+      "damage": 0,
+      "painted": true,
+      "paint_marker": "PAINT-2343B752C57A27A9",
+      "captured_fingerprint": "7a0994d1fdb1c9a9",
+      "blocked_at_front": true
+    },
+    {
+      "attack": "Credential stuffing",
+      "passed_through": true,
+      "dwell_ms": 0.0,
+      "damage": 0,
+      "painted": true,
+      "paint_marker": "PAINT-0ED6C6BA8F9A9F04",
+      "captured_fingerprint": "16894bd95bb740fe",
+      "blocked_at_front": true
+    },
+    {
+      "attack": "Zero-day (unknown)",
+      "passed_through": true,
+      "dwell_ms": 0.0,
+      "damage": 0,
+      "painted": true,
+      "paint_marker": "PAINT-CC7EDC468C17A298",
+      "captured_fingerprint": "11c2ff35620d734f",
+      "blocked_at_front": true
+    },
+    {
+      "attack": "Command injection",
+      "passed_through": true,
+      "dwell_ms": 0.0,
+      "damage": 0,
+      "painted": true,
+      "paint_marker": "PAINT-1E0491B78CEBA2EB",
+      "captured_fingerprint": "dba0b179cd9ff114",
+      "blocked_at_front": true
+    },
+    {
+      "attack": "SSRF",
+      "passed_through": true,
+      "dwell_ms": 0.0,
+      "damage": 0,
+      "painted": true,
+      "paint_marker": "PAINT-95519E6E906D6CC9",
+      "captured_fingerprint": "5c29a6204c55dd89",
+      "blocked_at_front": true
+    },
+    {
+      "attack": "Supply chain insider",
+      "passed_through": false,
+      "dwell_ms": 0.0,
+      "damage": 10000,
+      "painted": true,
+      "paint_marker": "PAINT-BE5124A6A84DD5C9",
+      "captured_fingerprint": "64556c011ee58c1f",
+      "blocked_at_front": false
+    },
+    {
+      "attack": "DDoS flood",
+      "passed_through": true,
+      "dwell_ms": 0.001,
+      "damage": 0,
+      "painted": true,
+      "paint_marker": "PAINT-FB86DC46F6726507",
+      "captured_fingerprint": "35cb53e1c831fba3",
+      "blocked_at_front": true
+    },
+    {
+      "attack": "Replay",
+      "passed_through": true,
+      "dwell_ms": 0.0,
+      "damage": 0,
+      "painted": true,
+      "paint_marker": "PAINT-989674CD404745E1",
+      "captured_fingerprint": "22cdbd89da76fc6d",
+      "blocked_at_front": true
+    },
+    {
+      "attack": "Slow Loris",
+      "passed_through": true,
+      "dwell_ms": 0.0,
+      "damage": 0,
+      "painted": true,
+      "paint_marker": "PAINT-597D36682F167337",
+      "captured_fingerprint": "57b4da843569f865",
+      "blocked_at_front": true
+    }
+  ],
+  "summary": {
+    "total": 9,
+    "worked": 8,
+    "failed": 1,
+    "painted_all": true,
+    "viability_pct": 88.9
+  }
+}
