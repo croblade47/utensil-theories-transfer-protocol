@@ -1,0 +1,100 @@
+{
+  "results": [
+    {
+      "attacker_profile": "Legitimate user (alice)",
+      "badge_valid": true,
+      "reached_phase2": true,
+      "reached_phase3": true,
+      "reached_data_room": true,
+      "trapped_in_vestibule": "",
+      "painted": true,
+      "paint_marker": "PAINT-C7281071B6AFCA87|PAINT-12A93E6EA7564A26",
+      "verdict": "through"
+    },
+    {
+      "attacker_profile": "Badge only (phished Alice's badge, no card)",
+      "badge_valid": true,
+      "reached_phase2": true,
+      "reached_phase3": false,
+      "reached_data_room": false,
+      "trapped_in_vestibule": "v1",
+      "painted": true,
+      "paint_marker": "PAINT-C7281071B6AFCA87",
+      "verdict": "caught"
+    },
+    {
+      "attacker_profile": "Badge + guessed single phrase",
+      "badge_valid": true,
+      "reached_phase2": true,
+      "reached_phase3": false,
+      "reached_data_room": false,
+      "trapped_in_vestibule": "v1",
+      "painted": true,
+      "paint_marker": "PAINT-C7281071B6AFCA87",
+      "verdict": "caught"
+    },
+    {
+      "attacker_profile": "Badge + full card from DIFFERENT principal (used Bob's card w/ Alice's badge)",
+      "badge_valid": true,
+      "reached_phase2": true,
+      "reached_phase3": false,
+      "reached_data_room": false,
+      "trapped_in_vestibule": "v1",
+      "painted": true,
+      "paint_marker": "PAINT-C7281071B6AFCA87",
+      "verdict": "caught"
+    },
+    {
+      "attacker_profile": "Badge + Alice's full card (physical theft)",
+      "badge_valid": true,
+      "reached_phase2": true,
+      "reached_phase3": true,
+      "reached_data_room": true,
+      "trapped_in_vestibule": "",
+      "painted": true,
+      "paint_marker": "PAINT-C7281071B6AFCA87|PAINT-12A93E6EA7564A26",
+      "verdict": "through"
+    },
+    {
+      "attacker_profile": "Badge + phished phrase, dialect rotated since",
+      "badge_valid": true,
+      "reached_phase2": true,
+      "reached_phase3": false,
+      "reached_data_room": false,
+      "trapped_in_vestibule": "v1",
+      "painted": true,
+      "paint_marker": "PAINT-C7281071B6AFCA87",
+      "verdict": "caught"
+    },
+    {
+      "attacker_profile": "Badge + endpoint compromise mid-session (user at phase 2 only)",
+      "badge_valid": true,
+      "reached_phase2": true,
+      "reached_phase3": true,
+      "reached_data_room": false,
+      "trapped_in_vestibule": "v2",
+      "painted": true,
+      "paint_marker": "PAINT-C7281071B6AFCA87|PAINT-12A93E6EA7564A26",
+      "verdict": "caught"
+    },
+    {
+      "attacker_profile": "No valid badge",
+      "badge_valid": false,
+      "reached_phase2": false,
+      "reached_phase3": false,
+      "reached_data_room": false,
+      "trapped_in_vestibule": "",
+      "painted": false,
+      "paint_marker": "",
+      "verdict": "stopped"
+    }
+  ],
+  "summary": {
+    "attacker_profiles": 7,
+    "caught": 5,
+    "stopped": 1,
+    "through": 1,
+    "painted": 6,
+    "viability_pct": 85.7
+  }
+}
