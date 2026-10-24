@@ -51,6 +51,7 @@ Read in this order:
 | `MDSD_INDEX.md` (this file) | Everyone | 1 page | Pick your path |
 | `MDSD_HOW_TO_GUIDE.md` | Non-specialists | Medium | Teach the six-step process |
 | `MDSD_ATTACKER_STORY_STARTERS.md` | Non-specialists | Medium | Ten starter paragraphs to adapt |
+| `MDSD_WORKED_EXAMPLES.md` | Non-specialists | Medium | Each of the ten starters carried through scene, translation, and walkthrough |
 | `METAPHOR_SECURITY_FRAMEWORK.md` | Everyone | Long | Full framework, translation table, worked examples |
 | `MDSD_REVIEW_PROTOCOL.md` | Specialists | Medium | How to review a draft |
 | `MDSD_RECEIVING_A_REVIEW.md` | Non-specialists | 1 page | How to read a review back |
