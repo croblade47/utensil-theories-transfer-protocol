@@ -106,9 +106,9 @@ const ChatBubble = ({ msg }: { msg: ChatMessage }) => {
                     <h3 className="font-bold uppercase tracking-wider">Safety Protocol Activated</h3>
                 </div>
                 <div className="prose prose-invert prose-sm mb-6" dangerouslySetInnerHTML={{ __html: content.text }} />
-                <button className="w-full bg-red-600 hover:bg-red-500 text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 transition-colors">
+                <a href="tel:988" className="w-full bg-red-600 hover:bg-red-500 text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 transition-colors">
                     <Phone className="w-4 h-4" /> Call Crisis Lifeline (988)
-                </button>
+                </a>
             </div>
         </div>
      );
@@ -237,7 +237,7 @@ export default function EchoesOfAlaraPage() {
 
         const lastMsg = history[history.length - 1];
 
-        if (lastMsg && lastMsg.sender === 'Nexus' && typeof lastMsg.content === 'string' && lastMsg.content.includes('archived')) {
+        if (lastMsg && lastMsg.sender === 'Nexus' && typeof lastMsg.content === 'string' && lastMsg.content.includes('Vault Sector')) {
             setVaultItems(prev => [...prev, {
                 id: Math.random().toString(),
                 date: new Date().toLocaleDateString(),
@@ -312,11 +312,13 @@ export default function EchoesOfAlaraPage() {
     }
   };
 
-  const startAnalysis = () => {
-    if (!chatInstance || !artFile) return;
+  // Takes the file directly when called right after an upload,
+  // because the artFile state hasn't updated yet at that point.
+  const startAnalysis = (file: File | null = artFile) => {
+    if (!chatInstance || !file) return;
     // If coming from ritual, switch back to council view
     if (activeTab === 'ritual') setActiveTab('journey');
-    chatInstance.userMessage(`Uploaded artwork: ${artFile.name}. Analyze psychological framework.`);
+    chatInstance.userMessage(`Uploaded artwork: ${file.name}. Analyze psychological framework.`);
   };
 
   const approveTasks = () => {
@@ -482,9 +484,9 @@ export default function EchoesOfAlaraPage() {
                                     </div>
                                     <div className="text-sm text-gray-300 font-medium truncate">{artFile.name}</div>
                                     <button
-                                        onClick={startAnalysis}
-                                        disabled={messages.length > 8}
-                                        className="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl text-sm font-medium transition-all shadow-lg shadow-purple-900/20"
+                                        onClick={() => startAnalysis()}
+                                        disabled={pendingTasks.length > 0}
+                                        className="w-full py-2.5 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-medium transition-all shadow-lg shadow-purple-900/20"
                                     >
                                         Begin Analysis
                                     </button>
@@ -586,7 +588,7 @@ export default function EchoesOfAlaraPage() {
                             {['Ambient Flow', 'Deep Focus', 'Nature\'s Pulse', 'Lo-Fi Drift'].map(genre => (
                                 <button
                                     key={genre}
-                                    onClick={() => { setRitualGenre(genre); setRitualState('active'); }}
+                                    onClick={() => { setRitualGenre(genre); setRitualTime(0); setRitualState('active'); }}
                                     className="p-6 bg-gray-900/50 border border-gray-800 hover:border-rose-500 hover:bg-rose-900/10 rounded-xl text-left transition-all group"
                                 >
                                     <Music className="w-6 h-6 text-gray-500 group-hover:text-rose-400 mb-3" />
@@ -646,7 +648,7 @@ export default function EchoesOfAlaraPage() {
                         {/* Controls */}
                         <div className="mt-8 flex gap-4">
                             <button
-                                onClick={() => setRitualState('intro')}
+                                onClick={() => { setRitualState('intro'); setRitualTime(0); }}
                                 className="px-6 py-3 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-full text-sm font-medium transition-colors"
                             >
                                 Cancel Ritual
@@ -676,10 +678,13 @@ export default function EchoesOfAlaraPage() {
                                   className="absolute inset-0 opacity-0 cursor-pointer"
                                   accept="image/*"
                                   onChange={(e) => {
+                                      const file = e.target.files?.[0] ?? null;
                                       handleFileUpload(e);
-                                      if(e.target.files?.[0]) {
+                                      if (file) {
                                           setActiveTab('journey'); // Go to analysis
-                                          startAnalysis();
+                                          setRitualState('intro');
+                                          setRitualTime(0);
+                                          startAnalysis(file);
                                       }
                                   }}
                                 />
@@ -766,7 +771,7 @@ export default function EchoesOfAlaraPage() {
                                 <div className="text-4xl font-bold text-white mb-2">{psychProfile.jungian.archetype}</div>
                                 <div className="text-purple-400 mb-6">The Shadow: {psychProfile.jungian.shadow}</div>
                                 <div className="h-1 bg-gray-800 rounded-full overflow-hidden">
-                                    <div className="h-full bg-purple-500" style={{ width: '88%' }} />
+                                    <div className="h-full bg-purple-500" style={{ width: `${psychProfile.jungian.confidence * 100}%` }} />
                                 </div>
                             </div>
 

@@ -91,6 +91,9 @@ export interface AIChatEnabled {
 
 const generateId = () => Math.random().toString(36).substr(2, 9);
 const getTimestamp = () => new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+const escapeHtml = (text: string) =>
+  text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+const CRISIS_PATTERN = /hurt myself|harm myself|self[- ]harm|end it all|end my life|no way out|kill myself|suicid|want to die|don'?t want to (live|be here)|better off dead/;
 const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms * SYSTEM_CONFIG.SPEED_COEFFICIENT));
 
 // --- Agent Class Implementations ---
@@ -124,7 +127,7 @@ export class VeridianChatEnabled implements AIChatEnabled {
     }
 
     // Crisis Guard Pre-Check
-    if (/hurt myself|end it all|no way out|kill myself/.test(lower)) {
+    if (CRISIS_PATTERN.test(lower)) {
         tasks.push({
             id: generateId(),
             type: 'crisis_intervention',
@@ -135,8 +138,20 @@ export class VeridianChatEnabled implements AIChatEnabled {
         return tasks;
     }
 
+    // Spirit Guidance
+    if (lower.startsWith('guide:') || lower.includes('ignis') || lower.includes('spirit')) {
+       tasks.push({
+        id: generateId(),
+        type: 'spirit_guidance',
+        description: 'Sanctuary Channeling.',
+        assignee: 'Lusa',
+        status: 'pending_approval'
+       });
+       return tasks;
+    }
+
     // Art Analysis
-    if (/interpret|art|drawing|painting|image|upload/.test(lower) || content.length > 0) {
+    if (/\b(interpret|art|artwork|drawing|painting|image|upload(ed)?)\b/.test(lower)) {
       tasks.push({
         id: generateId(),
         type: 'art_interpretation',
@@ -158,17 +173,6 @@ export class VeridianChatEnabled implements AIChatEnabled {
         assignee: 'Nexus',
         status: 'pending_approval'
       });
-    }
-
-    // Spirit Guidance
-    if (lower.startsWith('guide:') || lower.includes('ignis') || lower.includes('spirit')) {
-       tasks.push({
-        id: generateId(),
-        type: 'spirit_guidance',
-        description: 'Sanctuary Channeling.',
-        assignee: 'Lusa',
-        status: 'pending_approval'
-       });
     }
 
     return tasks;
@@ -348,7 +352,7 @@ export class UnifiedAIChat {
   }
 
   async userMessage(content: string) {
-    this.postMessage('User', content);
+    this.postMessage('User', escapeHtml(content));
 
     const veridian = this.participants.get('Veridian') as VeridianChatEnabled;
     if (veridian) {
