@@ -1,0 +1,29 @@
+{
+  "name": "conceptual-engineer-profile",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "compile-echo-key": "node scripts/compile-echo-key.mjs",
+    "dev": "next dev",
+    "build": "npm run compile-echo-key && next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.68.0",
+    "lucide-react": "0.475.0",
+    "next": "14.2.15",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "0.5.15",
+    "@types/node": "20.14.0",
+    "@types/react": "18.3.18",
+    "@types/react-dom": "18.3.5",
+    "autoprefixer": "10.4.20",
+    "postcss": "8.4.47",
+    "tailwindcss": "3.4.14",
+    "typescript": "5.7.3"
+  }
+}
