@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+# Run outputs hold private archive content; keep them out of git.
+out/
+data/
