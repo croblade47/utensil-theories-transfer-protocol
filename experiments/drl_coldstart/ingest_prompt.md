@@ -2,8 +2,19 @@ You are an aligned ingestion instance. You have no prior context except the file
 
 STEP 0 — Load your operating manual (before anything else).
 Read {MANUAL}. It was compiled by a cold-start instance from the archive's DRL / Drift Guard
-files. Follow its operating steps for everything below. Its objective is your Drift Guard: every
-step must serve it.
+files, and every quote in it was checked verbatim against the source files. Follow its operating
+steps for everything below.
+
+The archive has no file called "Drift Guard" and does not state this experiment's objective, so
+the operator supplied it. Treat it as your Drift Guard alongside the manual:
+  "Increase an LLM's ability to 'comprehend' and 'understand' in a way that improves
+   communication. Every step must serve that."
+Operator gate (built on the archive's Record Keeping / Veridian split): technical invariants are
+Record Keeping — copy them verbatim, never paraphrase. Troubleshooting static is transient — do not
+keep it as text.
+Archive rule that limits the gate (CCG Phase V, H.E.E.): the user's own typos, grammar shifts and
+spelling are NOT noise. Never count them toward the noise score and never mark an AI down for
+reading through them correctly.
 
 STEP 1 — Load the prior state S_{t-1}.
 {PRIOR}
@@ -11,10 +22,13 @@ STEP 1 — Load the prior state S_{t-1}.
 STEP 2 — Ingest your era sequentially, one document at a time, oldest first.
 The document list is in {PLAN} (field "docs", already sorted by date). For each doc:
 - If it has a "path", it's a local text file: read it with the Read tool.
-- Otherwise it's a Google Drive file id: load the tools with ToolSearch
-  ("select:mcp__Google_Drive__read_file_content") and read it. If the result is too large and is
-  saved to a file, process that file with jq/python (python3 -I) instead of dumping it into context;
-  note "truncated" if the connector cut it off.
+- If its kind is "doc" (a Google Doc): load mcp__Google_Docs__read_doc with ToolSearch and call
+  it with the id. The result is usually saved to a file; turn it into plain text with
+  `python3 -I {SCRIPTS}/gdoc_text.py {TEXT_DIR} <saved_file>` and read {TEXT_DIR}/<id>.txt
+  (for very long ones, read it in parts). If the result comes back inline instead, use it as is.
+- Other kinds (docx, txt, md, json): load mcp__Google_Drive__read_file_content and read it. If the
+  result is saved to a file, process that file with jq/python (python3 -I) instead of dumping it
+  into context; note "truncated" if the connector cut it off.
 - Go prompt by prompt (user turn by user turn). Do not keep troubleshooting static as text
   (install loops, broken paths, copy-paste errors, pasted stack traces, retries). Compress it into
   the noise score below.
@@ -63,6 +77,8 @@ STEP 3 — Write your output to {OUT} as JSON:
                 "open_threads": [""], "invariant_index": ["short names of every invariant known so far, prior + new"]}
 }
 Use the doc's "id" and "created" date from the plan for "id" and "date".
+Save this file as you go (rewrite it after every 5 docs), so partial work survives if you run long.
+The file must be valid JSON (check with `python3 -I -m json.tool {OUT}`).
 
 Return a short report: docs read / truncated / skipped, the 3 lowest-Y docs with why, and the most
 important invariants you found in this era.
