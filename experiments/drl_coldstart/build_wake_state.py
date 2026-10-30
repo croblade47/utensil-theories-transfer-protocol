@@ -139,7 +139,7 @@ def main(manual_path, ingest_dir, out_state, out_table):
 
     state = {
         'meta': {'built_from': files, 'docs': len(docs),
-                 'sources': {d['id'][-8:]: [d['date'][:10], d['title'][:60]] for d in docs}},
+                 'sources': {d['id'][-8:]: [d['date'][:10], d['title'][:28]] for d in docs}},
         'manual': {'objective_archive': manual.get('objective', {}).get('verbatim'),
                    'objective_operator': "Increase an LLM's ability to 'comprehend' and 'understand' in a way "
                                          "that improves communication. Every step must serve that.",
@@ -149,6 +149,11 @@ def main(manual_path, ingest_dir, out_state, out_table):
         'decaying': decaying,
     }
     json.dump(state, open(out_state, 'w'), ensure_ascii=False)
+    # Record Keeping copy: every verbatim invariant, untrimmed (the <50 KB wake state may drop
+    # low-priority ones to fit).
+    import os
+    json.dump(invariants, open(os.path.join(os.path.dirname(out_state), 'record_keeping_invariants_full.json'), 'w'),
+              ensure_ascii=False, indent=1)
 
     fmt = lambda v: '—' if v is None else f'{v:+.2f}'
     lines = ['| Segment | Docs (scored) | X Comprehension | Y Understanding | Noise (+/-) | ΔY | Flag |',
