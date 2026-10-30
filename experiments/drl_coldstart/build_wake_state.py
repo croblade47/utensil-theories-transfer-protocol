@@ -91,8 +91,8 @@ def main(manual_path, ingest_dir, out_state, out_table):
     months = OrderedDict()
     decaying, invariants, seen_inv, per_doc = [], [], set(), []
     for d in docs:
-        if d.get('read_status') == 'skipped_off_project':
-            continue
+        if d.get('read_status') == 'skipped_off_project' or d.get('duplicate_of'):
+            continue  # off-project docs and copies don't count toward the vectors
         months.setdefault(d['date'][:7], []).append(d)
         noise = d.get('noise') or {}
         nv = clamp((noise.get('direction') or 0) * (noise.get('fraction') or 0))
