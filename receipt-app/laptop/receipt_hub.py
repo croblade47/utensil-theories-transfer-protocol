@@ -772,11 +772,27 @@ class Handler(SimpleHTTPRequestHandler):
         self._json({"ok": False, "message": "unknown"}, 404)
 
 
+def find_adb():
+    """Find adb on PATH or in the usual places people unzip platform-tools."""
+    found = shutil.which("adb")
+    if found:
+        return found
+    exe = "adb.exe" if os.name == "nt" else "adb"
+    home = Path.home()
+    for folder in (HERE / "platform-tools", HERE.parent / "platform-tools", Path("C:/platform-tools"),
+                   home / "platform-tools", home / "Downloads" / "platform-tools",
+                   home / "Desktop" / "platform-tools",
+                   home / "AppData/Local/Android/Sdk/platform-tools", home / "Library/Android/sdk/platform-tools"):
+        if (folder / exe).exists():
+            return str(folder / exe)
+    return None
+
+
 def adb_watcher():
     """Link any USB-connected Android phone to this hub (phone's localhost:PORT -> laptop)."""
-    adb = shutil.which("adb")
+    adb = find_adb()
     if not adb:
-        print("  (adb not found — install Android platform-tools for plug-in sync; see README)")
+        print("  (USB tool not found — unzip Android platform-tools into C:\\platform-tools or your Downloads folder, then restart)")
         return
     linked = set()
     while True:
