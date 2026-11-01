@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f766e">
+  <title>Door Receipts</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="icon-btn" data-go="home" aria-label="Home">⌂</button>
+    <h1 id="title">Door Receipts</h1>
+    <span id="sync-dot" class="dot" title="Laptop not connected"></span>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section id="view-home" class="view active">
+      <div class="card shift-card">
+        <div id="shift-status" class="shift-status">No shift running</div>
+        <div id="shift-clock" class="shift-clock">0:00:00</div>
+        <div id="gps-status" class="muted small"></div>
+        <button id="btn-shift" class="btn big primary">▶ Start Shift</button>
+      </div>
+
+      <div class="grid3">
+        <div class="stat"><b id="st-sales">0</b><span>Sales</span></div>
+        <div class="stat"><b id="st-money">$0</b><span>Made</span></div>
+        <div class="stat"><b id="st-doors">0</b><span>Doors</span></div>
+      </div>
+
+      <div class="actions">
+        <button class="btn big success" data-go="sale">✔ Sale / Receipt</button>
+        <div class="row2">
+          <button class="btn danger" data-quick="no">✖ Said No</button>
+          <button class="btn warn" data-quick="not_home">⌂ Not Home</button>
+        </div>
+        <button class="btn" data-quick="callback">↺ Come Back Later</button>
+      </div>
+
+      <div class="row2">
+        <button class="btn ghost" data-go="history">History</button>
+        <button class="btn ghost" data-go="settings">Settings</button>
+      </div>
+      <button id="btn-sync" class="btn ghost">⇅ Sync to Laptop</button>
+      <p id="sync-msg" class="muted small center"></p>
+    </section>
+
+    <!-- SALE / RECEIPT FORM -->
+    <section id="view-sale" class="view">
+      <form id="sale-form" autocomplete="off">
+        <label class="photo-box" id="photo-box">
+          <input type="file" accept="image/*" capture="environment" id="sale-photo" hidden>
+          <img id="sale-photo-preview" alt="" hidden>
+          <span id="photo-hint">📷 Tap to photograph the house</span>
+        </label>
+
+        <label>Address
+          <div class="with-mic">
+            <input id="sale-address" required placeholder="123 Main St" enterkeyhint="next">
+            <button type="button" class="mic" data-mic="sale-address" aria-label="Speak address">🎤</button>
+          </div>
+        </label>
+
+        <label>What was done
+          <div class="with-mic">
+            <input id="sale-desc" placeholder="Window cleaning, front + back" enterkeyhint="next">
+            <button type="button" class="mic" data-mic="sale-desc" aria-label="Speak description">🎤</button>
+          </div>
+        </label>
+
+        <div class="row2">
+          <label>Amount ($)
+            <input id="sale-amount" type="number" inputmode="decimal" step="0.01" min="0" required placeholder="0.00">
+          </label>
+          <label>Paid by
+            <select id="sale-pay">
+              <option>Cash</option><option>Card</option><option>Check</option>
+              <option>Venmo/CashApp</option><option>Unpaid</option>
+            </select>
+          </label>
+        </div>
+
+        <hr>
+        <h2>Customer</h2>
+        <label>Print name
+          <input id="sale-name" required placeholder="Customer name" autocapitalize="words">
+        </label>
+        <label>Sign here
+          <canvas id="sig" class="sig"></canvas>
+        </label>
+        <button type="button" id="sig-clear" class="btn small ghost">Clear signature</button>
+
+        <label>Email (optional)
+          <input id="sale-email" type="email" inputmode="email" placeholder="name@email.com">
+        </label>
+        <p class="muted small">If an email is entered, the customer agrees to get a copy of this receipt and one short survey.</p>
+
+        <button type="submit" class="btn big success">Save Receipt</button>
+        <button type="button" class="btn ghost" data-go="home">Cancel</button>
+      </form>
+    </section>
+
+    <!-- QUICK LOG (no / not home / callback) -->
+    <section id="view-quick" class="view">
+      <h2 id="quick-title">Said No</h2>
+      <label class="photo-box" id="quick-photo-box">
+        <input type="file" accept="image/*" capture="environment" id="quick-photo" hidden>
+        <img id="quick-photo-preview" alt="" hidden>
+        <span id="quick-photo-hint">📷 Photo of house (helps the AI find patterns)</span>
+      </label>
+      <label>Address (optional)
+        <div class="with-mic">
+          <input id="quick-address" placeholder="123 Main St">
+          <button type="button" class="mic" data-mic="quick-address" aria-label="Speak address">🎤</button>
+        </div>
+      </label>
+      <div id="quick-reasons" class="chips"></div>
+      <label>Note (optional)
+        <div class="with-mic">
+          <input id="quick-note" placeholder="Already has a guy, too expensive…">
+          <button type="button" class="mic" data-mic="quick-note" aria-label="Speak note">🎤</button>
+        </div>
+      </label>
+      <button id="quick-save" class="btn big primary">Save</button>
+      <button class="btn ghost" data-go="home">Cancel</button>
+    </section>
+
+    <!-- RECEIPT VIEW (show customer) -->
+    <section id="view-receipt" class="view">
+      <div id="receipt-out" class="receipt"></div>
+      <button class="btn big primary" data-go="home">Done</button>
+      <button class="btn ghost" id="receipt-print">Print / Save PDF</button>
+    </section>
+
+    <!-- SHIFT SUMMARY -->
+    <section id="view-summary" class="view">
+      <div id="summary-out"></div>
+      <button class="btn big primary" id="summary-print">🖨 Print Shift Report</button>
+      <button class="btn" id="summary-csv">⬇ Download Spreadsheet (CSV)</button>
+      <button class="btn" id="summary-sync">⇅ Sync to Laptop</button>
+      <button class="btn ghost" data-go="home">Done</button>
+    </section>
+
+    <!-- HISTORY -->
+    <section id="view-history" class="view">
+      <h2>Shifts</h2>
+      <div id="history-list"></div>
+      <h2>Backup</h2>
+      <p class="muted small">No USB cable (iPhone)? Export a sync file, then drop it on the laptop dashboard.</p>
+      <button class="btn" id="btn-export">⬇ Export sync file</button>
+      <button class="btn ghost" data-go="home">Back</button>
+    </section>
+
+    <!-- SETTINGS -->
+    <section id="view-settings" class="view">
+      <h2>Settings</h2>
+      <label>Your name<input id="set-name" placeholder="Your name"></label>
+      <label>Business name<input id="set-biz" placeholder="Shown on receipts"></label>
+      <label>Business phone / contact<input id="set-phone" placeholder="(555) 555-5555"></label>
+      <label>Laptop address
+        <input id="set-hub" placeholder="(blank = same as this app)">
+      </label>
+      <p class="muted small">Leave blank when using the USB cable setup. Only change this if the laptop guide tells you to.</p>
+      <label>Set aside for taxes (%)
+        <input id="set-tax" type="number" inputmode="decimal" step="0.1" placeholder="25">
+      </label>
+      <label class="check"><input type="checkbox" id="set-wake"> Keep screen awake during shift (better GPS tracking)</label>
+      <button id="set-save" class="btn big primary">Save</button>
+      <button class="btn ghost" data-go="home">Back</button>
+      <hr>
+      <button id="btn-wipe" class="btn danger small">Delete synced data from phone</button>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+  <div id="print-area" class="print-area"></div>
+
+  <script src="db.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

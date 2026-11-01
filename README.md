@@ -25,6 +25,12 @@ Every book features a dedicated **Universal AI Launch Page (Page 2)** with machi
 
 ---
 
+## 🧾 Door Receipts App
+
+A separate phone + laptop app for door-to-door receipts, shift tracking, taxes and AI coaching lives in [`receipt-app/`](receipt-app/README.md).
+
+---
+
 ## 🚀 Getting Started Locally
 
 ```bash
