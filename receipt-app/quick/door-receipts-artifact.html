@@ -1,0 +1,696 @@
+<title>Door Receipts</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: one-column field tool, big thumb targets, a sticky status bar on top. */
+:root {
+  --bg: #eef2ee; --surface: #ffffff; --ink: #14241d; --muted: #5a6b63; --line: #d4ddd7;
+  --brand: #1f5f4a; --brand-ink: #ffffff; --go: #1e7a3c; --stop: #b3261e; --wait: #a15c00; --later: #2f5aa8;
+  --paper: #ffffff; --paper-ink: #111;
+  --display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1714; --surface: #18231f; --ink: #e6efea; --muted: #9aaba3; --line: #2b3a34;
+  --brand: #2f8a6b; --brand-ink: #ffffff; --go: #2f9e55; --stop: #e0544a; --wait: #d08a1c; --later: #5b86d6;
+  --paper: #fbfbf8; --paper-ink: #111; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1714; --surface: #18231f; --ink: #e6efea; --muted: #9aaba3; --line: #2b3a34;
+  --brand: #2f8a6b; --brand-ink: #ffffff; --go: #2f9e55; --stop: #e0544a; --wait: #d08a1c; --later: #5b86d6;
+  --paper: #fbfbf8; --paper-ink: #111; color-scheme: dark }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--ink); font: 17px/1.4 var(--body); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--brand); }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; display: flex; align-items: center; gap: 10px;
+  background: var(--brand); color: var(--brand-ink);
+  padding-block: 10px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.bar h1 { flex: 1; margin: 0; font: 700 22px/1 var(--display); letter-spacing: .02em; text-transform: uppercase; }
+.bar button { background: none; border: 0; color: inherit; font: 600 15px var(--body); padding: 6px 4px; cursor: pointer; }
+.pill { font: 600 12px var(--mono); padding: 3px 8px; border-radius: 99px; background: rgba(255,255,255,.18); }
+main { max-width: 560px; margin: 0 auto; padding-block: 16px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.view { display: grid; gap: 12px; }
+h2 { margin: 8px 0 0; font: 700 20px/1.1 var(--display); text-transform: uppercase; letter-spacing: .03em; text-wrap: balance; }
+.muted { color: var(--muted); } .small { font-size: 14px; }
+.clock { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: grid; gap: 6px; text-align: center; }
+.clock .t { font: 600 46px/1 var(--mono); font-variant-numeric: tabular-nums; }
+.clock.on { border-color: var(--wait); box-shadow: inset 0 0 0 2px var(--wait); }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 6px; text-align: center; min-width: 0; }
+.stat b { display: block; font: 600 22px var(--mono); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 13px; color: var(--muted); }
+.btn { display: block; width: 100%; padding: 15px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface);
+  color: var(--ink); font: 600 17px var(--body); cursor: pointer; text-align: center; }
+.btn:focus-visible, input:focus-visible, select:focus-visible, .chip:focus-visible { outline: 3px solid var(--wait); outline-offset: 2px; }
+.btn:active { transform: scale(.985); }
+.btn.big { padding: 19px 14px; font: 700 22px var(--display); letter-spacing: .04em; text-transform: uppercase; }
+.btn.brand { background: var(--brand); color: var(--brand-ink); border-color: transparent; }
+.btn.go { background: var(--go); color: #fff; border-color: transparent; }
+.btn.stop { background: var(--stop); color: #fff; border-color: transparent; }
+.btn.wait { background: var(--wait); color: #fff; border-color: transparent; }
+.btn.later { background: var(--later); color: #fff; border-color: transparent; }
+.btn.ghost { background: transparent; }
+.btn.slim { padding: 10px; font-size: 15px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+label { display: grid; gap: 4px; font-weight: 600; font-size: 15px; }
+input, select, textarea { width: 100%; padding: 12px; font: 17px var(--body); border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.photo { display: grid; place-items: center; min-height: 170px; border: 2px dashed var(--line); border-radius: 14px; background: var(--surface);
+  color: var(--muted); overflow: hidden; cursor: pointer; text-align: center; padding: 0; font-weight: 600; }
+.photo img { width: 100%; max-height: 280px; object-fit: cover; display: block; }
+.sig { width: 100%; height: 170px; background: #fff; border: 1px solid var(--line); border-radius: 10px; touch-action: none; display: block; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { padding: 10px 14px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 500 15px var(--body); cursor: pointer; }
+.chip.on { background: var(--brand); color: var(--brand-ink); border-color: transparent; }
+.hint { font-size: 13px; color: var(--muted); font-weight: 400; }
+.receipt { background: var(--paper); color: var(--paper-ink); border-radius: 4px; padding: 18px 16px 22px; display: grid; gap: 8px;
+  box-shadow: 0 1px 0 rgba(0,0,0,.08), 0 8px 24px rgba(0,0,0,.08);
+  background-image: radial-gradient(circle at 8px -4px, var(--bg) 6px, transparent 6.5px); background-size: 16px 100%; background-repeat: repeat-x; background-position: bottom; }
+.receipt .biz { font: 700 22px var(--display); text-transform: uppercase; letter-spacing: .03em; }
+.receipt .no { font: 500 13px var(--mono); color: #555; }
+.receipt img.house { width: 100%; border-radius: 4px; }
+.receipt dl { display: grid; grid-template-columns: 110px 1fr; gap: 4px 10px; margin: 0; font-size: 15px; }
+.receipt dt { color: #666; } .receipt dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.receipt .amt { font: 600 34px var(--mono); border-block: 1px dashed #999; padding-block: 6px; }
+.receipt img.signed { width: 100%; max-height: 110px; object-fit: contain; border-bottom: 1px solid #888; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px; display: grid; gap: 8px; min-width: 0; }
+table.kv { width: 100%; border-collapse: collapse; font-size: 15px; }
+table.kv td { padding: 7px 0; border-bottom: 1px solid var(--line); }
+table.kv td:last-child { text-align: right; font: 600 15px var(--mono); font-variant-numeric: tabular-nums; }
+table.kv tr.total td { font-weight: 700; border-bottom: 0; } table.kv tr.total td:last-child { font-size: 17px; }
+.item { display: grid; grid-template-columns: 56px 1fr auto; gap: 10px; align-items: center; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 12px; padding: 8px; cursor: pointer; text-align: left; width: 100%; color: var(--ink); font: inherit; }
+.item img, .item .ph { width: 56px; height: 44px; object-fit: cover; border-radius: 6px; background: var(--line); }
+.item .meta { min-width: 0; } .item .meta div { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tag { font: 600 11px var(--mono); padding: 2px 6px; border-radius: 4px; color: #fff; }
+.tag.sale { background: var(--go); } .tag.no { background: var(--stop); } .tag.not_home { background: var(--wait); } .tag.callback { background: var(--later); }
+.amtcol { font: 600 15px var(--mono); }
+.ai { white-space: pre-wrap; font-size: 15px; line-height: 1.5; }
+.toast { position: fixed; left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px));
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 20; padding: 14px; border-radius: 12px; background: var(--ink); color: var(--bg); text-align: center; font-weight: 600; }
+.note { font-size: 13px; color: var(--muted); border-left: 3px solid var(--line); padding-left: 10px; }
+.empty { border: 1px dashed var(--line); border-radius: 12px; padding: 14px; color: var(--muted); font-size: 15px; }
+@media (prefers-reduced-motion: reduce) { .btn:active { transform: none; } }
+</style>
+
+<header class="bar">
+  <button id="back" hidden aria-label="Back">‹ Back</button>
+  <h1 id="bartitle">Door Receipts</h1>
+  <span class="pill" id="savepill">saving…</span>
+</header>
+
+<main>
+  <!-- HOME -->
+  <section class="view" id="v-home">
+    <div class="clock" id="clock">
+      <div class="small muted" id="shiftlbl">No shift running</div>
+      <div class="t" id="clockt">0:00:00</div>
+      <button class="btn big brand" id="shiftbtn">Start Shift</button>
+    </div>
+    <div class="stats">
+      <div class="stat"><b id="s-sales">0</b><span>sales</span></div>
+      <div class="stat"><b id="s-money">$0</b><span>today</span></div>
+      <div class="stat"><b id="s-doors">0</b><span>doors</span></div>
+    </div>
+    <button class="btn big go" data-act="sale">✔ Sale · Write Receipt</button>
+    <div class="row3">
+      <button class="btn stop" data-quick="no">✖ Said No</button>
+      <button class="btn wait" data-quick="not_home">Not Home</button>
+      <button class="btn later" data-quick="callback">Come Back</button>
+    </div>
+    <h2>Today's doors</h2>
+    <div id="todaylist" class="view"></div>
+    <div class="row">
+      <button class="btn" data-go="money">Money &amp; Taxes</button>
+      <button class="btn" data-go="coach">AI Coach</button>
+    </div>
+    <div class="row">
+      <button class="btn ghost" data-go="surveys">Surveys</button>
+      <button class="btn ghost" data-go="settings">Settings</button>
+    </div>
+  </section>
+
+  <!-- SALE FORM -->
+  <form class="view" id="v-sale" hidden autocomplete="off">
+    <button type="button" class="photo" id="sale-photo-btn"><span>📷 Tap to photograph the house</span></button>
+    <input type="file" accept="image/*" capture="environment" id="sale-photo" hidden>
+    <label>Address <input id="f-address" required placeholder="123 Oak St" enterkeyhint="next"></label>
+    <label>What you did <input id="f-desc" placeholder="Raked front & back, 6 bags" enterkeyhint="next"></label>
+    <div class="row">
+      <label>Amount ($) <input id="f-amount" type="number" inputmode="decimal" step="0.01" min="0" required placeholder="0.00"></label>
+      <label>Paid by
+        <select id="f-pay"><option>Cash</option><option>Card</option><option>Venmo/CashApp</option><option>Check</option><option>Unpaid</option></select>
+      </label>
+    </div>
+    <p class="hint">To talk instead of type, tap the 🎤 on your keyboard.</p>
+    <h2>Customer</h2>
+    <label>Print name <input id="f-name" required placeholder="Customer's name" autocapitalize="words"></label>
+    <label>Sign here <canvas class="sig" id="sig"></canvas></label>
+    <button type="button" class="btn slim ghost" id="sig-clear">Clear signature</button>
+    <label>Email (optional) <input id="f-email" type="email" inputmode="email" placeholder="name@email.com"></label>
+    <p class="hint">With an email, the customer gets a copy of this receipt and one short survey.</p>
+    <button type="submit" class="btn big go">Save Receipt</button>
+  </form>
+
+  <!-- QUICK LOG -->
+  <section class="view" id="v-quick" hidden>
+    <button type="button" class="photo" id="quick-photo-btn"><span>📷 Photo of the house<br><span class="hint">helps the AI coach spot patterns</span></span></button>
+    <input type="file" accept="image/*" capture="environment" id="quick-photo" hidden>
+    <label>Address (optional) <input id="q-address" placeholder="123 Oak St"></label>
+    <div class="chips" id="q-reasons"></div>
+    <label>Note (optional) <input id="q-note" placeholder="Already has a lawn service"></label>
+    <button class="btn big brand" id="q-save">Save</button>
+  </section>
+
+  <!-- RECEIPT -->
+  <section class="view" id="v-receipt" hidden>
+    <div class="receipt" id="receipt"></div>
+    <button class="btn big brand" data-go="home">Done</button>
+    <button class="btn" id="rc-save">Save receipt to phone</button>
+    <button class="btn ghost stop-text" id="rc-del">Delete this entry</button>
+  </section>
+
+  <!-- SHIFT SUMMARY -->
+  <section class="view" id="v-summary" hidden>
+    <div id="summary"></div>
+    <button class="btn big brand" id="sum-report">Save Shift Report (printable)</button>
+    <button class="btn" id="sum-csv">Save Spreadsheet (.csv)</button>
+    <button class="btn ghost" data-go="home">Done</button>
+  </section>
+
+  <!-- MONEY & TAXES -->
+  <section class="view" id="v-money" hidden>
+    <div class="row">
+      <label>Period
+        <select id="m-period"><option value="week">This week</option><option value="month">This month</option><option value="year">This year</option><option value="all">All time</option></select>
+      </label>
+      <label>Miles driven (for deduction) <input id="m-miles" type="number" inputmode="decimal" min="0" step="0.1" placeholder="0"></label>
+    </div>
+    <div class="card" id="money"></div>
+    <details class="card">
+      <summary><b>Tax rates</b> <span class="hint">(change to match you)</span></summary>
+      <div class="row">
+        <label>Federal % <input id="t-fed" type="number" inputmode="decimal" step="0.1"></label>
+        <label>State % <input id="t-state" type="number" inputmode="decimal" step="0.1"></label>
+      </div>
+      <label>IRS mileage rate ($/mile) <input id="t-mile" type="number" inputmode="decimal" step="0.01"></label>
+      <p class="hint">Self-employment tax is 15.3% on 92.35% of profit. These are estimates, not tax advice.</p>
+    </details>
+    <h2>Shifts</h2>
+    <div id="shiftlist" class="view"></div>
+    <button class="btn" id="all-csv">Save everything as spreadsheet (.csv)</button>
+  </section>
+
+  <!-- SURVEYS -->
+  <section class="view" id="v-surveys" hidden>
+    <p class="muted small">Customers who left an email. Copy the message and address into your email app, then mark it sent.</p>
+    <div id="surveylist" class="view"></div>
+  </section>
+
+  <!-- AI COACH -->
+  <section class="view" id="v-coach" hidden>
+    <p class="muted small">The coach looks at your house photos and results to find which homes say yes and which say no, plus your best times and streets.</p>
+    <div class="card" id="coachstats"></div>
+    <button class="btn big brand" id="coach-run">Ask the AI Coach</button>
+    <div class="card" id="coach-out" hidden><div class="ai" id="coach-text"></div></div>
+    <button class="btn" id="coach-copy">Copy report to paste in any AI chat</button>
+  </section>
+
+  <!-- SETTINGS -->
+  <section class="view" id="v-settings" hidden>
+    <label>Your name <input id="st-name" placeholder="Your name"></label>
+    <label>Business name <input id="st-biz" placeholder="Shown on receipts"></label>
+    <label>Phone / contact <input id="st-phone" placeholder="(555) 555-5555"></label>
+    <label>Survey link <input id="st-survey" placeholder="https://forms.gle/…"></label>
+    <label>Set aside for taxes (%) <input id="st-tax" type="number" inputmode="decimal" step="1"></label>
+    <button class="btn big brand" id="st-save">Save</button>
+  </section>
+</main>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  const money = n => '$' + (Number(n) || 0).toFixed(2);
+  const money0 = n => '$' + Math.round(Number(n) || 0).toLocaleString();
+  const tm = t => new Date(t).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  const dd = t => new Date(t).toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
+  const hms = ms => { const s = Math.max(0, ms / 1000 | 0); return `${s / 3600 | 0}:${String((s / 60 | 0) % 60).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`; };
+  const LABEL = { sale: 'SALE', no: 'NO', not_home: 'NOT HOME', callback: 'COME BACK' };
+  const TITLE = { no: 'Said No', not_home: 'Not Home', callback: 'Come Back Later' };
+  const REASONS = {
+    no: ['Not interested', 'Too expensive', 'Has someone', 'Does it myself', 'Renter', 'No soliciting sign'],
+    not_home: ['No answer', 'Lights off', 'Dog only'],
+    callback: ['Ask spouse', 'Busy now', 'Next week', 'Wants a quote'],
+  };
+  function toast(m) { const t = $('toast'); t.textContent = m; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => t.hidden = true, 2200); }
+
+  // ---------------- storage: shared db (private per person), local fallback ----------------
+  const docs = new Map();               // id -> data  (v_* visits, s_* shifts, settings)
+  let col = null, saving = 0;
+  const pill = $('savepill');
+  function setPill() { pill.textContent = col ? (saving ? 'saving…' : 'saved') : 'this phone only'; }
+  function localSave() { try { localStorage.setItem('dr-docs', JSON.stringify([...docs])); } catch {} }
+  function localLoad() { try { (JSON.parse(localStorage.getItem('dr-docs') || '[]')).forEach(([k, v]) => docs.set(k, v)); } catch {} }
+  async function put(id, data) {
+    docs.set(id, data); render();
+    if (!col) { localSave(); return; }
+    saving++; setPill();
+    try { await col.doc(id).set(data); }
+    catch (e) { toast(e.code === 'quota_exceeded' ? 'Storage full — delete old entries' : 'Could not save — check signal'); }
+    finally { saving--; setPill(); }
+  }
+  async function remove(id) {
+    docs.delete(id); render();
+    if (!col) { localSave(); return; }
+    try { await col.doc(id).delete(); } catch { toast('Could not delete — check signal'); }
+  }
+  const settings = () => ({ name: '', biz: '', phone: '', survey: '', tax: 25, fed: 12, state: 5, mile: 0.70, receiptNo: 1000, ...(docs.get('settings') || {}) });
+  const visits = () => [...docs.entries()].filter(([k]) => k.startsWith('v_')).map(([, v]) => v).sort((a, b) => a.at - b.at);
+  const shifts = () => [...docs.entries()].filter(([k]) => k.startsWith('s_')).map(([, v]) => v).sort((a, b) => b.start - a.start);
+  const openShift = () => shifts().find(s => !s.end) || null;
+
+  // ---------------- navigation ----------------
+  const VIEWS = { home: 'Door Receipts', sale: 'New Receipt', quick: 'Log Door', receipt: 'Receipt', summary: 'Shift Summary',
+    money: 'Money & Taxes', surveys: 'Surveys', coach: 'AI Coach', settings: 'Settings' };
+  let view = 'home';
+  function go(v) {
+    view = v;
+    Object.keys(VIEWS).forEach(k => $('v-' + k).hidden = k !== v);
+    $('bartitle').textContent = VIEWS[v]; $('back').hidden = v === 'home';
+    window.scrollTo(0, 0); render();
+    if (v === 'settings') fillSettings();
+  }
+  $('back').onclick = () => go('home');
+  document.addEventListener('click', e => {
+    const g = e.target.closest('[data-go]'); if (g) go(g.dataset.go);
+    const q = e.target.closest('[data-quick]'); if (q) startQuick(q.dataset.quick);
+    const a = e.target.closest('[data-act="sale"]'); if (a) startSale();
+    const it = e.target.closest('[data-visit]'); if (it) showVisit(it.dataset.visit);
+    const sh = e.target.closest('[data-shift]'); if (sh) showSummary(sh.dataset.shift);
+  });
+
+  // ---------------- shift ----------------
+  let armEnd = 0;
+  $('shiftbtn').onclick = async () => {
+    const s = openShift();
+    if (!s) { await put('s_' + uid(), { start: Date.now(), end: null, id: null }); toast('Shift started'); return; }
+    if (Date.now() - armEnd > 4000) { armEnd = Date.now(); $('shiftbtn').textContent = 'Tap again to end'; return; }
+    armEnd = 0;
+    const id = [...docs.entries()].find(([, v]) => v === s)[0];
+    await put(id, { ...s, end: Date.now() });
+    showSummary(id);
+  };
+  setInterval(() => { const s = openShift(); $('clockt').textContent = s ? hms(Date.now() - s.start) : '0:00:00';
+    if (armEnd && Date.now() - armEnd > 4000) { armEnd = 0; render(); } }, 1000);
+
+  function shiftIdFor(t) {
+    const s = openShift(); if (s) return [...docs.entries()].find(([, v]) => v === s)[0];
+    return 'day-' + new Date(t).toDateString();
+  }
+
+  // ---------------- photos ----------------
+  function shrink(file, side, q) {
+    return new Promise((res, rej) => {
+      const img = new Image(), url = URL.createObjectURL(file);
+      img.onload = () => { const k = Math.min(1, side / Math.max(img.width, img.height)); const c = document.createElement('canvas');
+        c.width = Math.round(img.width * k); c.height = Math.round(img.height * k); c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url); res(c.toDataURL('image/jpeg', q)); };
+      img.onerror = () => { URL.revokeObjectURL(url); rej(); }; img.src = url;
+    });
+  }
+  async function photoFrom(file) {
+    let d = await shrink(file, 900, 0.6);
+    if (d.length > 150000) d = await shrink(file, 640, 0.5);
+    return d;
+  }
+  function wirePhoto(btnId, inputId, set) {
+    $(btnId).onclick = () => $(inputId).click();
+    $(inputId).onchange = async e => {
+      const f = e.target.files[0]; if (!f) return;
+      try { const d = await photoFrom(f); set(d); $(btnId).innerHTML = `<img src="${d}" alt="House photo">`; }
+      catch { toast('Could not read that photo'); }
+    };
+  }
+  function resetPhotoBtn(btnId, html) { $(btnId).innerHTML = html; }
+
+  // ---------------- signature ----------------
+  const sig = (() => {
+    const c = $('sig'), x = c.getContext('2d'); let down = false, dirty = false;
+    function reset() { const r = c.getBoundingClientRect(); if (!r.width) return; const p = devicePixelRatio || 1;
+      c.width = r.width * p; c.height = r.height * p; x.setTransform(p, 0, 0, p, 0, 0); x.fillStyle = '#fff'; x.fillRect(0, 0, r.width, r.height);
+      x.lineWidth = 2.4; x.lineCap = x.lineJoin = 'round'; x.strokeStyle = '#111'; dirty = false; }
+    const pt = e => { const r = c.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+    c.onpointerdown = e => { down = true; c.setPointerCapture(e.pointerId); x.beginPath(); x.moveTo(...pt(e)); };
+    c.onpointermove = e => { if (!down) return; x.lineTo(...pt(e)); x.stroke(); dirty = true; };
+    c.onpointerup = c.onpointercancel = () => down = false;
+    return { reset, empty: () => !dirty, png: () => c.toDataURL('image/png') };
+  })();
+  $('sig-clear').onclick = () => sig.reset();
+
+  // ---------------- sale ----------------
+  let salePhoto = null;
+  const SALE_PHOTO = '<span>📷 Tap to photograph the house</span>';
+  wirePhoto('sale-photo-btn', 'sale-photo', d => salePhoto = d);
+  function startSale() {
+    $('v-sale').reset(); salePhoto = null; $('sale-photo').value = ''; resetPhotoBtn('sale-photo-btn', SALE_PHOTO);
+    go('sale'); requestAnimationFrame(() => sig.reset());
+  }
+  $('v-sale').onsubmit = async e => {
+    e.preventDefault();
+    const st = settings(), no = (st.receiptNo || 1000) + 1, now = Date.now();
+    const v = { kind: 'visit', type: 'sale', at: now, shift: shiftIdFor(now), receiptNo: no,
+      address: $('f-address').value.trim(), desc: $('f-desc').value.trim(),
+      amount: Math.round(parseFloat($('f-amount').value || '0') * 100) / 100, pay: $('f-pay').value,
+      customer: $('f-name').value.trim(), email: $('f-email').value.trim(),
+      sig: sig.empty() ? null : sig.png(), photo: salePhoto, biz: st.biz, worker: st.name, bizPhone: st.phone };
+    const id = 'v_' + uid();
+    put('settings', { ...st, receiptNo: no });
+    await put(id, v);
+    showVisit(id); toast('Receipt saved');
+  };
+
+  function receiptHTML(v) {
+    return `<div class="biz">${esc(v.biz || 'Receipt')}</div>
+      <div class="no">${esc(v.bizPhone || '')}</div>
+      <div class="no">No. ${v.receiptNo} · ${new Date(v.at).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}</div>
+      ${v.photo ? `<img class="house" src="${v.photo}" alt="House">` : ''}
+      <dl><dt>Address</dt><dd>${esc(v.address)}</dd><dt>Service</dt><dd>${esc(v.desc)}</dd>
+      <dt>Paid by</dt><dd>${esc(v.pay)}</dd><dt>Provided by</dt><dd>${esc(v.worker)}</dd></dl>
+      <div class="amt">${money(v.amount)}</div>
+      <dl><dt>Customer</dt><dd>${esc(v.customer)}</dd>${v.email ? `<dt>Email</dt><dd>${esc(v.email)}</dd>` : ''}</dl>
+      ${v.sig ? `<img class="signed" src="${v.sig}" alt="Customer signature">` : '<div class="no">(not signed)</div>'}
+      <div class="no">Customer signature</div>`;
+  }
+
+  // ---------------- quick log ----------------
+  let qType = 'no', qPhoto = null, qReason = '';
+  const Q_PHOTO = '<span>📷 Photo of the house<br><span class="hint">helps the AI coach spot patterns</span></span>';
+  wirePhoto('quick-photo-btn', 'quick-photo', d => qPhoto = d);
+  function startQuick(t) {
+    qType = t; qPhoto = null; qReason = ''; $('quick-photo').value = ''; resetPhotoBtn('quick-photo-btn', Q_PHOTO);
+    $('q-address').value = ''; $('q-note').value = '';
+    $('q-reasons').innerHTML = REASONS[t].map(r => `<button type="button" class="chip">${esc(r)}</button>`).join('');
+    go('quick'); $('bartitle').textContent = TITLE[t];
+  }
+  $('q-reasons').onclick = e => { const c = e.target.closest('.chip'); if (!c) return; const on = !c.classList.contains('on');
+    $('q-reasons').querySelectorAll('.chip').forEach(x => x.classList.remove('on')); c.classList.toggle('on', on); qReason = on ? c.textContent : ''; };
+  $('q-save').onclick = async () => {
+    const now = Date.now();
+    await put('v_' + uid(), { kind: 'visit', type: qType, at: now, shift: shiftIdFor(now), amount: 0,
+      address: $('q-address').value.trim(), reason: qReason, note: $('q-note').value.trim(), photo: qPhoto });
+    toast('Logged: ' + TITLE[qType]); go('home');
+  };
+
+  // ---------------- visit detail ----------------
+  let shownVisit = null, armDel = 0;
+  function showVisit(id) {
+    const v = docs.get(id); if (!v) return; shownVisit = id; armDel = 0; $('rc-del').textContent = 'Delete this entry';
+    $('receipt').innerHTML = v.type === 'sale' ? receiptHTML(v) :
+      `<div class="biz">${LABEL[v.type]}</div><div class="no">${new Date(v.at).toLocaleString()}</div>
+       ${v.photo ? `<img class="house" src="${v.photo}" alt="House">` : ''}
+       <dl><dt>Address</dt><dd>${esc(v.address || '—')}</dd><dt>Reason</dt><dd>${esc(v.reason || '—')}</dd><dt>Note</dt><dd>${esc(v.note || '—')}</dd></dl>`;
+    $('rc-save').hidden = v.type !== 'sale';
+    go('receipt');
+  }
+  $('rc-del').onclick = () => {
+    if (Date.now() - armDel > 4000) { armDel = Date.now(); $('rc-del').textContent = 'Tap again to delete'; return; }
+    remove(shownVisit); toast('Deleted'); go('home');
+  };
+
+  // ---------------- downloads ----------------
+  let downloads = null;
+  async function saveFile(filename, data) {
+    if (!downloads) { toast('Saving files is not available here'); return; }
+    try { await downloads.save({ filename, data }); }
+    catch (e) { if (e.code !== 'declined') toast('Could not save the file'); }
+  }
+  const DOC_CSS = `body{font:15px/1.45 system-ui,sans-serif;max-width:760px;margin:20px auto;padding:0 14px;color:#111}
+    img{max-width:100%} table{width:100%;border-collapse:collapse} td,th{border-bottom:1px solid #ddd;padding:5px;text-align:left;vertical-align:top}
+    .r{border:1px solid #999;border-radius:6px;padding:12px;margin:14px 0;page-break-inside:avoid} .amt{font-size:24px;font-weight:700}
+    .h{width:100%;max-height:260px;object-fit:cover;border-radius:4px} .s{max-height:90px;border-bottom:1px solid #666}`;
+  function receiptDoc(v) {
+    return `<!doctype html><meta charset="utf-8"><title>Receipt ${v.receiptNo}</title><style>${DOC_CSS}</style>${receiptBlock(v)}`;
+  }
+  function receiptBlock(v) {
+    return `<div class="r"><b>${esc(v.biz || 'Receipt')}</b> ${esc(v.bizPhone || '')}<br>Receipt #${v.receiptNo} · ${new Date(v.at).toLocaleString()}<br>
+      ${v.photo ? `<img class="h" src="${v.photo}">` : ''}<br><b>${esc(v.address)}</b><br>${esc(v.desc)}<br>
+      <span class="amt">${money(v.amount)}</span> · ${esc(v.pay)}<br>Customer: <b>${esc(v.customer)}</b> ${v.email ? '· ' + esc(v.email) : ''}<br>
+      ${v.sig ? `<img class="s" src="${v.sig}">` : '<i>not signed</i>'}</div>`;
+  }
+  $('rc-save').onclick = () => { const v = docs.get(shownVisit); saveFile(`receipt-${v.receiptNo}.html`, receiptDoc(v)); };
+
+  // ---------------- math ----------------
+  function hoursOf(s) { return s && !String(s.id).startsWith('day-') ? ((s.end || Date.now()) - s.start) / 3600000 : 0; }
+  function statsFor(vs) {
+    const sales = vs.filter(v => v.type === 'sale');
+    const gross = sales.reduce((a, v) => a + (+v.amount || 0), 0);
+    const answered = vs.filter(v => v.type !== 'not_home').length;
+    return { sales, gross, doors: vs.length, answered, close: answered ? sales.length / answered : 0,
+      no: vs.filter(v => v.type === 'no').length, nh: vs.filter(v => v.type === 'not_home').length, cb: vs.filter(v => v.type === 'callback').length };
+  }
+  function taxes(gross, miles) {
+    const st = settings();
+    const mileage = (+miles || 0) * (+st.mile || 0);
+    const net = Math.max(0, gross - mileage);
+    const se = net * 0.9235 * 0.153;
+    const fed = Math.max(0, net - se / 2) * (+st.fed || 0) / 100;
+    const state = net * (+st.state || 0) / 100;
+    return { mileage, net, se, fed, state, total: se + fed + state };
+  }
+
+  // ---------------- summary ----------------
+  let shownShift = null;
+  function shiftRec(id) {
+    const s = docs.get(id);
+    if (s) return { ...s, id };
+    const vs = visits().filter(v => v.shift === id);
+    return { id, start: vs[0]?.at || Date.now(), end: vs.at(-1)?.at || Date.now(), untimed: true };
+  }
+  function showSummary(id) {
+    shownShift = id; const s = shiftRec(id); const vs = visits().filter(v => v.shift === id); const st = statsFor(vs);
+    const h = s.untimed ? 0 : hoursOf({ ...s, id }); const aside = st.gross * (settings().tax || 0) / 100;
+    $('summary').innerHTML = `<div class="card"><h2>${dd(s.start)}</h2><table class="kv">
+      <tr><td>Time</td><td>${s.untimed ? 'No shift timer' : tm(s.start) + ' – ' + (s.end ? tm(s.end) : 'now')}</td></tr>
+      <tr><td>Hours</td><td>${h.toFixed(2)}</td></tr>
+      <tr><td>Doors</td><td>${st.doors}</td></tr>
+      <tr><td>Sale / No / Not home / Later</td><td>${st.sales.length} / ${st.no} / ${st.nh} / ${st.cb}</td></tr>
+      <tr><td>Close rate (answered)</td><td>${Math.round(st.close * 100)}%</td></tr>
+      <tr><td>Per hour</td><td>${h >= 0.05 ? money(st.gross / h) : '—'}</td></tr>
+      <tr><td>Set aside for taxes (${settings().tax}%)</td><td>${money(aside)}</td></tr>
+      <tr class="total"><td>Money made</td><td>${money(st.gross)}</td></tr></table></div>`;
+    go('summary');
+  }
+  function shiftReportDoc(id) {
+    const s = shiftRec(id), vs = visits().filter(v => v.shift === id), st = statsFor(vs), set = settings();
+    const h = s.untimed ? 0 : hoursOf({ ...s, id });
+    return `<!doctype html><meta charset="utf-8"><title>Shift ${dd(s.start)}</title><style>${DOC_CSS}</style>
+      <h1>${esc(set.biz || 'Shift Report')}</h1><p>${esc(set.name)} · ${new Date(s.start).toDateString()} · ${s.untimed ? '' : tm(s.start) + '–' + tm(s.end || Date.now()) + ' · ' + h.toFixed(2) + ' h'}</p>
+      <table><tr><th>Doors</th><td>${st.doors}</td><th>Sales</th><td>${st.sales.length}</td><th>Total</th><td><b>${money(st.gross)}</b></td></tr></table>
+      <h2>All stops</h2><table><tr><th>Time</th><th>Result</th><th>Address</th><th>Notes</th><th>Amount</th></tr>
+      ${vs.map(v => `<tr><td>${tm(v.at)}</td><td>${LABEL[v.type]}</td><td>${esc(v.address)}</td><td>${esc(v.reason || v.desc || '')}</td><td>${v.type === 'sale' ? money(v.amount) : ''}</td></tr>`).join('')}</table>
+      <h2>Receipts</h2>${st.sales.map(receiptBlock).join('') || '<p>No sales.</p>'}
+      <p style="color:#777">Open in Chrome, then ⋮ → Share → Print to print or save as PDF.</p>`;
+  }
+  const cell = x => { const s = String(x ?? ''); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+  function csvFor(vs, miles) {
+    const st = statsFor(vs), tx = taxes(st.gross, miles);
+    const hrs = [...new Set(vs.map(v => v.shift))].reduce((a, id) => a + (docs.get(id) ? hoursOf({ ...docs.get(id), id }) : 0), 0);
+    const rows = [['Receipt #', 'Date', 'Time', 'Result', 'Address', 'Service / reason', 'Amount', 'Paid by', 'Customer', 'Email', 'Note']];
+    vs.forEach(v => rows.push([v.receiptNo || '', new Date(v.at).toLocaleDateString(), tm(v.at), LABEL[v.type], v.address, v.desc || v.reason || '',
+      v.type === 'sale' ? v.amount : '', v.pay || '', v.customer || '', v.email || '', v.note || '']));
+    rows.push([], ['', '', '', '', '', 'Gross income', st.gross.toFixed(2)], ['', '', '', '', '', 'Hours worked', hrs.toFixed(2)],
+      ['', '', '', '', '', 'Per hour', hrs ? (st.gross / hrs).toFixed(2) : ''], ['', '', '', '', '', 'Mileage deduction', tx.mileage.toFixed(2)],
+      ['', '', '', '', '', 'Self-employment tax', tx.se.toFixed(2)], ['', '', '', '', '', 'Federal tax (est.)', tx.fed.toFixed(2)],
+      ['', '', '', '', '', 'State tax (est.)', tx.state.toFixed(2)], ['', '', '', '', '', 'Set aside for taxes', tx.total.toFixed(2)],
+      ['', '', '', '', '', 'Take-home', (st.gross - tx.total).toFixed(2)]);
+    return rows.map(r => r.map(cell).join(',')).join('\n');
+  }
+  $('sum-report').onclick = () => saveFile(`shift-${new Date(shiftRec(shownShift).start).toISOString().slice(0, 10)}.html`, shiftReportDoc(shownShift));
+  $('sum-csv').onclick = () => saveFile(`shift-${new Date(shiftRec(shownShift).start).toISOString().slice(0, 10)}.csv`, csvFor(visits().filter(v => v.shift === shownShift), 0));
+
+  // ---------------- money & taxes ----------------
+  function periodStart(p) {
+    const d = new Date(); d.setHours(0, 0, 0, 0);
+    if (p === 'week') { d.setDate(d.getDate() - ((d.getDay() + 6) % 7)); return +d; }
+    if (p === 'month') { d.setDate(1); return +d; }
+    if (p === 'year') { d.setMonth(0, 1); return +d; }
+    return 0;
+  }
+  function renderMoney() {
+    const from = periodStart($('m-period').value);
+    const vs = visits().filter(v => v.at >= from), st = statsFor(vs);
+    const shs = shifts().filter(s => s.start >= from);
+    const hrs = shs.reduce((a, s) => a + hoursOf({ ...s, id: 'x' }), 0);
+    const tx = taxes(st.gross, $('m-miles').value);
+    $('money').innerHTML = `<table class="kv">
+      <tr><td>Money made</td><td>${money(st.gross)}</td></tr>
+      <tr><td>Hours worked</td><td>${hrs.toFixed(1)}</td></tr>
+      <tr><td>Per hour (before tax)</td><td>${hrs >= 0.05 ? money(st.gross / hrs) : '—'}</td></tr>
+      <tr><td>Sales / doors</td><td>${st.sales.length} / ${st.doors}</td></tr>
+      <tr><td>Mileage deduction</td><td>−${money(tx.mileage)}</td></tr>
+      <tr><td>Self-employment tax</td><td>${money(tx.se)}</td></tr>
+      <tr><td>Federal tax (est.)</td><td>${money(tx.fed)}</td></tr>
+      <tr><td>State tax (est.)</td><td>${money(tx.state)}</td></tr>
+      <tr><td><b>Set aside for taxes</b></td><td>${money(tx.total)}</td></tr>
+      <tr class="total"><td>Take-home</td><td>${money(st.gross - tx.total)}</td></tr></table>`;
+    const ids = [...new Set([...shifts().map(s => [...docs.entries()].find(([, v]) => v === s)[0]), ...visits().map(v => v.shift)])];
+    const recs = ids.map(shiftRec).sort((a, b) => b.start - a.start);
+    $('shiftlist').innerHTML = recs.length ? recs.map(s => { const st2 = statsFor(visits().filter(v => v.shift === s.id));
+      return `<button class="item" data-shift="${esc(s.id)}"><span class="ph"></span><span class="meta"><div><b>${dd(s.start)}</b></div>
+        <div class="small muted">${s.untimed ? 'no timer' : hoursOf(s).toFixed(2) + ' h'} · ${st2.sales.length}/${st2.doors} doors</div></span>
+        <span class="amtcol">${money0(st2.gross)}</span></button>`; }).join('') : '<div class="empty">Shifts show here after you start one on the home screen.</div>';
+  }
+  $('m-period').onchange = renderMoney; $('m-miles').oninput = renderMoney;
+  ['t-fed', 't-state', 't-mile'].forEach(id => $(id).onchange = () => {
+    put('settings', { ...settings(), fed: +$('t-fed').value, state: +$('t-state').value, mile: +$('t-mile').value });
+  });
+  $('all-csv').onclick = () => saveFile(`door-receipts-${new Date().toISOString().slice(0, 10)}.csv`, csvFor(visits().filter(v => v.at >= periodStart($('m-period').value)), $('m-miles').value));
+
+  // ---------------- surveys ----------------
+  function surveyText(v) {
+    const st = settings(), first = (v.customer || '').split(' ')[0] || 'there';
+    return `Hi ${first},\n\nThanks for choosing ${v.biz || st.biz || 'us'} on ${new Date(v.at).toLocaleDateString([], { month: 'long', day: 'numeric' })}. ` +
+      `Here's your receipt: #${v.receiptNo}, ${money(v.amount)} for ${v.desc || 'service'} at ${v.address}, paid by ${v.pay}.\n\n` +
+      `Would you take one minute to tell us how we did?\n${st.survey || '[add your survey link in Settings]'}\n\nThank you!\n${st.name}\n${st.phone}`;
+  }
+  async function copy(text) {
+    try { await navigator.clipboard.writeText(text); toast('Copied'); }
+    catch { const t = document.createElement('textarea'); t.value = text; document.body.append(t); t.select(); toast('Press and hold to copy'); setTimeout(() => t.remove(), 8000); }
+  }
+  function renderSurveys() {
+    const list = [...docs.entries()].filter(([k, v]) => k.startsWith('v_') && v.type === 'sale' && v.email).sort((a, b) => b[1].at - a[1].at);
+    $('surveylist').innerHTML = list.length ? list.map(([id, v]) => `<div class="card">
+      <div><b>${esc(v.customer)}</b> · ${dd(v.at)} · ${money(v.amount)} ${v.surveyed ? '<span class="tag sale">SENT</span>' : ''}</div>
+      <div class="small" style="overflow-wrap:anywhere">${esc(v.email)}</div>
+      <div class="row3"><button class="btn slim" data-copy-email="${id}">Copy email</button><button class="btn slim" data-copy-msg="${id}">Copy message</button>
+      <button class="btn slim" data-mark="${id}">${v.surveyed ? 'Unmark' : 'Mark sent'}</button></div></div>`).join('')
+      : '<div class="empty">No emails yet. When a customer types their email on a receipt, they show up here so you can send the survey and receipt.</div>';
+  }
+  $('surveylist').onclick = e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.copyEmail) copy(docs.get(b.dataset.copyEmail).email);
+    if (b.dataset.copyMsg) copy(surveyText(docs.get(b.dataset.copyMsg)));
+    if (b.dataset.mark) { const v = docs.get(b.dataset.mark); put(b.dataset.mark, { ...v, surveyed: !v.surveyed }); }
+  };
+
+  // ---------------- AI coach ----------------
+  let sample = null, sampleLimits = null;
+  function street(a) { return (a || '').replace(/^\s*\d+[A-Za-z]?\s+/, '').split(',')[0].trim() || '(no address)'; }
+  function groupTable(vs, key) {
+    const g = {}; vs.forEach(v => { const k = key(v); (g[k] ||= []).push(v); });
+    return Object.entries(g).map(([k, list]) => { const s = statsFor(list); return `${k}: ${s.doors} doors, ${s.sales.length} sales, ${Math.round(s.close * 100)}% close, $${Math.round(s.gross)}`; }).join('\n');
+  }
+  function coachReport() {
+    const vs = visits(), st = statsFor(vs);
+    const hrs = shifts().reduce((a, s) => a + hoursOf({ ...s, id: 'x' }), 0);
+    const reasons = {}; vs.filter(v => v.type === 'no').forEach(v => reasons[v.reason || '(none)'] = (reasons[v.reason || '(none)'] || 0) + 1);
+    return `DOOR-TO-DOOR RESULTS (${settings().biz || 'my business'})
+Doors: ${st.doors} · answered: ${st.answered} · sales: ${st.sales.length} · close rate: ${Math.round(st.close * 100)}%
+Money: $${st.gross.toFixed(2)} · hours: ${hrs.toFixed(1)} · per hour: $${hrs ? (st.gross / hrs).toFixed(2) : '—'} · avg sale: $${st.sales.length ? (st.gross / st.sales.length).toFixed(2) : '—'}
+
+By weekday:\n${groupTable(vs, v => new Date(v.at).toLocaleDateString([], { weekday: 'long' }))}
+By hour:\n${groupTable(vs, v => new Date(v.at).getHours() + ':00')}
+By street:\n${groupTable(vs, v => street(v.address))}
+Reasons for no:\n${Object.entries(reasons).map(([r, n]) => r + ': ' + n).join('\n') || '(none)'}
+
+Every door (oldest first):\n${vs.map((v, i) => `#${i + 1} ${LABEL[v.type]}${v.type === 'sale' ? ' $' + v.amount : ''} · ${new Date(v.at).toLocaleString([], { weekday: 'short', hour: 'numeric', minute: '2-digit' })} · ${street(v.address)} · ${v.reason || v.desc || ''} ${v.note || ''}${v.photo ? ' [photo]' : ''}`).join('\n')}`;
+  }
+  const COACH_ASK = `You are coaching a door-to-door worker (yard work and similar services) to earn more per hour.
+Compare houses that bought (SALE) with houses that said NO: list visible features that differ (yard condition, leaves/debris, cars in driveway, house size/age, kids' toys, decorations, cameras, "No Soliciting" signs, gates, dogs). Say how sure you are.
+Then give: (1) a 3-second "knock / skip / come back later" checklist, (2) best days, hours and streets and what to drop, (3) three things to say to turn NOs and COME BACKs into sales, (4) what to log next time to learn more.
+Keep it short and plain, with short headings and bullets. Say clearly when there's too little data to be sure.`;
+  function renderCoach() {
+    const vs = visits(), st = statsFor(vs), ph = vs.filter(v => v.photo).length;
+    $('coachstats').innerHTML = vs.length ? `<table class="kv"><tr><td>Doors logged</td><td>${st.doors}</td></tr><tr><td>Sales</td><td>${st.sales.length}</td></tr>
+      <tr><td>Said no</td><td>${st.no}</td></tr><tr><td>House photos</td><td>${ph}</td></tr></table>
+      <p class="hint">${st.doors < 15 ? 'Log 15+ doors with photos (yes and no) for useful patterns.' : 'Enough to start spotting patterns.'}</p>`
+      : '<div class="empty">Log some doors first: a sale receipt, or tap Said No / Not Home with a photo. The coach compares the yes-houses with the no-houses.</div>';
+    $('coach-run').hidden = !sample;
+  }
+  function dataUrlToBlob(d) { const [h, b] = d.split(','); const bin = atob(b); const u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return new Blob([u], { type: h.slice(5).split(';')[0] }); }
+  $('coach-run').onclick = async () => {
+    if (!sample) return;
+    const vs = visits(); if (!vs.length) { toast('Log some doors first'); return; }
+    const btn = $('coach-run'); btn.disabled = true; btn.textContent = 'Thinking…';
+    $('coach-out').hidden = false; $('coach-text').textContent = 'Looking at your doors…';
+    let images = [], key = '';
+    const max = sampleLimits?.images?.maxCount || 0;
+    if (max) {
+      const withP = vs.map((v, i) => ({ v, i })).filter(x => x.v.photo);
+      const sales = withP.filter(x => x.v.type === 'sale'), rest = withP.filter(x => x.v.type !== 'sale');
+      const pick = [...sales.slice(-Math.ceil(max / 2)), ...rest.slice(-(max - Math.min(sales.length, Math.ceil(max / 2))))].slice(0, max);
+      images = pick.map(x => dataUrlToBlob(x.v.photo));
+      key = '\n\nAttached photos, in order:\n' + pick.map((x, n) => `Photo ${n + 1} = door #${x.i + 1} (${LABEL[x.v.type]})`).join('\n');
+    }
+    try {
+      const r = await sample(`${COACH_ASK}\n\n${coachReport()}${key}`, { images: images.length ? images : undefined, cache: false,
+        onText: ({ text }) => { $('coach-text').textContent = text; } });
+      $('coach-text').textContent = r.text;
+    } catch (e) {
+      $('coach-text').textContent = e.code === 'not_granted' ? 'The AI coach needs your permission. Tap the button again and allow it.' :
+        e.code === 'rate_limited' ? 'Too many requests — try again in a minute.' : 'The coach could not answer right now. Try again in a bit.';
+    } finally { btn.disabled = false; btn.textContent = 'Ask the AI Coach'; }
+  };
+  $('coach-copy').onclick = () => copy(COACH_ASK + '\n\n' + coachReport());
+
+  // ---------------- settings ----------------
+  function fillSettings() { const s = settings(); $('st-name').value = s.name; $('st-biz').value = s.biz; $('st-phone').value = s.phone; $('st-survey').value = s.survey; $('st-tax').value = s.tax; }
+  $('st-save').onclick = () => { put('settings', { ...settings(), name: $('st-name').value.trim(), biz: $('st-biz').value.trim(), phone: $('st-phone').value.trim(),
+    survey: $('st-survey').value.trim(), tax: +$('st-tax').value || 0 }); toast('Saved'); go('home'); };
+
+  // ---------------- render ----------------
+  function render() {
+    setPill();
+    const s = openShift();
+    $('clock').classList.toggle('on', !!s);
+    $('shiftlbl').textContent = s ? 'On shift since ' + tm(s.start) : 'No shift running';
+    if (!armEnd) { $('shiftbtn').textContent = s ? 'End Shift' : 'Start Shift'; $('shiftbtn').className = 'btn big ' + (s ? 'stop' : 'brand'); }
+    const today = new Date().toDateString();
+    const tv = visits().filter(v => new Date(v.at).toDateString() === today), st = statsFor(tv);
+    $('s-sales').textContent = st.sales.length; $('s-money').textContent = money0(st.gross); $('s-doors').textContent = st.doors;
+    $('todaylist').innerHTML = tv.length ? tv.slice().reverse().map(v => {
+      const id = [...docs.entries()].find(([, x]) => x === v)[0];
+      return `<button class="item" data-visit="${id}">${v.photo ? `<img src="${v.photo}" alt="">` : '<span class="ph"></span>'}
+        <span class="meta"><div><span class="tag ${v.type}">${LABEL[v.type]}</span> ${esc(v.address || v.reason || '')}</div>
+        <div class="small muted">${tm(v.at)}${v.customer ? ' · ' + esc(v.customer) : ''}</div></span>
+        <span class="amtcol">${v.type === 'sale' ? money0(v.amount) : ''}</span></button>`; }).join('')
+      : '<div class="empty">Nothing logged today. Tap <b>Start Shift</b>, then <b>Sale</b> for a receipt or <b>Said No</b> / <b>Not Home</b> at each door.</div>';
+    const set = settings();
+    $('t-fed').value = set.fed; $('t-state').value = set.state; $('t-mile').value = set.mile;
+    if (view === 'money') renderMoney();
+    if (view === 'surveys') renderSurveys();
+    if (view === 'coach') renderCoach();
+  }
+
+  // ---------------- boot ----------------
+  render();
+  (async () => {
+    const c = window.claude;
+    const [db, user, dl, sm] = await Promise.all(['db', 'user', 'downloads', 'sample'].map(n => c?.use ? c.use(n).catch(() => null) : null));
+    downloads = dl; sample = sm;
+    if (sample) sample.limits().then(l => { sampleLimits = l; }).catch(() => {});
+    const me = user ? await user.id().catch(() => null) : null;
+    if (db && me) {
+      col = db.collection('data/users/' + me);
+      let first = true;
+      const timer = setTimeout(() => { if (first) toast('Can’t reach saved data yet — check signal'); }, 10000);
+      col.onSnapshot(snap => {
+        const wasFirst = first;
+        if (first) { first = false; clearTimeout(timer); docs.clear(); }
+        snap.docChanges().forEach(ch => ch.type === 'removed' ? docs.delete(ch.doc.id) : docs.set(ch.doc.id, ch.doc.data()));
+        render();
+        if (wasFirst) nudge();
+      }, () => { clearTimeout(timer); toast('Saved data is unavailable right now'); });
+    } else {
+      localLoad(); render(); nudge();
+    }
+    function nudge() { if (!settings().name && view === 'home') { go('settings'); toast('Add your name and business first'); } }
+  })();
+})();
+</script>
